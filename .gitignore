@@ -1,0 +1,14 @@
+.cache/
+.history/
+.npm/
+dist/
+monitor/
+node_modules/
+.eslintcache
+.stylelintcache
+*.log
+*-debug.log*
+*-error.log*
+stats.html
+stats.json
+.DS_Store

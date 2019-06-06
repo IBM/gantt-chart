@@ -1,0 +1,3 @@
+# Drag and drop of activities
+
+TODO...

@@ -1,0 +1,30 @@
+.clearfix::after {
+  display: block;
+  clear: both;
+  height: 0;
+  font-size: 0;
+  visibility: hidden;
+  content: ' ';
+}
+
+.clearfix {
+  display: inline-block;
+}
+
+/* Todo: Webpack autoprefixer plugin used in postcss-loader manages that, mixin should be removed */
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+  border-radius: $radius;
+}
+
+.g-unselectable {
+  -ms-user-select: none; /* IE10+ */
+  -moz-user-select: -moz-none; /* Firefox */
+  -webkit-user-select: none; /* Chrome/Safari */
+
+  /* For future browser versions */
+  -o-user-select: none;
+  user-select: none;
+}

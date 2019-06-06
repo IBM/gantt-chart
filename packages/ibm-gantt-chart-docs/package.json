@@ -1,0 +1,27 @@
+{
+  "name": "ibm-gantt-chart-docs",
+  "version": "0.5.0",
+  "private": true,
+  "description": "IBM Gantt Chart, docs and examples.",
+  "keywords": [
+    "chart",
+    "gantt",
+    "storybook"
+  ],
+  "license": "Apache-2.0",
+  "contributors": [
+    "Olivier Noiret (https://github.com/ono70)",
+    "Gilles d'Andréa (https://github.com/gillesdandrea)"
+  ],
+  "scripts": {
+    "build": "gda-scripts build-storybook-html -s ./data",
+    "start": "gda-scripts storybook-html -s ./data",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "ibm-gantt-chart": "^0.5.0"
+  },
+  "devDependencies": {
+    "gda-scripts": "^0.3.0"
+  }
+}

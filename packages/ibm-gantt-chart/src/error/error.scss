@@ -1,0 +1,63 @@
+.error-list {
+  padding: 5px;
+  list-style-type: none;
+}
+
+.error-component {
+  margin-bottom: 10px;
+  padding: 10px 10px 10px 20px;
+  vertical-align: middle;
+  background: #fdeaec url('./images/error.png') no-repeat 6px 12px;
+  border: #d9182d solid 1px;
+  border-radius: 5px;
+}
+
+.error-content {
+  width: 100%;
+}
+
+.error-title {
+  padding: 2px 5px;
+  color: #d9182d;
+}
+
+.error-details-btn {
+  margin-right: 12px;
+  color: #cc8a92;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.error-details-btn:hover {
+  color: #cc5f6e;
+}
+
+.error-desc {
+  display: none;
+  padding-top: 6px;
+  padding-left: 6px;
+  color: #d9182d;
+  font-size: 12px;
+}
+
+.error-expanded .error-desc {
+  display: block;
+}
+
+.error-bar {
+  display: inline-block;
+  float: right;
+
+  .remove-error-btn {
+    display: inline-block;
+    width: 11px;
+    height: 11px;
+    vertical-align: middle;
+    background: url('./images/remove-error.png') no-repeat 0 0;
+    cursor: pointer;
+  }
+
+  .remove-error-btn:hover {
+    background-image: url('./images/remove-error-focused.png');
+  }
+}

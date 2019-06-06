@@ -1,0 +1,24 @@
+{
+  "name": "ibm-gantt-chart-dev",
+  "version": "0.5.0",
+  "private": true,
+  "description": "IBM Gantt Chart Dev",
+  "license": "Apache-2.0",
+  "contributors": [
+    "Olivier Noiret (https://github.com/ono70)",
+    "Gilles d'Andréa (https://github.com/gillesdandrea)"
+  ],
+  "main": "dist/ibm-gantt-chart-dev.js",
+  "module": "dist/ibm-gantt-chart-dev.js",
+  "scripts": {
+    "start": "gda-scripts webpack-dev-server dev",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.4.4",
+    "ibm-gantt-chart": "^0.5.0"
+  },
+  "devDependencies": {
+    "gda-scripts": "^0.3.0"
+  }
+}

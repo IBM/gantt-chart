@@ -1,0 +1,54 @@
+$warmgray10: #383633;
+$black5: #929497;
+$black0: #f1f1f2;
+
+$gantt-border-color: lightgrey;
+$table-text-color: $warmgray10;
+
+$background-highlight: #ffeb6d;
+
+$gantt-header-background: #5fa2dd;
+//$background-selection: 	#FF6700;
+$background-selection: #fff3a1;
+//$dialog-background: #7D7373; //#464646;
+$dialog-background: #1d3649; //#464646;
+$dialog-foreground: white;
+$dialog-border: #555;
+$dialog-highlight-bakcground: #7cc5ff;
+$dialog-highlight-foreground: #383633;
+
+$activity-background: #5aaafa;
+//$activity-border: $black5;
+$activity-border: white;
+$activity-selected-border: $warmgray10;
+$milestone-color: #4178be;
+$time-table-row-number: darkgrey;
+$time-table-row-background-odd: rgba(249, 249, 249, 0.5);
+$time-table-row-highlight: $background-highlight;
+$activity-dragg-item-color: white;
+$activity-dragg-item-invalid-background: #325c80;
+$activity-dragg-item-valid-background: #5596e6;
+$link-color: #5596e6;
+$selected-link-color: #ed9101;
+
+$time-line-border: #ddd;
+
+$toolbar-title-color: white;
+$toolbar-background: #264a60;
+$toolbar-button-background: transparent;
+$toolbar-button-border-color: transparent;
+$toolbar-button-color: white;
+$toolbar-button-hover-background: #7cc7ff;
+$toolbar-button-hover-color: white;
+$toolbar-button-hover-border: transparent;
+
+$toolbar-button-selected-background: #7cc5ff;
+$toolbar-button-selected-border: white;
+$toolbar-button-selected-color: white;
+$toolbar-button-selected-hover-border: white;
+
+$toolbar-select-border-color: white;
+$toolbar-input-box-background: white;
+$toolbar-input-box-search-color: #dedede;
+
+$table-header-color: #f4f4f4;

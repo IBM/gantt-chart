@@ -1,0 +1,287 @@
+@import '../core/core.scss';
+@import '../core/colors.scss';
+
+.gantt-panel .time-panel {
+  // .time-table {
+  // }
+
+  .time-table-scroller {
+    * {
+      box-sizing: border-box;
+    }
+  }
+
+  .time-table-row {
+    position: relative;
+    overflow: hidden;
+    font-size: 13px;
+    border-top: solid 1px $time-line-border;
+
+    &:first-child {
+      border-top: none;
+    }
+
+    &:last-child {
+      border-bottom: solid 1px $time-line-border;
+    }
+
+    &.highlight,
+    &.selected.highlight {
+      background-color: $time-table-row-highlight;
+    }
+
+    .row-number {
+      display: inline-block;
+      height: 100%;
+      color: $time-table-row-number;
+      vertical-align: middle;
+    }
+  }
+
+  .time-table-activity {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    white-space: nowrap;
+    background-color: $activity-background;
+    border-right: solid 1px $activity-border;
+    border-left: solid 2px $activity-border;
+    cursor: pointer;
+
+    &.mini-activity {
+      border-width: 0;
+    }
+
+    .text-content {
+      display: inline-block;
+      white-space: nowrap;
+      text-align: center;
+      vertical-align: middle;
+
+      /* text-overflow: ellipsis; */ // Ellipsis seem to not add much to user's understanding the text is cut but it does remove 3 characters of the cut text
+    }
+
+    .select-content {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 1;
+      overflow: visible;
+    }
+
+    &.selected {
+      z-index: 2;
+      border: 2px solid $activity-selected-border;
+    }
+
+    &.highlight {
+      .select-content::before {
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        margin-left: -5px;
+        background: white;
+        border: gray 1px solid;
+        border-radius: 50%;
+        content: '';
+      }
+
+      .select-content::after {
+        display: inline-block;
+        float: right;
+        width: 8px;
+        height: 8px;
+        margin-right: -5px;
+        background: white;
+        border: gray 1px solid;
+        border-radius: 50%;
+        content: '';
+      }
+    }
+
+    // stylelint-disable-next-line no-duplicate-selectors
+    &.selected {
+      .select-content::before {
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        margin-left: -5px;
+        background: white;
+        border: $activity-selected-border 1px solid;
+        content: '';
+      }
+
+      .select-content::after {
+        display: inline-block;
+        float: right;
+        width: 8px;
+        height: 8px;
+        margin-right: -5px;
+        background: white;
+        border: $activity-selected-border 1px solid;
+        content: '';
+      }
+    }
+
+    &.dragged {
+      z-index: 1;
+      opacity: 0.5;
+    }
+
+    /* ********* */
+
+    /* milestone */
+
+    /* ********* */
+    &.milestone {
+      overflow: visible;
+
+      &.highlight .select-content {
+        &::before {
+          margin-left: -15px;
+        }
+
+        &::after {
+          margin-right: -15px;
+        }
+      }
+
+      &.selected .select-content {
+        &::before {
+          margin-left: -15px;
+        }
+        &::after {
+          margin-right: -15px;
+        }
+      }
+
+      .shape {
+        /* Rotate */
+        -webkit-transform: rotate(-45deg);
+        -moz-transform: rotate(-45deg);
+        -ms-transform: rotate(-45deg);
+        -o-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+
+        /* Rotate Origin */
+        -webkit-transform-origin: 0 100%;
+        -moz-transform-origin: 0 100%;
+        -ms-transform-origin: 0 100%;
+        -o-transform-origin: 0 100%;
+        transform-origin: 0 100%;
+      }
+    }
+
+    /* *************** */
+
+    /* Parent activity */
+
+    /* *************** */
+    &.parent-activity {
+      border: none;
+
+      .parent-activity-bar {
+        background-color: $activity-background;
+      }
+
+      .top-right-triangle,
+      .top-left-triangle {
+        border-top-color: $activity-background;
+      }
+    }
+  }
+
+  .time-table-decoration-ctnr {
+    .time-table-invalid {
+      background: rgba(192, 192, 192, 0.5)
+        repeating-linear-gradient(
+          45deg,
+          transparent,
+          transparent 35px,
+          rgba(255, 255, 255, 0.5) 35px,
+          rgba(255, 255, 255, 0.5) 70px
+        );
+    }
+
+    .time-table-break {
+      background: rgba(192, 192, 192, 0.5);
+    }
+  }
+}
+
+// stylelint-disable-next-line no-duplicate-selectors
+.gantt-panel .time-panel .time-table-row {
+  &.selected {
+    background-color: $background-selection;
+  }
+}
+
+.gantt-panel.activity_chart .time-table-activity {
+  color: $activity-background;
+
+  .text-container {
+    display: table;
+    margin-left: 20px;
+    color: $black5;
+
+    &.left {
+      margin-left: -20px;
+    }
+  }
+
+  .text-content {
+    display: table-cell;
+  }
+
+  &.parent-activity .text-content {
+    vertical-align: top;
+  }
+}
+
+.dragg-item {
+  z-index: 2;
+  padding: 0;
+  color: $activity-dragg-item-color;
+  font-size: 13px;
+  text-align: center;
+  border-radius: 6px;
+
+  // .dragg-item-property {
+  // }
+
+  td {
+    padding: 5px 0;
+    color: white;
+
+    &.table-separator {
+      width: 15px;
+    }
+  }
+
+  h4,
+  h3,
+  h2 {
+    display: table-cell;
+    margin: 0;
+    font-size: 15px;
+    text-align: left;
+    vertical-align: middle;
+  }
+
+  &.dragg-invalid {
+    background: $activity-dragg-item-invalid-background url('./images/drag-error.png') no-repeat 6px 6px;
+  }
+
+  &.dragg-valid {
+    background: $activity-dragg-item-valid-background url('./images/check.png') no-repeat 6px 6px;
+  }
+}
+
+.dragg-title {
+  height: 32px;
+  padding-left: 40px;
+}

@@ -1,0 +1,61 @@
+{
+  "name": "@ibm/gantt-chart",
+  "version": "0.5.0",
+  "private": true,
+  "description": "IBM Gantt Chart Component, integrable in Vanilla, jQuery, or React Framework.",
+  "repository": "https://github.com/ibm/gantt-chart",
+  "license": "Apache-2.0",
+  "contributors": [
+    "Olivier Noiret (https://github.com/ono70)",
+    "Gilles d'Andréa (https://github.com/gillesdandrea)"
+  ],
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "lerna run build",
+    "check:fix": "yarn import:fix && yarn prettier:fix && yarn elint:fix && yarn slint:fix",
+    "check:list": "yarn import:list && yarn prettier:list && yarn elint && yarn slint",
+    "clean:all": "yarn clean:dist && yarn clean:junk && yarn clean:modules",
+    "clean:dist": "rimraf packages/*/dist packages/*/stats.html",
+    "clean:junk": "rimraf *-{debug,error}.log packages/*/*-{debug,error}.log packages/*/stats.html",
+    "clean:modules": "rimraf node_modules package-lock.json yarn.lock *-{debug,error}.log packages/*/node_modules packages/*/package-lock.json packages/*/yarn.lock packages/*/*-{debug,error}.log",
+    "elint": "gda-scripts eslint packages/*/{src,test}",
+    "elint:fix": "gda-scripts eslint packages/*/{src,test} --fix",
+    "import:fix": "import-sort --write \"packages/*/{src,test}/**/*.{js,jsx}\" \"packages/*/.*.js\" \"packages/*/*.js\" \".*.js\" \"*.js\"",
+    "import:list": "import-sort --list-different \"packages/*/{src,test}/**/*.{js,jsx}\" \"packages/*/.*.js\" \"packages/*/*.js\" \".*.js\" \"*.js\"",
+    "lerna:publish": "lerna publish",
+    "lerna:version": "lerna version --no-git-tag-version --no-push",
+    "precommit": "lint-staged",
+    "prettier:fix": "prettier --write \"packages/*/{src,test}/**/*.{js,jsx,css,scss,json,md}\" \"packages/*/.*.js\" \"packages/*/*.js\" \".*.js\" \"*.js\" \"docs/*.md\" \"*.md\"",
+    "prettier:list": "prettier -l \"packages/*/{src,test}/**/*.{js,jsx,css,scss,json,md}\" \"packages/*/.*.js\" \"packages/*/*.js\" \".*.js\" \"*.js\" \"docs/*.md\" \"*.md\"",
+    "slint": "gda-scripts stylelint packages/*/{src,test}",
+    "slint:fix": "gda-scripts stylelint packages/*/{src,test} --fix",
+    "start": "cd packages/gantt-chart && yarn start",
+    "update": "yarn upgrade-interactive --latest"
+  },
+  "lint-staged": {
+    "packages/*/{src,test}/**/*.{css,scss}": [
+      "prettier --write",
+      "gda-scripts stylelint --fix",
+      "git add"
+    ],
+    "packages/*/{src,test}/**/*.{js,jsx} packages/*/.*.js packages/*/*.js .*.js *.js": [
+      "import-sort --write",
+      "prettier --write",
+      "gda-scripts eslint --fix",
+      "git add"
+    ],
+    "packages/*/{src,test}/**/*.{json,md} docs/*.md *.md": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "devDependencies": {
+    "gda-scripts": "^0.3.6",
+    "husky": "^2.4.0",
+    "lerna": "^3.14.1",
+    "lint-staged": "^8.2.0",
+    "rimraf": "^2.6.3"
+  }
+}

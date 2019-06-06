@@ -1,0 +1,36 @@
+@import '../core/colors.scss';
+
+.constraint-link {
+  color: $link-color;
+  background-color: $link-color;
+}
+
+.constraint-link-ctnr {
+  cursor: pointer;
+
+  &.selected .constraint-link {
+    background-color: $selected-link-color;
+    box-shadow: 0 0 6px $selected-link-color;
+  }
+}
+
+.constraint-arrow {
+  border-color: $link-color;
+  cursor: pointer;
+}
+
+.constraint-vert-link {
+  width: 1px;
+}
+
+.constraint-horiz-link {
+  height: 1px;
+}
+
+.constraint-right-arrow.selected {
+  border-left-color: $selected-link-color;
+}
+
+.constraint-left-arrow.selected {
+  border-right-color: $selected-link-color;
+}

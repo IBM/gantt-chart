@@ -1,0 +1,114 @@
+@import '../core/colors.scss';
+
+.load-resource-chart {
+  background-color: white;
+
+  .vis-timeline .vis-bottom .vis-minor {
+    border-bottom: solid 1px $time-line-border;
+  }
+
+  .vis-panel.vis-bottom {
+    border-top: 2px solid $gantt-border-color;
+  }
+
+  .vis-item.vis-background {
+    background-color: transparent;
+    .vis-item-content {
+      height: 100%;
+      padding: 0;
+    }
+  }
+
+  .vis-item {
+    z-index: 0;
+    background-color: transparent;
+    border: none;
+  }
+
+  .load-resource-chart-left {
+    padding-left: 6px;
+  }
+
+  .vertical-expand-panel {
+    top: 1px;
+    left: 3px;
+    z-index: 1;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2px;
+
+    .load-title {
+      margin-left: 6px;
+      padding: 0;
+      font-size: 18px;
+    }
+    .vertical-expand-button {
+      padding: 3px 6px;
+      border: none;
+    }
+    &.collapsed {
+      top: -53px;
+      background-color: rgba(255, 255, 255, 0.5);
+    }
+  }
+
+  .legend-panel {
+    top: 5px;
+    margin-right: 23px;
+    margin-bottom: 6px;
+    overflow: auto;
+    color: $warmgray10;
+    background-color: $table-header-color;
+    border: 2px solid $gantt-border-color;
+  }
+  .legend-panel.empty-legend {
+    background-color: transparent;
+    border: none;
+  }
+  .legend {
+    margin: 0;
+    padding: 0;
+  }
+
+  .legend-item {
+    padding: 6px;
+  }
+
+  .legend-item-color {
+    width: 40px;
+    height: 23px;
+    border: solid 1px black;
+  }
+
+  .legend-item-name {
+    padding-left: 12px;
+    font-size: 12px;
+  }
+
+  .y-axis {
+    font-size: 12px;
+    border-right: 5px solid $gantt-border-color;
+    .y-axis-label {
+      padding-right: 15px;
+      color: $gantt-border-color;
+    }
+    .y-axis-tick {
+      width: 10px;
+      border-top: solid 2px $gantt-border-color;
+    }
+  }
+
+  .no-selection {
+    background-color: rgba(192, 192, 192, 0.1);
+
+    .no-selection-message {
+      padding: 8px 12px;
+      color: $black5;
+      background-color: $table-header-color;
+      border: 2px solid $gantt-border-color;
+      -webkit-box-shadow: 5px 5px 23px 0 rgba(146, 148, 151, 1);
+      -moz-box-shadow: 5px 5px 23px 0 rgba(146, 148, 151, 1);
+      box-shadow: 5px 5px 23px 0 rgba(146, 148, 151, 1);
+    }
+  }
+}

@@ -1,0 +1,70 @@
+@import '../../core/colors.scss';
+
+.gantt-panel {
+  .tree-node-spacing {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+  }
+
+  .leaf-row {
+    color: $table-text-color;
+    &.hidden {
+      display: none;
+    }
+  }
+
+  .parent-row {
+    color: $table-text-color;
+
+    .hierarchy-control {
+      font-weight: 500;
+    }
+  }
+
+  .table-panel:not(.tree-table-flat) {
+    .leaf-row .tree-node-handle {
+      display: inline-block;
+    }
+
+    .parent-row {
+      &.hidden {
+        display: none;
+      }
+
+      .tree-node-handle {
+        display: inline-block;
+        width: 20px;
+        height: 16px;
+
+        i.collapsed {
+          display: none;
+        }
+      }
+    }
+
+    .parent-row.collapsed .tree-node-handle {
+      i.collapsed {
+        display: inherit;
+      }
+
+      i.expanded {
+        display: none;
+      }
+    }
+  }
+
+  td.hierarchy-control {
+    min-width: 150px;
+
+    .tree-node-handle {
+      cursor: pointer;
+    }
+  }
+
+  .tree-node-color {
+    width: 16px;
+    height: 16px;
+    border: 1px solid $warmgray10;
+  }
+}

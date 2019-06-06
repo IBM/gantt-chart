@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schedule version="5.5" xml:lang="en-US">
+    <title>Scheduling Data</title>
+    <desc>ILOG JViews Scheduling Data Exchange Language</desc>
+    <resources>
+        <resource id="JCOM" name="JCompany Employees" quantity="1.0">
+            <resource id="MKT" name="Marketing" quantity="1.0">
+                <resource id="BM" name="Bill McDonald" quantity="1.0"/>
+                <resource id="SK" name="Steve Knoll" quantity="1.0"/>
+                <resource id="MS" name="Michael Smith" quantity="1.0"/>
+                <resource id="LP" name="Luc Dupont" quantity="1.0"/>
+            </resource>
+            <resource id="RND" name="Research and Development" quantity="1.0">
+                <resource id="LD" name="Linus Dane" quantity="1.0"/>
+                <resource id="JH" name="James Hook" quantity="1.0"/>
+                <resource id="SW" name="Scott Washington" quantity="1.0"/>
+                <resource id="GH" name="Gill Hopper" quantity="1.0"/>
+                <resource id="TM" name="Thomas Monahan" quantity="1.0"/>
+            </resource>
+            <resource id="DOC" name="Documentation" quantity="1.0">
+                <resource id="SL" name="Sandy Ladd" quantity="1.0"/>
+                <resource id="BR" name="Bob Robertson" quantity="1.0"/>
+            </resource>
+        </resource>
+    </resources>
+    <activities dateFormat="d-M-yyyy H:m:s">
+        <activity end="18-10-2017 0:0:0" id="A-Root" name="Project Summary" start="22-2-2017 0:0:0">
+            <activity end="11-3-2017 0:0:0" id="A-1" name="Gather Requirements" start="22-2-2017 0:0:0">
+                <activity end="4-3-2017 0:0:0" id="A-1.1" name="Talk to customers" start="22-2-2017 0:0:0">
+                    <activity end="24-2-2017 0:0:0" id="A-1.1.1" name="Compile customer list" start="22-2-2017 0:0:0"/>
+                    <activity end="4-3-2017 0:0:0" id="A-1.1.2" name="Contact customers" start="24-2-2017 0:0:0"/>
+                </activity>
+                <activity end="7-3-2017 0:0:0" id="A-1.2" name="Write up requirements" start="4-3-2017 0:0:0"/>
+                <activity end="11-3-2017 0:0:0" id="A-1.3" name="Review requirements" start="6-3-2017 0:0:0"/>
+            </activity>
+            <activity end="23-3-2017 0:0:0" id="A-2" name="Marketing Specification" start="11-3-2017 0:0:0">
+                <activity end="18-3-2017 0:0:0" id="A-2.1" name="First Draft Specification" start="11-3-2017 0:0:0"/>
+                <activity end="23-3-2017 0:0:0" id="A-2.2" name="Second Draft Specification" start="18-3-2017 0:0:0"/>
+            </activity>
+            <activity end="2-4-2017 0:0:0" id="A-3" name="Engineering Review" start="23-3-2017 0:0:0"/>
+            <activity end="24-5-2017 0:0:0" id="A-4" name="Proof of Concept" start="2-4-2017 0:0:0">
+                <activity end="23-4-2017 0:0:0" id="A-4.1" name="Rough Design" start="2-4-2017 0:0:0">
+                    <activity end="16-4-2017 0:0:0" id="A-4.1.1" name="CAD Layout" start="2-4-2017 0:0:0"/>
+                    <activity end="23-4-2017 0:0:0" id="A-4.1.2" name="Detailing" start="13-4-2017 0:0:0"/>
+                </activity>
+                <activity end="10-5-2017 0:0:0" id="A-4.2" name="Fabricate Prototype" start="18-4-2017 0:0:0">
+                    <activity end="26-4-2017 0:0:0" id="A-4.2.1" name="Order Materials" start="18-4-2017 0:0:0"/>
+                    <activity end="10-5-2017 0:0:0" id="A-4.2.2" name="Machining" start="26-4-2017 0:0:0"/>
+                </activity>
+                <activity end="17-5-2017 0:0:0" id="A-4.3" name="Burn-in Testing" start="10-5-2017 0:0:0"/>
+                <activity end="24-5-2017 0:0:0" id="A-4.4" name="Prepare Demo" start="17-5-2017 0:0:0"/>
+            </activity>
+            <activity end="4-10-2017 0:0:0" id="A-5" name="Design and Development" start="24-5-2017 0:0:0">
+                <activity end="19-7-2017 0:0:0" id="A-5.1" name="Phase I Development" start="24-5-2017 0:0:0"/>
+                <activity end="30-8-2017 0:0:0" id="A-5.2" name="Phase II Development" start="19-7-2017 0:0:0"/>
+                <activity end="4-10-2017 0:0:0" id="A-5.3" name="Phase III Development" start="30-8-2017 0:0:0"/>
+            </activity>
+            <activity end="18-10-2017 0:0:0" id="A-6" name="Packaging" start="19-7-2017 0:0:0">
+                <activity end="4-10-2017 0:0:0" id="A-6.1" name="User Manual" start="19-7-2017 0:0:0"/>
+                <activity end="18-10-2017 0:0:0" id="A-6.2" name="Installation Procedures" start="20-9-2017 0:0:0"/>
+                <activity end="18-10-2017 0:0:0" id="A-6.3" name="Update WebSite" start="4-10-2017 0:0:0"/>
+            </activity>
+            <activity end="18-10-2017 0:0:0" id="A-7" name="End of project" start="18-10-2017 0:0:0"/>
+        </activity>
+    </activities>
+    <constraints>
+        <constraint from="A-4.2.1" to="A-4.2.2" type="End-Start"/>
+        <constraint from="A-2" to="A-3" type="End-Start"/>
+        <constraint from="A-4.1.1" to="A-4.1.2" type="End-Start"/>
+        <constraint from="A-5.2" to="A-6.1" type="Start-Start"/>
+        <constraint from="A-3" to="A-4" type="End-Start"/>
+        <constraint from="A-4.1.2" to="A-4.2.1" type="Start-Start"/>
+        <constraint from="A-1.2" to="A-1.3" type="End-Start"/>
+        <constraint from="A-5.2" to="A-5.3" type="End-Start"/>
+        <constraint from="A-1.1.1" to="A-1.1.2" type="End-Start"/>
+        <constraint from="A-2.1" to="A-2.2" type="End-Start"/>
+        <constraint from="A-1.1" to="A-1.2" type="End-Start"/>
+        <constraint from="A-5.1" to="A-5.2" type="End-Start"/>
+        <constraint from="A-1" to="A-2" type="End-Start"/>
+        <constraint from="A-4" to="A-5" type="End-Start"/>
+    </constraints>
+    <reservations>
+        <reservation activity="A-1.3" resource="MS"/>
+        <reservation activity="A-1.1.2" resource="SK"/>
+        <reservation activity="A-6.1" resource="SL"/>
+        <reservation activity="A-5.2" resource="LD"/>
+        <reservation activity="A-4.1.2" resource="GH"/>
+        <reservation activity="A-1.1.1" resource="MS"/>
+        <reservation activity="A-4.4" resource="GH"/>
+        <reservation activity="A-4.2.2" resource="GH"/>
+        <reservation activity="A-6.1" resource="BR"/>
+        <reservation activity="A-4.4" resource="LP"/>
+        <reservation activity="A-2.2" resource="LP"/>
+        <reservation activity="A-4" resource="LD"/>
+        <reservation activity="A-4.2" resource="JH"/>
+        <reservation activity="A-1.1.1" resource="LP"/>
+        <reservation activity="A-6.3" resource="GH"/>
+        <reservation activity="A-4.1.2" resource="TM"/>
+        <reservation activity="A-5" resource="JH"/>
+        <reservation activity="A-1.3" resource="BM"/>
+        <reservation activity="A-3" resource="BM"/>
+        <reservation activity="A-3" resource="JH"/>
+        <reservation activity="A-2.1" resource="LP"/>
+        <reservation activity="A-6.2" resource="LD"/>
+        <reservation activity="A-6.3" resource="SL"/>
+        <reservation activity="A-5.2" resource="SW"/>
+        <reservation activity="A-5.3" resource="TM"/>
+        <reservation activity="A-4.1" resource="SW"/>
+        <reservation activity="A-1.1" resource="BM"/>
+        <reservation activity="A-2.1" resource="MS"/>
+        <reservation activity="A-4.4" resource="TM"/>
+        <reservation activity="A-1.1.1" resource="SK"/>
+        <reservation activity="A-3" resource="GH"/>
+        <reservation activity="A-1.1.2" resource="LP"/>
+        <reservation activity="A-4.3" resource="TM"/>
+        <reservation activity="A-5.3" resource="SW"/>
+        <reservation activity="A-6.2" resource="BR"/>
+        <reservation activity="A-4.1.1" resource="TM"/>
+        <reservation activity="A-1.2" resource="MS"/>
+        <reservation activity="A-6.3" resource="MS"/>
+        <reservation activity="A-1.3" resource="LD"/>
+        <reservation activity="A-4.2.1" resource="TM"/>
+        <reservation activity="A-4.3" resource="SW"/>
+        <reservation activity="A-5.1" resource="LD"/>
+    </reservations>
+</schedule>

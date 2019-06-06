@@ -1,0 +1,338 @@
+@charset "utf-8";
+
+/* https://github.com/mochajs/mocha/blob/master/mocha.css */
+
+body {
+  margin: 0;
+}
+
+#mocha {
+  margin: 60px 50px;
+  font: 20px/1.5 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+#mocha ul,
+#mocha li {
+  margin: 0;
+  padding: 0;
+}
+
+#mocha ul {
+  list-style: none;
+}
+
+#mocha h1,
+#mocha h2 {
+  margin: 0;
+}
+
+#mocha h1 {
+  margin-top: 15px;
+  font-weight: 200;
+  font-size: 1em;
+}
+
+#mocha h1 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+#mocha h1 a:hover {
+  text-decoration: underline;
+}
+
+#mocha .suite .suite h1 {
+  margin-top: 0;
+  font-size: 0.8em;
+}
+
+#mocha .hidden {
+  display: none;
+}
+
+#mocha h2 {
+  font-weight: normal;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+#mocha .suite {
+  margin-left: 15px;
+}
+
+#mocha .test {
+  margin-left: 15px;
+  overflow: hidden;
+}
+
+#mocha .test.pending:hover h2::after {
+  font-family: arial, sans-serif;
+  content: '(pending)';
+}
+
+#mocha .test.pass.medium .duration {
+  background: #c09853;
+}
+
+#mocha .test.pass.slow .duration {
+  background: #b94a48;
+}
+
+#mocha .test.pass::before {
+  display: block;
+  float: left;
+  margin-right: 5px;
+  color: #00d6b2;
+  font-size: 12px;
+  content: '✓';
+}
+
+#mocha .test.pass .duration {
+  margin-left: 5px;
+  padding: 2px 5px;
+  color: #fff;
+  font-size: 9px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+#mocha .test.pass.fast .duration {
+  display: none;
+}
+
+#mocha .test.pending {
+  color: #0b97c4;
+}
+
+#mocha .test.pending::before {
+  color: #0b97c4;
+  content: '◦';
+}
+
+#mocha .test.fail {
+  color: #c00;
+}
+
+#mocha .test.fail pre {
+  color: black;
+}
+
+#mocha .test.fail::before {
+  display: block;
+  float: left;
+  margin-right: 5px;
+  color: #c00;
+  font-size: 12px;
+  content: '✖';
+}
+
+#mocha .test pre.error {
+  max-height: 300px;
+  overflow: auto;
+  color: #c00;
+}
+
+#mocha .test .html-error {
+  display: block;
+  float: left;
+  clear: left;
+  max-width: 85%; /* (1) */
+  max-width: -webkit-calc(100% - 42px);
+  max-width: -moz-calc(100% - 42px);
+  max-width: calc(100% - 42px); /* (2) */
+  max-height: 300px;
+  margin: 5px;
+  padding: 15px;
+  overflow: auto;
+  color: black;
+  font: 12px/1.5 monaco, monospace;
+  line-height: 1.5;
+  word-wrap: break-word;
+  border: 1px solid #eee;
+  border-bottom-color: #ddd;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-box-shadow: 0 1px 3px #eee;
+  -moz-box-shadow: 0 1px 3px #eee;
+  box-shadow: 0 1px 3px #eee;
+}
+
+#mocha .test .html-error pre.error {
+  max-height: none;
+  margin: 0;
+  margin-top: 18px;
+  padding: 0;
+  border: none;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-box-shadow: 0;
+  -moz-box-shadow: 0;
+  box-shadow: 0;
+}
+
+/**
+ * (1): approximate for browsers not supporting calc
+ * (2): 42 = 2*15 + 2*10 + 2*1 (padding + margin + border)
+ *      ^^ seriously
+ */
+#mocha .test pre {
+  display: block;
+  float: left;
+  clear: left;
+  max-width: 85%; /* (1) */
+  max-width: -webkit-calc(100% - 42px);
+  max-width: -moz-calc(100% - 42px);
+  max-width: calc(100% - 42px); /* (2) */
+  margin: 5px;
+  padding: 15px;
+  font: 12px/1.5 monaco, monospace;
+  word-wrap: break-word;
+  border: 1px solid #eee;
+  border-bottom-color: #ddd;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-box-shadow: 0 1px 3px #eee;
+  -moz-box-shadow: 0 1px 3px #eee;
+  box-shadow: 0 1px 3px #eee;
+}
+
+#mocha .test h2 {
+  position: relative;
+}
+
+#mocha .test a.replay {
+  position: absolute;
+  top: 3px;
+  right: 0;
+  display: block;
+  width: 15px;
+  height: 15px;
+  color: #888;
+  font-size: 15px;
+  line-height: 15px;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  background: #eee;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  border-radius: 15px;
+  opacity: 0.3;
+  -webkit-transition: opacity 200ms;
+  -moz-transition: opacity 200ms;
+  -o-transition: opacity 200ms;
+  transition: opacity 200ms;
+}
+
+#mocha .test:hover a.replay {
+  opacity: 1;
+}
+
+#mocha-report.pass .test.fail {
+  display: none;
+}
+
+#mocha-report.fail .test.pass {
+  display: none;
+}
+
+#mocha-report.pending .test.pass,
+#mocha-report.pending .test.fail {
+  display: none;
+}
+#mocha-report.pending .test.pass.pending {
+  display: block;
+}
+
+#mocha-error {
+  color: #c00;
+  font-weight: 100;
+  font-size: 1.5em;
+  letter-spacing: 1px;
+}
+
+#mocha-stats {
+  position: fixed;
+  top: 15px;
+  right: 10px;
+  z-index: 1;
+  margin: 0;
+  color: #888;
+  font-size: 12px;
+}
+
+#mocha-stats .progress {
+  float: right;
+
+  /**
+     * Set safe initial values, so mochas .progress does not inherit these
+     * properties from Bootstrap .progress (which causes .progress height to
+     * equal line height set in Bootstrap).
+     */
+  height: auto;
+  padding-top: 0;
+  background-color: initial;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+
+#mocha-stats em {
+  color: black;
+}
+
+#mocha-stats a {
+  color: inherit;
+  text-decoration: none;
+}
+
+#mocha-stats a:hover {
+  border-bottom: 1px solid #eee;
+}
+
+#mocha-stats li {
+  display: inline-block;
+  margin: 0 5px;
+  padding-top: 11px;
+  list-style: none;
+}
+
+#mocha-stats canvas {
+  width: 40px;
+  height: 40px;
+}
+
+#mocha code .comment {
+  color: #ddd;
+}
+#mocha code .init {
+  color: #2f6fad;
+}
+#mocha code .string {
+  color: #5890ad;
+}
+#mocha code .keyword {
+  color: #8a6343;
+}
+#mocha code .number {
+  color: #2f6fad;
+}
+
+@media screen and (max-device-width: 480px) {
+  #mocha {
+    margin: 60px 0;
+  }
+
+  #mocha #stats {
+    position: absolute;
+  }
+}

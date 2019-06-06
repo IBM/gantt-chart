@@ -1,0 +1,44 @@
+{
+  "name": "ibm-gantt-chart-react",
+  "version": "0.5.0",
+  "description": "IBM Gantt Chart React Component.",
+  "keywords": [
+    "chart",
+    "gantt",
+    "react"
+  ],
+  "license": "Apache-2.0",
+  "contributors": [
+    "Olivier Noiret (https://github.com/ono70)",
+    "Gilles d'Andréa (https://github.com/gillesdandrea)"
+  ],
+  "main": "dist/ibm-gantt-chart-react.js",
+  "module": "dist/ibm-gantt-chart-react.js",
+  "source": "src/index.js",
+  "style": "dist/ibm-gantt-chart-react.css",
+  "scripts": {
+    "build": "gda-scripts webpack lib",
+    "build:all": "gda-scripts webpack lib",
+    "build:min": "gda-scripts webpack lib.min",
+    "build:storybook": "gda-scripts build-storybook",
+    "start": "gda-scripts webpack-dev-server dev",
+    "storybook": "gda-scripts storybook",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "ibm-gantt-chart": "^0.5.0"
+  },
+  "devDependencies": {
+    "@hot-loader/react-dom": "^16.8.6",
+    "gda-scripts": "^0.3.0",
+    "prop-types": "^15.7.2",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  },
+  "peerDependencies": {
+    "ibm-gantt-chart": "^0.5.0",
+    "prop-types": "^15.7.2",
+    "react": "16.8.6",
+    "react-dom": "16.8.6"
+  }
+}

@@ -1,0 +1,4 @@
+# /node_modules/* and /bower_components/* ignored by default
+/packages/*/node_modules/*
+/packages/*/dist/*
+/**/*.jsx

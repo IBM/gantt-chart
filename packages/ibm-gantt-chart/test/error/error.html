@@ -1,0 +1,33 @@
+<html>
+<head>
+    <title>Testing errors</title>
+
+    <script src="/scripts/jquery/jquery.min.js"></script>
+    <script src="/scripts/datatables.net/js/jquery.dataTables.js"></script>
+    <link href="/scripts/datatables.net-dt/css/jquery.dataTables.css" rel="stylesheet">
+
+    <script src="/scripts/vis/dist/vis.min.js"></script>
+    <link href="/scripts/vis/dist/vis.min.css" rel="stylesheet" type="text/css" />
+
+    <script src="/dist/ibm-gantt-chart-jquery.js"></script>
+    <link href="/dist/ibm-gantt-chart-jquery.css" rel="stylesheet" />
+    <link href="/scripts/mocha/mocha.css" rel="stylesheet" />
+
+</head>
+<body>
+<div id="mocha"></div>
+<div id="gantt"></div> <!-- Otherwise the testbase thinks we are in a Karma env. -->
+
+<script type="text/javascript" src="/scripts/mocha/mocha.js"></script>
+<script type="text/javascript" src="/scripts/chai/chai.js"></script>
+
+<script type="text/javascript" src="../testbase.js"></script>
+
+
+<script type="text/javascript" src="error.test.js"></script>
+
+<script>
+
+</script>
+</body>
+</html>

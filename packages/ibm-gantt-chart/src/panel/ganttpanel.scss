@@ -1,0 +1,102 @@
+@import '../core/colors.scss';
+
+.gantt-panel {
+  box-sizing: border-box;
+  font-family: 'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif;
+  * {
+    box-sizing: border-box;
+  }
+
+  .h-split-pane-divider {
+    width: 5px;
+    background-color: lightgrey;
+  }
+
+  .v-split-pane-divider {
+    height: 5px;
+    background-color: lightgrey;
+  }
+
+  .gantt-header {
+    padding: 5px 12px;
+    color: white;
+    font-size: 14px;
+    background-color: $gantt-header-background;
+    border: solid $gantt-border-color 1px;
+  }
+  // .gantt-toolbars {
+  // }
+  .gantt-body {
+    border: solid $gantt-border-color 1px;
+  }
+  // .table-panel {
+  // }
+  .split-pane {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+  .split-pane-left {
+    overflow: hidden;
+
+    /* TODO Check we can remove */
+  }
+  .split-pane-right {
+    margin-left: 5px;
+    overflow: hidden;
+
+    /* TODO Check we can remove */
+
+    /* because of divider width not taken into account */
+  }
+  .split-pane-top {
+    overflow: hidden;
+
+    /* TODO Check we can remove */
+  }
+  .split-pane-bottom {
+    overflow: hidden;
+
+    /* TODO Check we can remove */
+  }
+
+  .time-panel .vertical-scroller-filler {
+    border-left: solid 1px #ddd;
+  }
+
+  /*
+		* loading panel
+		*/
+  .loading-panel {
+    position: relative;
+    z-index: 3;
+    background-color: rgba(192, 192, 192, 0.75);
+
+    .label {
+      color: #a6266e;
+    }
+  }
+
+  .loader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 240px;
+    height: 240px;
+    border: 16px solid $black0;
+    border-top: 16px solid #a6266e;
+    border-radius: 50%;
+    animation: spin 2s linear infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}

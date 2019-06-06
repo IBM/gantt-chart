@@ -1,0 +1,133 @@
+@import '../../core/colors.scss';
+
+.gantt-panel .text-icon {
+  margin-right: 3px;
+  vertical-align: bottom;
+}
+
+.gantt-panel {
+  .dataTables_wrapper * {
+    box-sizing: border-box;
+  }
+
+  .dataTables_filter {
+    display: none;
+  }
+
+  .dataTables_info {
+    display: none;
+  }
+
+  .dataTables_scroll .dataTables_scrollBody {
+    overflow-x: scroll !important;
+    overflow-y: hidden !important;
+    border-bottom: none;
+  }
+
+  table.dataTable.no-footer {
+    border-bottom: none;
+  }
+
+  .dataTables_scrollHead table.dataTable {
+    border-top: none;
+    border-right: 1px solid $gantt-border-color;
+    border-left: none;
+    border-collapse: separate;
+  }
+
+  .dataTables_scrollBody table.dataTable {
+    border: none;
+    border-right: 1px $gantt-border-color solid;
+
+    tr {
+      background-color: white;
+      &.odd {
+        background-color: #f9f9f9;
+      }
+      &:first-child {
+        td {
+          border-top: none;
+        }
+      }
+    }
+    td {
+      white-space: nowrap;
+      border-top: 1px solid $gantt-border-color;
+    }
+  }
+
+  table.dataTable.gantt-tree-table {
+    margin: 0;
+    border-collapse: separate;
+    border-spacing: 0;
+  }
+}
+
+.gantt-panel .split-pane.fixed-left > .split-pane-component,
+.gantt-panel .split-pane.fixed-right > .split-pane-component,
+.gantt-panel .split-pane.vertical-percent > .split-pane-component {
+  overflow: hidden;
+}
+
+.gantt-panel table.dataTable.gantt-tree-table thead th,
+.gantt-panel table.dataTable.gantt-tree-table thead td {
+  padding: 8px 18px;
+  color: $table-text-color;
+  background-color: $table-header-color;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.gantt-panel table.dataTable.gantt-tree-table tbody {
+  td {
+    padding: 6px 18px;
+    font-size: 13px;
+  }
+  tr.highlight,
+  tr.selected.highlight {
+    background-color: $background-highlight;
+  }
+
+  tr:last-child td {
+    border-bottom: 1px solid #ddd;
+  }
+}
+
+.gantt-panel.mini table.dataTable.gantt-tree-table tbody td {
+  padding: 1px 18px;
+}
+
+.gantt-panel table.dataTable.gantt-tree-table.stripe tbody tr.odd.selected,
+.gantt-panel table.dataTable.gantt-tree-table.display tbody tr.odd.selected {
+  background-color: $background-selection;
+}
+
+.gantt-panel table.dataTable.gantt-tree-table.display tbody tr.odd.selected > .sorting_1,
+.gantt-panel table.dataTable.gantt-tree-table.order-column.stripe tbody tr.odd.selected > .sorting_1 {
+  background-color: $background-selection;
+}
+
+.gantt-panel table.dataTable.gantt-tree-table.display tbody tr.selected,
+.gantt-panel table.dataTable.gantt-tree-table.order-column.stripe tbody tr.selected {
+  background-color: $background-selection;
+}
+
+.gantt-panel table.dataTable.gantt-tree-table.hover tbody tr:hover td {
+  background-color: $background-highlight;
+}
+
+.gantt-panel table.dataTable.gantt-tree-table tbody tr.selected {
+  background-color: $background-selection;
+}
+
+.gantt-panel table.dataTable.gantt-tree-table.display tbody tr.even.selected > .sorting_1,
+.gantt-panel table.dataTable.gantt-tree-table.order-column.stripe tbody tr.even.selected > .sorting_1 {
+  background-color: $background-selection;
+}
+
+.gantt-panel table.dataTable thead th {
+  font-weight: 500;
+}
+
+.gantt-panel .dataTables_empty {
+  min-width: 200px;
+}

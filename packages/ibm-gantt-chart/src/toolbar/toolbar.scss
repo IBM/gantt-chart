@@ -1,0 +1,193 @@
+@import '../core/core.scss';
+@import '../core/colors.scss';
+
+/* Toolbar */
+.gantt-toolbar {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  -webkit-justify-content: flex-end;
+  justify-content: flex-end;
+  padding: 6px;
+  color: $toolbar-title-color;
+  font-size: 12px;
+  background: $toolbar-background;
+  border-color: $toolbar-select-border-color;
+
+  .toolbar-title {
+    font-size: 14px;
+  }
+
+  label {
+    /* color: $toolbar-title-color; */
+  }
+
+  h2,
+  h3,
+  h1 {
+    /* color: $toolbar-title-color; */
+    margin: 0;
+    padding: 4px 6px;
+  }
+
+  .separator {
+    width: 20px;
+  }
+
+  .white-space {
+    width: 30px;
+  }
+
+  .toolbar-button {
+    /* color: $toolbar-button-color; */
+    padding: 4px;
+    vertical-align: middle;
+    word-spacing: 4px;
+    background: $toolbar-button-background;
+    border: $toolbar-button-border-color solid 1px;
+    cursor: pointer;
+    //.border-radius(2px);
+
+    svg {
+      fill: white;
+    }
+  }
+
+  .button i {
+    font-size: 16px;
+    line-height: inherit;
+  }
+
+  .g-selectable.selected {
+    color: $toolbar-button-selected-color;
+    background: $toolbar-button-selected-background;
+    border: $toolbar-button-selected-border 1px solid;
+    cursor: pointer;
+
+    &:hover {
+      color: $toolbar-button-hover-color;
+      border: $toolbar-button-selected-hover-border 1px solid;
+    }
+  }
+
+  .g-hoverable:hover {
+    background: $toolbar-button-hover-background;
+  }
+
+  .dropdown-list {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 3px 4px;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 2px;
+
+    .label {
+      /* color: $toolbar-title-color; */
+      display: inline-block;
+      margin: 0;
+      padding: 0 4px 0 0;
+      border-right-width: 1px;
+      border-right-style: solid;
+    }
+
+    select {
+      /* background-color: $toolbar-background;
+      color: $toolbar-title-color; */
+      width: auto;
+      min-width: 150px;
+      color: inherit;
+      text-align: center;
+      text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+      background-color: inherit;
+      border: none;
+      outline: 0;
+    }
+  }
+
+  .input-box {
+    padding: 3px 4px;
+    color: $toolbar-input-box-search-color;
+    background-color: $toolbar-input-box-background;
+    border-radius: 2px;
+
+    input {
+      color: $toolbar-input-box-search-color;
+      border: none;
+      outline: 0;
+    }
+
+    .delete-button {
+      cursor: pointer;
+    }
+  }
+
+  .input-box > .label {
+    margin-right: 4px;
+  }
+
+  .button-group .button {
+    border: white solid 1px;
+
+    i {
+      font-size: 14px;
+    }
+
+    &:first-child {
+      -webkit-border-top-left-radius: 8px;
+      border-top-left-radius: 8px;
+      -webkit-border-bottom-left-radius: 8px;
+      border-bottom-left-radius: 8px;
+      -moz-border-radius-topleft: 8px;
+      -moz-border-radius-bottomleft: 8px;
+    }
+
+    &:last-child {
+      -webkit-border-top-right-radius: 8px;
+      border-top-right-radius: 8px;
+      -webkit-border-bottom-right-radius: 8px;
+      border-bottom-right-radius: 8px;
+      -moz-border-radius-topright: 8px;
+      -moz-border-radius-bottomright: 8px;
+    }
+  }
+
+  .button-group .button:not(:first-child) {
+    border-left: none;
+  }
+
+  .button.zoom-in {
+    width: 20px;
+    height: 20px;
+    background: url('../images/svg/32/zoom--in.svg') no-repeat;
+  }
+
+  .button.zoom-out {
+    width: 20px;
+    height: 20px;
+    background: url('../images/svg/32/zoom--out.svg') no-repeat;
+  }
+
+  .line {
+    width: 2px;
+    height: 23px;
+    background-color: white;
+  }
+
+  .select {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    .select-type-icon {
+      margin-right: 8px;
+    }
+  }
+}
+
+.gantt-toolbar > *,
+.gantt-toolbar .left-toolbar-body > * {
+  margin-left: 6px;
+}

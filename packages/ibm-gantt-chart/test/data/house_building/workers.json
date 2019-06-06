@@ -1,0 +1,1877 @@
+[
+  {
+    "OBJECT_ID": 10,
+    "NAME": "Jane"
+  },
+  {
+    "OBJECT_ID": "28",
+    "PARENT_ID": "10",
+    "NAME": "Joe",
+    "ASSIGNMENTS": [
+      {
+        "HOUSE": "1",
+        "END": 270,
+        "START": 260,
+        "TASK": {
+          "NAME": "facade",
+          "DURATION": 10
+        }
+      },
+      {
+        "HOUSE": "2",
+        "END": 245,
+        "START": 230,
+        "TASK": {
+          "NAME": "ceiling",
+          "DURATION": 15
+        }
+      },
+      {
+        "HOUSE": "2",
+        "END": 275,
+        "START": 270,
+        "TASK": {
+          "NAME": "windows",
+          "DURATION": 5
+        }
+      },
+      {
+        "HOUSE": "3",
+        "END": 455,
+        "START": 450,
+        "TASK": {
+          "NAME": "windows",
+          "DURATION": 5
+        }
+      },
+      {
+        "HOUSE": "3",
+        "END": 465,
+        "START": 460,
+        "TASK": {
+          "NAME": "moving",
+          "DURATION": 5
+        }
+      },
+      {
+        "HOUSE": "7",
+        "END": 485,
+        "START": 480,
+        "TASK": {
+          "NAME": "windows",
+          "DURATION": 5
+        }
+      },
+      {
+        "HOUSE": "7",
+        "END": 480,
+        "START": 470,
+        "TASK": {
+          "NAME": "facade",
+          "DURATION": 10
+        }
+      },
+      {
+        "HOUSE": "8",
+        "END": 35,
+        "START": 0,
+        "TASK": {
+          "NAME": "masonry",
+          "DURATION": 35
+        }
+      },
+      {
+        "HOUSE": "8",
+        "END": 175,
+        "START": 160,
+        "TASK": {
+          "NAME": "carpentry",
+          "DURATION": 15
+        }
+      },
+      {
+        "HOUSE": "8",
+        "END": 200,
+        "START": 195,
+        "TASK": {
+          "NAME": "roofing",
+          "DURATION": 5
+        }
+      },
+      {
+        "HOUSE": "9",
+        "END": 150,
+        "START": 145,
+        "TASK": {
+          "NAME": "windows",
+          "DURATION": 5
+        }
+      },
+      {
+        "HOUSE": "10",
+        "END": 180,
+        "START": 175,
+        "TASK": {
+          "NAME": "moving",
+          "DURATION": 5
+        }
+      },
+      {
+        "HOUSE": "11",
+        "END": 215,
+        "START": 200,
+        "TASK": {
+          "NAME": "ceiling",
+          "DURATION": 15
+        }
+      },
+      {
+        "HOUSE": "12",
+        "END": 260,
+        "START": 245,
+        "TASK": {
+          "NAME": "ceiling",
+          "DURATION": 15
+        }
+      },
+      {
+        "HOUSE": "14",
+        "END": 70,
+        "START": 35,
+        "TASK": {
+          "NAME": "masonry",
+          "DURATION": 35
+        }
+      },
+      {
+        "HOUSE": "14",
+        "END": 120,
+        "START": 105,
+        "TASK": {
+          "NAME": "carpentry",
+          "DURATION": 15
+        }
+      },
+      {
+        "HOUSE": "14",
+        "END": 125,
+        "START": 120,
+        "TASK": {
+          "NAME": "roofing",
+          "DURATION": 5
+        }
+      },
+      {
+        "HOUSE": "14",
+        "END": 155,
+        "START": 150,
+        "TASK": {
+          "NAME": "windows",
+          "DURATION": 5
+        }
+      },
+      {
+        "HOUSE": "16",
+        "END": 430,
+        "START": 425,
+        "TASK": {
+          "NAME": "windows",
+          "DURATION": 5
+        }
+      },
+      {
+        "HOUSE": "17",
+        "END": 195,
+        "START": 190,
+        "TASK": {
+          "NAME": "windows",
+          "DURATION": 5
+        }
+      },
+      {
+        "HOUSE": "18",
+        "END": 435,
+        "START": 430,
+        "TASK": {
+          "NAME": "windows",
+          "DURATION": 5
+        }
+      },
+      {
+        "HOUSE": "19",
+        "END": 230,
+        "START": 215,
+        "TASK": {
+          "NAME": "ceiling",
+          "DURATION": 15
+        }
+      },
+      {
+        "HOUSE": "20",
+        "END": 105,
+        "START": 70,
+        "TASK": {
+          "NAME": "masonry",
+          "DURATION": 35
+        }
+      },
+      {
+        "HOUSE": "20",
+        "END": 140,
+        "START": 125,
+        "TASK": {
+          "NAME": "carpentry",
+          "DURATION": 15
+        }
+      },
+      {
+        "HOUSE": "20",
+        "END": 160,
+        "START": 155,
+        "TASK": {
+          "NAME": "roofing",
+          "DURATION": 5
+        }
+      },
+      {
+        "HOUSE": "20",
+        "END": 185,
+        "START": 180,
+        "TASK": {
+          "NAME": "windows",
+          "DURATION": 5
+        }
+      },
+      {
+        "HOUSE": "20",
+        "END": 490,
+        "START": 485,
+        "TASK": {
+          "NAME": "moving",
+          "DURATION": 5
+        }
+      }
+    ]
+  },
+  {
+    "OBJECT_ID": "29",
+    "NAME": "Jack",
+    "PARENT_ID": "10",
+    "ASSIGNMENTS": [
+      {
+        "HOUSE": "2",
+        "END": 170,
+        "START": 135,
+        "TASK": {
+          "NAME": "masonry",
+          "DURATION": 35
+        }
+      },
+      {
+        "HOUSE": "3",
+        "END": 450,
+        "START": 445,
+        "TASK": {
+          "NAME": "roofing",
+          "DURATION": 5
+        }
+      },
+      {
+        "HOUSE": "3",
+        "END": 460,
+        "START": 450,
+        "TASK": {
+          "NAME": "facade",
+          "DURATION": 10
+        }
+      },
+      {
+        "HOUSE": "4",
+        "END": 205,
+        "START": 170,
+        "TASK": {
+          "NAME": "masonry",
+          "DURATION": 35
+        }
+      },
+      {
+        "HOUSE": "7",
+        "END": 380,
+        "START": 340,
+        "TASK": {
+          "NAME": "plumbing",
+          "DURATION": 40
+        }
+      },
+      {
+        "HOUSE": "8",
+        "END": 125,
+        "START": 85,
+        "TASK": {
+          "NAME": "plumbing",
+          "DURATION": 40
+        }
+      },
+      {
+        "HOUSE": "9",
+        "END": 35,
+        "START": 0,
+        "TASK": {
+          "NAME": "masonry",
+          "DURATION": 35
+        }
+      },
+      {
+        "HOUSE": "10",
+        "END": 50,
+        "START": 35,
+        "TASK": {
+          "NAME": "ceiling",
+          "DURATION": 15
+        }
+      },
+      {
+        "HOUSE": "11",
+        "END": 490,
+        "START": 485,
+        "TASK": {
+          "NAME": "garden",
+          "DURATION": 5
+        }
+      },
+      {
+        "HOUSE": "12",
+        "END": 435,
+        "START": 430,
+        "TASK": {
+          "NAME": "roofing",
+          "DURATION": 5
+        }
+      },
+      {
+        "HOUSE": "12",
+        "END": 470,
+        "START": 460,
+        "TASK": {
+          "NAME": "facade",
+          "DURATION": 10
+        }
+      },
+      {
+        "HOUSE": "13",
+        "END": 135,
+        "START": 125,
+        "TASK": {
+          "NAME": "painting",
+          "DURATION": 10
+        }
+      },
+      {
+        "HOUSE": "14",
+        "END": 245,
+        "START": 205,
+        "TASK": {
+          "NAME": "plumbing",
+          "DURATION": 40
+        }
+      },
+      {
+        "HOUSE": "16",
+        "END": 295,
+        "START": 255,
+        "TASK": {
+          "NAME": "plumbing",
+          "DURATION": 40
+        }
+      },
+      {
+        "HOUSE": "16",
+        "END": 425,
+        "START": 420,
+        "TASK": {
+          "NAME": "roofing",
+          "DURATION": 5
+        }
+      },
+      {
+        "HOUSE": "16",
+        "END": 445,
+        "START": 435,
+        "TASK": {
+          "NAME": "facade",
+          "DURATION": 10
+        }
+      },
+      {
+        "HOUSE": "17",
+        "END": 85,
+        "START": 50,
+        "TASK": {
+          "NAME": "masonry",
+          "DURATION": 35
+        }
+      },
+      {
+        "HOUSE": "18",
+        "END": 420,
+        "START": 380,
+        "TASK": {
+          "NAME": "plumbing",
+          "DURATION": 40
+        }
+      },
+      {
+        "HOUSE": "18",
+        "END": 340,
+        "START": 325,
+        "TASK": {
+          "NAME": "ceiling",
+          "DURATION": 15
+        }
+      },
+      {
+        "HOUSE": "18",
+        "END": 430,
+        "START": 425,
+        "TASK": {
+          "NAME": "roofing",
+          "DURATION": 5
+        }
+      },
+      {
+        "HOUSE": "18",
+        "END": 480,
+        "START": 470,
+        "TASK": {
+          "NAME": "facade",
+          "DURATION": 10
+        }
+      },
+      {
+        "HOUSE": "19",
+        "END": 255,
+        "START": 245,
+        "TASK": {
+          "NAME": "painting",
+          "DURATION": 10
+        }
+      },
+      {
+        "HOUSE": "20",
+        "END": 485,
+        "START": 480,
+        "TASK": {
+          "NAME": "garden",
+          "DURATION": 5
+        }
+      }
+    ]
+  },
+  {
+    "OBJECT_ID": "30",
+    "PARENT_ID": "10",
+    "NAME": "Jim",
+    "ASSIGNMENTS": [
+      {
+        "HOUSE": "2",
+        "END": 220,
+        "START": 205,
+        "TASK": {
+          "NAME": "carpentry",
+          "DURATION": 15
+        }
+      },
+      {
+        "HOUSE": "4",
+        "END": 465,
+        "START": 455,
+        "TASK": {
+          "NAME": "painting",
+          "DURATION": 10
+        }
+      },
+      {
+        "HOUSE": "5",
+        "END": 305,
+        "START": 290,
+        "TASK": {
+          "NAME": "carpentry",
+          "DURATION": 15
+        }
+      },
+      {
+        "HOUSE": "6",
+        "END": 235,
+        "START": 220,
+        "TASK": {
+          "NAME": "carpentry",
+          "DURATION": 15
+        }
+      },
+      {
+        "HOUSE": "6",
+        "END": 470,
+        "START": 465,
+        "TASK": {
+          "NAME": "garden",
+          "DURATION": 5
+        }
+      },
+      {
+        "HOUSE": "6",
+        "END": 485,
+        "START": 480,
+        "TASK": {
+          "NAME": "moving",
+          "DURATION": 5
+        }
+      },
+      {
+        "HOUSE": "7",
+        "END": 345,
+        "START": 330,
+        "TASK": {
+          "NAME": "carpentry",
+          "DURATION": 15
+        }
+      },
+      {
+        "HOUSE": "7",
+        "END": 475,
+        "START": 470,
+        "TASK": {
+          "NAME": "garden",
+          "DURATION": 5
+        }
+      },
+      {
+        "HOUSE": "7",
+        "END": 495,
+        "START": 490,
+        "TASK": {
+          "NAME": "moving",
+          "DURATION": 5
+        }
+      },
+      {
+        "HOUSE": "8",
+        "END": 205,
+        "START": 200,
+        "TASK": {
+          "NAME": "garden",
+          "DURATION": 5
+        }
+      },
+      {
+        "HOUSE": "8",
+        "END": 290,
+        "START": 285,
+        "TASK": {
+          "NAME": "moving",
+          "DURATION": 5
+        }
+      },
+      {
+        "HOUSE": "9",
+        "END": 80,
+        "START": 65,
+        "TASK": {
+          "NAME": "carpentry",
+          "DURATION": 15
+        }
+      },
+      {
+        "HOUSE": "9",
+        "END": 150,
+        "START": 145,
+        "TASK": {
+          "NAME": "garden",
+          "DURATION": 5
+        }
+      },
+      {
+        "HOUSE": "9",
+        "END": 455,
+        "START": 450,
+        "TASK": {
+          "NAME": "moving",
+          "DURATION": 5
+        }
+      },
+      {
+        "HOUSE": "10",
+        "END": 65,
+        "START": 50,
+        "TASK": {
+          "NAME": "carpentry",
+          "DURATION": 15
+        }
+      },
+      {
+        "HOUSE": "12",
+        "END": 440,
+        "START": 435,
+        "TASK": {
+          "NAME": "garden",
+          "DURATION": 5
+        }
+      },
+      {
+        "HOUSE": "12",
+        "END": 480,
+        "START": 475,
+        "TASK": {
+          "NAME": "moving",
+          "DURATION": 5
+        }
+      },
+      {
+        "HOUSE": "13",
+        "END": 490,
+        "START": 485,
+        "TASK": {
+          "NAME": "windows",
+          "DURATION": 5
+        }
+      },
+      {
+        "HOUSE": "15",
+        "END": 375,
+        "START": 370,
+        "TASK": {
+          "NAME": "garden",
+          "DURATION": 5
+        }
+      },
+      {
+        "HOUSE": "15",
+        "END": 445,
+        "START": 440,
+        "TASK": {
+          "NAME": "moving",
+          "DURATION": 5
+        }
+      },
+      {
+        "HOUSE": "16",
+        "END": 50,
+        "START": 35,
+        "TASK": {
+          "NAME": "carpentry",
+          "DURATION": 15
+        }
+      },
+      {
+        "HOUSE": "17",
+        "END": 100,
+        "START": 85,
+        "TASK": {
+          "NAME": "carpentry",
+          "DURATION": 15
+        }
+      },
+      {
+        "HOUSE": "17",
+        "END": 195,
+        "START": 190,
+        "TASK": {
+          "NAME": "garden",
+          "DURATION": 5
+        }
+      },
+      {
+        "HOUSE": "17",
+        "END": 500,
+        "START": 495,
+        "TASK": {
+          "NAME": "moving",
+          "DURATION": 5
+        }
+      }
+    ]
+  },
+  {
+    "OBJECT_ID": 11,
+    "NAME": "Maria"
+  },
+  {
+    "OBJECT_ID": "31",
+    "PARENT_ID": "11",
+    "NAME": "Marvin",
+    "ASSIGNMENTS": [
+      {
+        "HOUSE": "1",
+        "END": 85,
+        "START": 70,
+        "TASK": {
+          "NAME": "carpentry",
+          "DURATION": 15
+        }
+      },
+      {
+        "HOUSE": "2",
+        "END": 225,
+        "START": 185,
+        "TASK": {
+          "NAME": "plumbing",
+          "DURATION": 40
+        }
+      },
+      {
+        "HOUSE": "3",
+        "END": 280,
+        "START": 265,
+        "TASK": {
+          "NAME": "carpentry",
+          "DURATION": 15
+        }
+      },
+      {
+        "HOUSE": "4",
+        "END": 295,
+        "START": 280,
+        "TASK": {
+          "NAME": "carpentry",
+          "DURATION": 15
+        }
+      },
+      {
+        "HOUSE": "4",
+        "END": 410,
+        "START": 370,
+        "TASK": {
+          "NAME": "plumbing",
+          "DURATION": 40
+        }
+      },
+      {
+        "HOUSE": "4",
+        "END": 455,
+        "START": 440,
+        "TASK": {
+          "NAME": "ceiling",
+          "DURATION": 15
+        }
+      },
+      {
+        "HOUSE": "6",
+        "END": 120,
+        "START": 85,
+        "TASK": {
+          "NAME": "masonry",
+          "DURATION": 35
+        }
+      },
+      {
+        "HOUSE": "6",
+        "END": 265,
+        "START": 225,
+        "TASK": {
+          "NAME": "plumbing",
+          "DURATION": 40
+        }
+      },
+      {
+        "HOUSE": "6",
+        "END": 465,
+        "START": 460,
+        "TASK": {
+          "NAME": "roofing",
+          "DURATION": 5
+        }
+      },
+      {
+        "HOUSE": "7",
+        "END": 330,
+        "START": 295,
+        "TASK": {
+          "NAME": "masonry",
+          "DURATION": 35
+        }
+      },
+      {
+        "HOUSE": "7",
+        "END": 470,
+        "START": 465,
+        "TASK": {
+          "NAME": "roofing",
+          "DURATION": 5
+        }
+      },
+      {
+        "HOUSE": "9",
+        "END": 440,
+        "START": 425,
+        "TASK": {
+          "NAME": "ceiling",
+          "DURATION": 15
+        }
+      },
+      {
+        "HOUSE": "11",
+        "END": 70,
+        "START": 35,
+        "TASK": {
+          "NAME": "masonry",
+          "DURATION": 35
+        }
+      },
+      {
+        "HOUSE": "13",
+        "END": 170,
+        "START": 155,
+        "TASK": {
+          "NAME": "carpentry",
+          "DURATION": 15
+        }
+      },
+      {
+        "HOUSE": "13",
+        "END": 460,
+        "START": 455,
+        "TASK": {
+          "NAME": "roofing",
+          "DURATION": 5
+        }
+      },
+      {
+        "HOUSE": "15",
+        "END": 185,
+        "START": 170,
+        "TASK": {
+          "NAME": "carpentry",
+          "DURATION": 15
+        }
+      },
+      {
+        "HOUSE": "15",
+        "END": 370,
+        "START": 330,
+        "TASK": {
+          "NAME": "plumbing",
+          "DURATION": 40
+        }
+      },
+      {
+        "HOUSE": "15",
+        "END": 425,
+        "START": 410,
+        "TASK": {
+          "NAME": "ceiling",
+          "DURATION": 15
+        }
+      },
+      {
+        "HOUSE": "16",
+        "END": 35,
+        "START": 0,
+        "TASK": {
+          "NAME": "masonry",
+          "DURATION": 35
+        }
+      },
+      {
+        "HOUSE": "17",
+        "END": 485,
+        "START": 470,
+        "TASK": {
+          "NAME": "ceiling",
+          "DURATION": 15
+        }
+      },
+      {
+        "HOUSE": "19",
+        "END": 155,
+        "START": 120,
+        "TASK": {
+          "NAME": "masonry",
+          "DURATION": 35
+        }
+      }
+    ]
+  },
+  {
+    "OBJECT_ID": "32",
+    "PARENT_ID": "11",
+    "NAME": "Max",
+    "ASSIGNMENTS": [
+      {
+        "HOUSE": "1",
+        "END": 260,
+        "START": 220,
+        "TASK": {
+          "NAME": "plumbing",
+          "DURATION": 40
+        }
+      },
+      {
+        "HOUSE": "1",
+        "END": 105,
+        "START": 90,
+        "TASK": {
+          "NAME": "ceiling",
+          "DURATION": 15
+        }
+      },
+      {
+        "HOUSE": "1",
+        "END": 125,
+        "START": 120,
+        "TASK": {
+          "NAME": "roofing",
+          "DURATION": 5
+        }
+      },
+      {
+        "HOUSE": "2",
+        "END": 265,
+        "START": 260,
+        "TASK": {
+          "NAME": "roofing",
+          "DURATION": 5
+        }
+      },
+      {
+        "HOUSE": "4",
+        "END": 355,
+        "START": 350,
+        "TASK": {
+          "NAME": "windows",
+          "DURATION": 5
+        }
+      },
+      {
+        "HOUSE": "5",
+        "END": 350,
+        "START": 335,
+        "TASK": {
+          "NAME": "ceiling",
+          "DURATION": 15
+        }
+      },
+      {
+        "HOUSE": "5",
+        "END": 370,
+        "START": 360,
+        "TASK": {
+          "NAME": "painting",
+          "DURATION": 10
+        }
+      },
+      {
+        "HOUSE": "6",
+        "END": 325,
+        "START": 310,
+        "TASK": {
+          "NAME": "ceiling",
+          "DURATION": 15
+        }
+      },
+      {
+        "HOUSE": "6",
+        "END": 335,
+        "START": 325,
+        "TASK": {
+          "NAME": "painting",
+          "DURATION": 10
+        }
+      },
+      {
+        "HOUSE": "7",
+        "END": 385,
+        "START": 370,
+        "TASK": {
+          "NAME": "ceiling",
+          "DURATION": 15
+        }
+      },
+      {
+        "HOUSE": "7",
+        "END": 415,
+        "START": 405,
+        "TASK": {
+          "NAME": "painting",
+          "DURATION": 10
+        }
+      },
+      {
+        "HOUSE": "8",
+        "END": 50,
+        "START": 35,
+        "TASK": {
+          "NAME": "ceiling",
+          "DURATION": 15
+        }
+      },
+      {
+        "HOUSE": "8",
+        "END": 285,
+        "START": 280,
+        "TASK": {
+          "NAME": "windows",
+          "DURATION": 5
+        }
+      },
+      {
+        "HOUSE": "9",
+        "END": 90,
+        "START": 50,
+        "TASK": {
+          "NAME": "plumbing",
+          "DURATION": 40
+        }
+      },
+      {
+        "HOUSE": "9",
+        "END": 145,
+        "START": 140,
+        "TASK": {
+          "NAME": "roofing",
+          "DURATION": 5
+        }
+      },
+      {
+        "HOUSE": "10",
+        "END": 130,
+        "START": 125,
+        "TASK": {
+          "NAME": "roofing",
+          "DURATION": 5
+        }
+      },
+      {
+        "HOUSE": "10",
+        "END": 140,
+        "START": 130,
+        "TASK": {
+          "NAME": "painting",
+          "DURATION": 10
+        }
+      },
+      {
+        "HOUSE": "11",
+        "END": 195,
+        "START": 190,
+        "TASK": {
+          "NAME": "roofing",
+          "DURATION": 5
+        }
+      },
+      {
+        "HOUSE": "11",
+        "END": 310,
+        "START": 300,
+        "TASK": {
+          "NAME": "painting",
+          "DURATION": 10
+        }
+      },
+      {
+        "HOUSE": "12",
+        "END": 395,
+        "START": 385,
+        "TASK": {
+          "NAME": "painting",
+          "DURATION": 10
+        }
+      },
+      {
+        "HOUSE": "13",
+        "END": 120,
+        "START": 105,
+        "TASK": {
+          "NAME": "ceiling",
+          "DURATION": 15
+        }
+      },
+      {
+        "HOUSE": "14",
+        "END": 205,
+        "START": 195,
+        "TASK": {
+          "NAME": "painting",
+          "DURATION": 10
+        }
+      },
+      {
+        "HOUSE": "15",
+        "END": 360,
+        "START": 355,
+        "TASK": {
+          "NAME": "roofing",
+          "DURATION": 5
+        }
+      },
+      {
+        "HOUSE": "15",
+        "END": 435,
+        "START": 425,
+        "TASK": {
+          "NAME": "painting",
+          "DURATION": 10
+        }
+      },
+      {
+        "HOUSE": "16",
+        "END": 300,
+        "START": 285,
+        "TASK": {
+          "NAME": "ceiling",
+          "DURATION": 15
+        }
+      },
+      {
+        "HOUSE": "17",
+        "END": 185,
+        "START": 145,
+        "TASK": {
+          "NAME": "plumbing",
+          "DURATION": 40
+        }
+      },
+      {
+        "HOUSE": "17",
+        "END": 190,
+        "START": 185,
+        "TASK": {
+          "NAME": "roofing",
+          "DURATION": 5
+        }
+      },
+      {
+        "HOUSE": "17",
+        "END": 495,
+        "START": 485,
+        "TASK": {
+          "NAME": "painting",
+          "DURATION": 10
+        }
+      },
+      {
+        "HOUSE": "18",
+        "END": 405,
+        "START": 395,
+        "TASK": {
+          "NAME": "painting",
+          "DURATION": 10
+        }
+      },
+      {
+        "HOUSE": "19",
+        "END": 280,
+        "START": 275,
+        "TASK": {
+          "NAME": "roofing",
+          "DURATION": 5
+        }
+      },
+      {
+        "HOUSE": "20",
+        "END": 220,
+        "START": 205,
+        "TASK": {
+          "NAME": "ceiling",
+          "DURATION": 15
+        }
+      },
+      {
+        "HOUSE": "20",
+        "END": 275,
+        "START": 265,
+        "TASK": {
+          "NAME": "painting",
+          "DURATION": 10
+        }
+      }
+    ]
+  },
+  {
+    "OBJECT_ID": "33",
+    "PARENT_ID": "11",
+    "NAME": "Michael",
+    "ASSIGNMENTS": [
+      {
+        "HOUSE": "2",
+        "END": 275,
+        "START": 265,
+        "TASK": {
+          "NAME": "facade",
+          "DURATION": 10
+        }
+      },
+      {
+        "HOUSE": "2",
+        "END": 280,
+        "START": 275,
+        "TASK": {
+          "NAME": "garden",
+          "DURATION": 5
+        }
+      },
+      {
+        "HOUSE": "2",
+        "END": 285,
+        "START": 280,
+        "TASK": {
+          "NAME": "moving",
+          "DURATION": 5
+        }
+      },
+      {
+        "HOUSE": "4",
+        "END": 425,
+        "START": 415,
+        "TASK": {
+          "NAME": "facade",
+          "DURATION": 10
+        }
+      },
+      {
+        "HOUSE": "4",
+        "END": 415,
+        "START": 410,
+        "TASK": {
+          "NAME": "garden",
+          "DURATION": 5
+        }
+      },
+      {
+        "HOUSE": "5",
+        "END": 360,
+        "START": 355,
+        "TASK": {
+          "NAME": "windows",
+          "DURATION": 5
+        }
+      },
+      {
+        "HOUSE": "6",
+        "END": 475,
+        "START": 465,
+        "TASK": {
+          "NAME": "facade",
+          "DURATION": 10
+        }
+      },
+      {
+        "HOUSE": "8",
+        "END": 220,
+        "START": 210,
+        "TASK": {
+          "NAME": "facade",
+          "DURATION": 10
+        }
+      },
+      {
+        "HOUSE": "9",
+        "END": 450,
+        "START": 440,
+        "TASK": {
+          "NAME": "painting",
+          "DURATION": 10
+        }
+      },
+      {
+        "HOUSE": "9",
+        "END": 155,
+        "START": 145,
+        "TASK": {
+          "NAME": "facade",
+          "DURATION": 10
+        }
+      },
+      {
+        "HOUSE": "11",
+        "END": 210,
+        "START": 200,
+        "TASK": {
+          "NAME": "facade",
+          "DURATION": 10
+        }
+      },
+      {
+        "HOUSE": "11",
+        "END": 495,
+        "START": 490,
+        "TASK": {
+          "NAME": "moving",
+          "DURATION": 5
+        }
+      },
+      {
+        "HOUSE": "12",
+        "END": 455,
+        "START": 450,
+        "TASK": {
+          "NAME": "windows",
+          "DURATION": 5
+        }
+      },
+      {
+        "HOUSE": "13",
+        "END": 465,
+        "START": 460,
+        "TASK": {
+          "NAME": "garden",
+          "DURATION": 5
+        }
+      },
+      {
+        "HOUSE": "14",
+        "END": 255,
+        "START": 245,
+        "TASK": {
+          "NAME": "facade",
+          "DURATION": 10
+        }
+      },
+      {
+        "HOUSE": "14",
+        "END": 290,
+        "START": 285,
+        "TASK": {
+          "NAME": "garden",
+          "DURATION": 5
+        }
+      },
+      {
+        "HOUSE": "14",
+        "END": 295,
+        "START": 290,
+        "TASK": {
+          "NAME": "moving",
+          "DURATION": 5
+        }
+      },
+      {
+        "HOUSE": "15",
+        "END": 395,
+        "START": 390,
+        "TASK": {
+          "NAME": "windows",
+          "DURATION": 5
+        }
+      },
+      {
+        "HOUSE": "15",
+        "END": 380,
+        "START": 370,
+        "TASK": {
+          "NAME": "facade",
+          "DURATION": 10
+        }
+      },
+      {
+        "HOUSE": "16",
+        "END": 310,
+        "START": 300,
+        "TASK": {
+          "NAME": "painting",
+          "DURATION": 10
+        }
+      },
+      {
+        "HOUSE": "17",
+        "END": 200,
+        "START": 190,
+        "TASK": {
+          "NAME": "facade",
+          "DURATION": 10
+        }
+      },
+      {
+        "HOUSE": "18",
+        "END": 485,
+        "START": 480,
+        "TASK": {
+          "NAME": "moving",
+          "DURATION": 5
+        }
+      },
+      {
+        "HOUSE": "19",
+        "END": 390,
+        "START": 380,
+        "TASK": {
+          "NAME": "facade",
+          "DURATION": 10
+        }
+      },
+      {
+        "HOUSE": "20",
+        "END": 405,
+        "START": 395,
+        "TASK": {
+          "NAME": "facade",
+          "DURATION": 10
+        }
+      }
+    ]
+  },
+  {
+    "OBJECT_ID": 12,
+    "NAME": "Sylvia"
+  },
+  {
+    "OBJECT_ID": "34",
+    "NAME": "Scott",
+    "PARENT_ID": "12",
+    "ASSIGNMENTS": [
+      {
+        "HOUSE": "1",
+        "END": 70,
+        "START": 35,
+        "TASK": {
+          "NAME": "masonry",
+          "DURATION": 35
+        }
+      },
+      {
+        "HOUSE": "3",
+        "END": 240,
+        "START": 205,
+        "TASK": {
+          "NAME": "masonry",
+          "DURATION": 35
+        }
+      },
+      {
+        "HOUSE": "5",
+        "END": 290,
+        "START": 255,
+        "TASK": {
+          "NAME": "masonry",
+          "DURATION": 35
+        }
+      },
+      {
+        "HOUSE": "10",
+        "END": 35,
+        "START": 0,
+        "TASK": {
+          "NAME": "masonry",
+          "DURATION": 35
+        }
+      },
+      {
+        "HOUSE": "11",
+        "END": 155,
+        "START": 140,
+        "TASK": {
+          "NAME": "carpentry",
+          "DURATION": 15
+        }
+      },
+      {
+        "HOUSE": "12",
+        "END": 190,
+        "START": 155,
+        "TASK": {
+          "NAME": "masonry",
+          "DURATION": 35
+        }
+      },
+      {
+        "HOUSE": "12",
+        "END": 205,
+        "START": 190,
+        "TASK": {
+          "NAME": "carpentry",
+          "DURATION": 15
+        }
+      },
+      {
+        "HOUSE": "13",
+        "END": 105,
+        "START": 70,
+        "TASK": {
+          "NAME": "masonry",
+          "DURATION": 35
+        }
+      },
+      {
+        "HOUSE": "15",
+        "END": 140,
+        "START": 105,
+        "TASK": {
+          "NAME": "masonry",
+          "DURATION": 35
+        }
+      },
+      {
+        "HOUSE": "18",
+        "END": 325,
+        "START": 290,
+        "TASK": {
+          "NAME": "masonry",
+          "DURATION": 35
+        }
+      },
+      {
+        "HOUSE": "18",
+        "END": 340,
+        "START": 325,
+        "TASK": {
+          "NAME": "carpentry",
+          "DURATION": 15
+        }
+      },
+      {
+        "HOUSE": "19",
+        "END": 255,
+        "START": 240,
+        "TASK": {
+          "NAME": "carpentry",
+          "DURATION": 15
+        }
+      }
+    ]
+  },
+  {
+    "OBJECT_ID": "35",
+    "PARENT_ID": "12",
+    "NAME": "Steve",
+    "ASSIGNMENTS": [
+      {
+        "HOUSE": "1",
+        "END": 160,
+        "START": 155,
+        "TASK": {
+          "NAME": "windows",
+          "DURATION": 5
+        }
+      },
+      {
+        "HOUSE": "1",
+        "END": 300,
+        "START": 295,
+        "TASK": {
+          "NAME": "garden",
+          "DURATION": 5
+        }
+      },
+      {
+        "HOUSE": "3",
+        "END": 295,
+        "START": 255,
+        "TASK": {
+          "NAME": "plumbing",
+          "DURATION": 40
+        }
+      },
+      {
+        "HOUSE": "3",
+        "END": 455,
+        "START": 450,
+        "TASK": {
+          "NAME": "garden",
+          "DURATION": 5
+        }
+      },
+      {
+        "HOUSE": "4",
+        "END": 350,
+        "START": 345,
+        "TASK": {
+          "NAME": "roofing",
+          "DURATION": 5
+        }
+      },
+      {
+        "HOUSE": "5",
+        "END": 345,
+        "START": 305,
+        "TASK": {
+          "NAME": "plumbing",
+          "DURATION": 40
+        }
+      },
+      {
+        "HOUSE": "5",
+        "END": 355,
+        "START": 350,
+        "TASK": {
+          "NAME": "roofing",
+          "DURATION": 5
+        }
+      },
+      {
+        "HOUSE": "5",
+        "END": 400,
+        "START": 395,
+        "TASK": {
+          "NAME": "garden",
+          "DURATION": 5
+        }
+      },
+      {
+        "HOUSE": "6",
+        "END": 470,
+        "START": 465,
+        "TASK": {
+          "NAME": "windows",
+          "DURATION": 5
+        }
+      },
+      {
+        "HOUSE": "10",
+        "END": 75,
+        "START": 35,
+        "TASK": {
+          "NAME": "plumbing",
+          "DURATION": 40
+        }
+      },
+      {
+        "HOUSE": "10",
+        "END": 165,
+        "START": 160,
+        "TASK": {
+          "NAME": "windows",
+          "DURATION": 5
+        }
+      },
+      {
+        "HOUSE": "10",
+        "END": 170,
+        "START": 165,
+        "TASK": {
+          "NAME": "garden",
+          "DURATION": 5
+        }
+      },
+      {
+        "HOUSE": "11",
+        "END": 115,
+        "START": 75,
+        "TASK": {
+          "NAME": "plumbing",
+          "DURATION": 40
+        }
+      },
+      {
+        "HOUSE": "11",
+        "END": 215,
+        "START": 210,
+        "TASK": {
+          "NAME": "windows",
+          "DURATION": 5
+        }
+      },
+      {
+        "HOUSE": "12",
+        "END": 255,
+        "START": 215,
+        "TASK": {
+          "NAME": "plumbing",
+          "DURATION": 40
+        }
+      },
+      {
+        "HOUSE": "13",
+        "END": 155,
+        "START": 115,
+        "TASK": {
+          "NAME": "plumbing",
+          "DURATION": 40
+        }
+      },
+      {
+        "HOUSE": "16",
+        "END": 430,
+        "START": 425,
+        "TASK": {
+          "NAME": "garden",
+          "DURATION": 5
+        }
+      },
+      {
+        "HOUSE": "18",
+        "END": 435,
+        "START": 430,
+        "TASK": {
+          "NAME": "garden",
+          "DURATION": 5
+        }
+      },
+      {
+        "HOUSE": "19",
+        "END": 210,
+        "START": 170,
+        "TASK": {
+          "NAME": "plumbing",
+          "DURATION": 40
+        }
+      },
+      {
+        "HOUSE": "19",
+        "END": 305,
+        "START": 300,
+        "TASK": {
+          "NAME": "windows",
+          "DURATION": 5
+        }
+      },
+      {
+        "HOUSE": "19",
+        "END": 405,
+        "START": 400,
+        "TASK": {
+          "NAME": "garden",
+          "DURATION": 5
+        }
+      },
+      {
+        "HOUSE": "20",
+        "END": 395,
+        "START": 355,
+        "TASK": {
+          "NAME": "plumbing",
+          "DURATION": 40
+        }
+      }
+    ]
+  },
+  {
+    "OBJECT_ID": "36",
+    "PARENT_ID": "12",
+    "NAME": "Sean",
+    "ASSIGNMENTS": [
+      {
+        "HOUSE": "1",
+        "END": 115,
+        "START": 105,
+        "TASK": {
+          "NAME": "painting",
+          "DURATION": 10
+        }
+      },
+      {
+        "HOUSE": "1",
+        "END": 305,
+        "START": 300,
+        "TASK": {
+          "NAME": "moving",
+          "DURATION": 5
+        }
+      },
+      {
+        "HOUSE": "2",
+        "END": 275,
+        "START": 265,
+        "TASK": {
+          "NAME": "painting",
+          "DURATION": 10
+        }
+      },
+      {
+        "HOUSE": "3",
+        "END": 255,
+        "START": 240,
+        "TASK": {
+          "NAME": "ceiling",
+          "DURATION": 15
+        }
+      },
+      {
+        "HOUSE": "3",
+        "END": 265,
+        "START": 255,
+        "TASK": {
+          "NAME": "painting",
+          "DURATION": 10
+        }
+      },
+      {
+        "HOUSE": "4",
+        "END": 475,
+        "START": 470,
+        "TASK": {
+          "NAME": "moving",
+          "DURATION": 5
+        }
+      },
+      {
+        "HOUSE": "5",
+        "END": 365,
+        "START": 355,
+        "TASK": {
+          "NAME": "facade",
+          "DURATION": 10
+        }
+      },
+      {
+        "HOUSE": "5",
+        "END": 485,
+        "START": 480,
+        "TASK": {
+          "NAME": "moving",
+          "DURATION": 5
+        }
+      },
+      {
+        "HOUSE": "8",
+        "END": 60,
+        "START": 50,
+        "TASK": {
+          "NAME": "painting",
+          "DURATION": 10
+        }
+      },
+      {
+        "HOUSE": "10",
+        "END": 140,
+        "START": 130,
+        "TASK": {
+          "NAME": "facade",
+          "DURATION": 10
+        }
+      },
+      {
+        "HOUSE": "13",
+        "END": 470,
+        "START": 460,
+        "TASK": {
+          "NAME": "facade",
+          "DURATION": 10
+        }
+      },
+      {
+        "HOUSE": "13",
+        "END": 495,
+        "START": 490,
+        "TASK": {
+          "NAME": "moving",
+          "DURATION": 5
+        }
+      },
+      {
+        "HOUSE": "14",
+        "END": 85,
+        "START": 70,
+        "TASK": {
+          "NAME": "ceiling",
+          "DURATION": 15
+        }
+      },
+      {
+        "HOUSE": "16",
+        "END": 480,
+        "START": 475,
+        "TASK": {
+          "NAME": "moving",
+          "DURATION": 5
+        }
+      },
+      {
+        "HOUSE": "19",
+        "END": 410,
+        "START": 405,
+        "TASK": {
+          "NAME": "moving",
+          "DURATION": 5
+        }
+      }
+    ]
+  }
+]

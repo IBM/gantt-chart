@@ -1,0 +1,44 @@
+@import '../../core/colors.scss';
+@import '../../../../../node_modules/vis/dist/vis.min.css';
+
+.gantt-panel .vis-custom-time::before {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-top: -8px;
+  margin-left: -3px;
+  background-color: inherit;
+  border-radius: 8px;
+  content: '';
+}
+
+$time-line-none-working-day-background: #f5f5f5;
+$time-line-none-working-day-color: white;
+
+.gantt-panel .vis-time-axis .vis-grid.vis-saturday,
+.gantt-panel .vis-time-axis .vis-grid.vis-sunday {
+  color: $time-line-none-working-day-color;
+  background: $time-line-none-working-day-background;
+}
+
+.gantt-panel .vis-timeline {
+  font-size: 12px;
+  border: none;
+}
+
+.gantt-panel .vis-panel.vis-top {
+  background-color: $table-header-color;
+}
+
+.gantt-panel .vis-timeline .vis-top .vis-minor {
+  border-top: solid 1px $time-line-border;
+}
+
+// .gantt-panel .vis-timeline .vis-time-axis.vis-foreground {
+// }
+
+// stylelint-disable-next-line no-duplicate-selectors
+.gantt-panel .vis-panel.vis-top {
+  border-bottom: 2px solid $gantt-border-color;
+  border-bottom: 1px solid #e0e0e0;
+}

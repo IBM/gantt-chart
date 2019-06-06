@@ -1,0 +1,74 @@
+@import './colors.scss';
+
+/*       Tooltip      */
+
+/* Tooltip container */
+
+.gantt-tooltip {
+  z-index: 2;
+  box-sizing: border-box;
+  padding: 5px 6px;
+  color: $dialog-foreground;
+  font-size: 11px;
+  font-family: 'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif;
+  text-align: center;
+  background-color: $dialog-background;
+
+  table {
+    border: none;
+
+    tr {
+      padding: 2px 0;
+      color: white;
+    }
+
+    td {
+      padding: 2px 0;
+      color: white;
+      font-size: 13px;
+
+      &.tooltip-table-separator {
+        width: 15px;
+      }
+    }
+
+    h4,
+    h3,
+    h2 {
+      margin: 0;
+      padding: 4px 0;
+      font-size: 15px;
+      text-align: left;
+    }
+  }
+}
+
+.gantt-tooltip-arrow {
+  &.bottom-arrow {
+    top: 100%;
+    margin-left: -3px;
+    border-top: 5px solid $dialog-border;
+    border-right: 5px solid transparent;
+    border-left: 5px solid transparent;
+  }
+
+  &.top-arrow {
+    top: -5px;
+    margin-left: -3px;
+    border-right: 5px solid transparent;
+    border-bottom: 5px solid $dialog-border;
+    border-left: 5px solid transparent;
+  }
+
+  &.left-arrow {
+    border-top: 5px solid transparent;
+    border-right: 5px solid $dialog-border;
+    border-bottom: 5px solid transparent;
+  }
+
+  &.right-arrow {
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 5px solid $dialog-border;
+  }
+}
