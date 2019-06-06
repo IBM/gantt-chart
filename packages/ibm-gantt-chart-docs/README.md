@@ -2,7 +2,7 @@
 
 ## Documentations and Examples
 
-Documentations and Examples are available as a [Storybook](storybook/)
+Documentations and Examples are available as a [Storybook](https://ibm.github.io/gantt-chart/packages/ibm-gantt-chart-docs/storybook)
 
 ## Usage
 

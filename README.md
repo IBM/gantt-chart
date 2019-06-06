@@ -2,6 +2,8 @@
 
 IBM Gantt Chart Component, integrable in Vanilla, jQuery, or React Framework.
 
+Demos and Examples are available as a [storybook](https://ibm.github.io/gantt-chart/packages/ibm-gantt-chart-docs/storybook)
+
 This project is structured as [monorepo](https://en.wikipedia.org/wiki/Monorepo):
 
 - [ibm-gantt-chart](packages/ibm-gantt-chart) - Gantt Chart Library
