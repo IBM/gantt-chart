@@ -1,0 +1,1698 @@
+[
+  {
+    "_id": "57e81e90038868fe404321b9",
+    "id": "NURSES+Anne",
+    "name": "Anne",
+    "quantity": "1.0",
+    "dayoffs" : [0,6],
+    "skills" : ["Anaesthesiology", "Pediatrics", "Oncology"],
+    "activities": [
+      {
+        "id": "SHIFTS+Emergency+Monday+2+8",
+        "name": "Emergency",
+        "start": 1474880400000,
+        "end": 1474902000000,
+        "parent": "__RootActivity"
+      }
+    ]
+  },
+  {
+    "_id": "57e81e90038868fe404321ba",
+    "id": "NURSES+Bethanie",
+    "name": "Bethanie",
+    "quantity": "1.0",
+    "dayoffs" : [1,2],
+    "skills" : [],
+    "activities": []
+  },
+  {
+    "_id": "57e81e90038868fe404321bb",
+    "id": "NURSES+Betsy",
+    "name": "Betsy",
+    "quantity": "1.0",
+    "dayoffs" : [1,4],
+    "skills" : ["Cardiac Care"],
+    "activities": [
+      {
+        "id": "SHIFTS+Emergency+Wednesday+12+18",
+        "name": "Emergency",
+        "start": 1475089200000,
+        "end": 1475110800000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Saturday+12+20",
+        "name": "Emergency",
+        "start": 1475348400000,
+        "end": 1475377200000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Consultation+Friday+8+12",
+        "name": "Consultation",
+        "start": 1475247600000,
+        "end": 1475262000000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Wednesday+2+8",
+        "name": "Emergency",
+        "start": 1475053200000,
+        "end": 1475074800000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Consultation+Wednesday+8+12",
+        "name": "Consultation",
+        "start": 1475074800000,
+        "end": 1475089200000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Sunday+12+20",
+        "name": "Emergency",
+        "start": 1475434800000,
+        "end": 1475463600000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Sunday+20+2",
+        "name": "Emergency",
+        "start": 1475463600000,
+        "end": 1475485200000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Consultation+Friday+12+18",
+        "name": "Consultation",
+        "start": 1475262000000,
+        "end": 1475283600000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Saturday+20+2",
+        "name": "Emergency",
+        "start": 1475377200000,
+        "end": 1475398800000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Consultation+Tuesday+8+12",
+        "name": "Consultation",
+        "start": 1474988400000,
+        "end": 1475002800000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Consultation+Tuesday+12+18",
+        "name": "Consultation",
+        "start": 1475002800000,
+        "end": 1475024400000,
+        "parent": "__RootActivity"
+      }
+    ]
+  },
+  {
+    "_id": "57e81e90038868fe404321bc",
+    "id": "NURSES+Cathy",
+    "name": "Cathy",
+    "quantity": "1.0",
+    "dayoffs" : [2,4],
+    "skills" : ["Anaesthesiology"],
+    "activities": [
+      {
+        "id": "SHIFTS+Emergency+Sunday+20+2",
+        "name": "Emergency",
+        "start": 1475463600000,
+        "end": 1475485200000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Saturday+12+20",
+        "name": "Emergency",
+        "start": 1475348400000,
+        "end": 1475377200000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Monday+18+2",
+        "name": "Emergency",
+        "start": 1474938000000,
+        "end": 1474966800000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Consultation+Monday+12+18",
+        "name": "Consultation",
+        "start": 1474916400000,
+        "end": 1474938000000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Consultation+Wednesday+12+18",
+        "name": "Consultation",
+        "start": 1475089200000,
+        "end": 1475110800000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Friday+12+18",
+        "name": "Emergency",
+        "start": 1475262000000,
+        "end": 1475283600000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Consultation+Friday+8+12",
+        "name": "Consultation",
+        "start": 1475247600000,
+        "end": 1475262000000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Saturday+20+2",
+        "name": "Emergency",
+        "start": 1475377200000,
+        "end": 1475398800000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Sunday+12+20",
+        "name": "Emergency",
+        "start": 1475434800000,
+        "end": 1475463600000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Saturday+2+12",
+        "name": "Emergency",
+        "start": 1475312400000,
+        "end": 1475348400000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Wednesday+18+2",
+        "name": "Emergency",
+        "start": 1475110800000,
+        "end": 1475139600000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Consultation+Wednesday+8+12",
+        "name": "Consultation",
+        "start": 1475074800000,
+        "end": 1475089200000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Consultation+Monday+8+12",
+        "name": "Consultation",
+        "start": 1474902000000,
+        "end": 1474916400000,
+        "parent": "__RootActivity"
+      }
+    ]
+  },
+  {
+    "_id": "57e81e90038868fe404321bd",
+    "id": "NURSES+Cecilia",
+    "name": "Cecilia",
+    "quantity": "1.0",
+    "dayoffs" : [3,5],
+    "skills" : ["Anaesthesiology", "Pediatrics"],
+    "activities": []
+  },
+  {
+    "_id": "57e81e90038868fe404321be",
+    "id": "NURSES+Chris",
+    "name": "Chris",
+    "quantity": "1.0",
+    "dayoffs" : [2,4],
+    "skills" : ["Geriatrics", "Cardiac Care"],
+    "activities": []
+  },
+  {
+    "_id": "57e81e90038868fe404321bf",
+    "id": "NURSES+Cindy",
+    "name": "Cindy",
+    "quantity": "1.0",
+    "dayoffs" : [0],
+    "skills" : [],
+    "activities": [
+      {
+        "id": "SHIFTS+Emergency+Saturday+20+2",
+        "name": "Emergency",
+        "start": 1475377200000,
+        "end": 1475398800000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Consultation+Friday+8+12",
+        "name": "Consultation",
+        "start": 1475247600000,
+        "end": 1475262000000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Consultation+Tuesday+8+12",
+        "name": "Consultation",
+        "start": 1474988400000,
+        "end": 1475002800000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Consultation+Monday+8+12",
+        "name": "Consultation",
+        "start": 1474902000000,
+        "end": 1474916400000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Consultation+Friday+12+18",
+        "name": "Consultation",
+        "start": 1475262000000,
+        "end": 1475283600000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Wednesday+8+12",
+        "name": "Emergency",
+        "start": 1475074800000,
+        "end": 1475089200000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Consultation+Monday+12+18",
+        "name": "Consultation",
+        "start": 1474916400000,
+        "end": 1474938000000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Consultation+Thursday+8+12",
+        "name": "Consultation",
+        "start": 1475161200000,
+        "end": 1475175600000,
+        "parent": "__RootActivity"
+      }
+    ]
+  },
+  {
+    "_id": "57e81e90038868fe404321c1",
+    "id": "NURSES+Debbie",
+    "name": "Debbie",
+    "quantity": "1.0",
+    "dayoffs" : [3, 6],
+    "skills" : [],
+    "activities": [
+      {
+        "id": "SHIFTS+Emergency+Friday+8+12",
+        "name": "Emergency",
+        "start": 1475247600000,
+        "end": 1475262000000,
+        "parent": "__RootActivity"
+      }
+    ]
+  },
+  {
+    "_id": "57e81e90038868fe404321c0",
+    "id": "NURSES+David",
+    "name": "David",
+    "quantity": "1.0",
+    "dayoffs" : [1],
+    "skills" : [],
+    "activities": [
+      {
+        "id": "SHIFTS+Emergency+Sunday+2+12",
+        "name": "Emergency",
+        "start": 1475398800000,
+        "end": 1475434800000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Thursday+18+2",
+        "name": "Emergency",
+        "start": 1475197200000,
+        "end": 1475226000000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Tuesday+18+2",
+        "name": "Emergency",
+        "start": 1475024400000,
+        "end": 1475053200000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Sunday+20+2",
+        "name": "Emergency",
+        "start": 1475463600000,
+        "end": 1475485200000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Consultation+Wednesday+12+18",
+        "name": "Consultation",
+        "start": 1475089200000,
+        "end": 1475110800000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Wednesday+18+2",
+        "name": "Emergency",
+        "start": 1475110800000,
+        "end": 1475139600000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Saturday+2+12",
+        "name": "Emergency",
+        "start": 1475312400000,
+        "end": 1475348400000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Consultation+Thursday+8+12",
+        "name": "Consultation",
+        "start": 1475161200000,
+        "end": 1475175600000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Consultation+Friday+12+18",
+        "name": "Consultation",
+        "start": 1475262000000,
+        "end": 1475283600000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Thursday+2+8",
+        "name": "Emergency",
+        "start": 1475139600000,
+        "end": 1475161200000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Saturday+20+2",
+        "name": "Emergency",
+        "start": 1475377200000,
+        "end": 1475398800000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Consultation+Thursday+12+18",
+        "name": "Consultation",
+        "start": 1475175600000,
+        "end": 1475197200000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Consultation+Tuesday+12+18",
+        "name": "Consultation",
+        "start": 1475002800000,
+        "end": 1475024400000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Tuesday+8+12",
+        "name": "Emergency",
+        "start": 1474988400000,
+        "end": 1475002800000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Consultation+Wednesday+8+12",
+        "name": "Consultation",
+        "start": 1475074800000,
+        "end": 1475089200000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Consultation+Friday+8+12",
+        "name": "Consultation",
+        "start": 1475247600000,
+        "end": 1475262000000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Saturday+12+20",
+        "name": "Emergency",
+        "start": 1475348400000,
+        "end": 1475377200000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Friday+2+8",
+        "name": "Emergency",
+        "start": 1475226000000,
+        "end": 1475247600000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Sunday+12+20",
+        "name": "Emergency",
+        "start": 1475434800000,
+        "end": 1475463600000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Tuesday+2+8",
+        "name": "Emergency",
+        "start": 1474966800000,
+        "end": 1474988400000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Wednesday+2+8",
+        "name": "Emergency",
+        "start": 1475053200000,
+        "end": 1475074800000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Friday+18+2",
+        "name": "Emergency",
+        "start": 1475283600000,
+        "end": 1475312400000,
+        "parent": "__RootActivity"
+      }
+    ]
+  },
+  {
+    "_id": "57e81e90038868fe404321c2",
+    "id": "NURSES+Dee",
+    "name": "Dee",
+    "quantity": "1.0",
+    "dayoffs" : [2, 5],
+    "skills" : [],
+    "activities": [
+      {
+        "id": "SHIFTS+Consultation+Monday+8+12",
+        "name": "Consultation",
+        "start": 1474902000000,
+        "end": 1474916400000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Monday+12+18",
+        "name": "Emergency",
+        "start": 1474916400000,
+        "end": 1474938000000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Thursday+8+12",
+        "name": "Emergency",
+        "start": 1475161200000,
+        "end": 1475175600000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Saturday+20+2",
+        "name": "Emergency",
+        "start": 1475377200000,
+        "end": 1475398800000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Consultation+Wednesday+8+12",
+        "name": "Consultation",
+        "start": 1475074800000,
+        "end": 1475089200000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Wednesday+12+18",
+        "name": "Emergency",
+        "start": 1475089200000,
+        "end": 1475110800000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Sunday+20+2",
+        "name": "Emergency",
+        "start": 1475463600000,
+        "end": 1475485200000,
+        "parent": "__RootActivity"
+      }
+    ]
+  },
+  {
+    "_id": "57e81e90038868fe404321c3",
+    "id": "NURSES+Gloria",
+    "name": "Gloria",
+    "quantity": "1.0",
+    "dayoffs" : [1],
+    "skills" : ["Pediatrics"],
+    "activities": []
+  },
+  {
+    "_id": "57e81e90038868fe404321c4",
+    "id": "NURSES+Isabelle",
+    "name": "Isabelle",
+    "quantity": "1.0",
+    "dayoffs" : [1, 4],
+    "skills" : [],
+    "activities": [
+      {
+        "id": "SHIFTS+Emergency+Friday+18+2",
+        "name": "Emergency",
+        "start": 1475283600000,
+        "end": 1475312400000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Wednesday+18+2",
+        "name": "Emergency",
+        "start": 1475110800000,
+        "end": 1475139600000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Consultation+Wednesday+12+18",
+        "name": "Consultation",
+        "start": 1475089200000,
+        "end": 1475110800000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Consultation+Wednesday+8+12",
+        "name": "Consultation",
+        "start": 1475074800000,
+        "end": 1475089200000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Consultation+Tuesday+12+18",
+        "name": "Consultation",
+        "start": 1475002800000,
+        "end": 1475024400000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Saturday+12+20",
+        "name": "Emergency",
+        "start": 1475348400000,
+        "end": 1475377200000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Sunday+20+2",
+        "name": "Emergency",
+        "start": 1475463600000,
+        "end": 1475485200000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Sunday+12+20",
+        "name": "Emergency",
+        "start": 1475434800000,
+        "end": 1475463600000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Consultation+Friday+12+18",
+        "name": "Consultation",
+        "start": 1475262000000,
+        "end": 1475283600000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Consultation+Tuesday+8+12",
+        "name": "Consultation",
+        "start": 1474988400000,
+        "end": 1475002800000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Friday+2+8",
+        "name": "Emergency",
+        "start": 1475226000000,
+        "end": 1475247600000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Saturday+2+12",
+        "name": "Emergency",
+        "start": 1475312400000,
+        "end": 1475348400000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Saturday+20+2",
+        "name": "Emergency",
+        "start": 1475377200000,
+        "end": 1475398800000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Wednesday+2+8",
+        "name": "Emergency",
+        "start": 1475053200000,
+        "end": 1475074800000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Sunday+2+12",
+        "name": "Emergency",
+        "start": 1475398800000,
+        "end": 1475434800000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Consultation+Friday+8+12",
+        "name": "Consultation",
+        "start": 1475247600000,
+        "end": 1475262000000,
+        "parent": "__RootActivity"
+      }
+    ]
+  },
+  {
+    "_id": "57e81e90038868fe404321c5",
+    "id": "NURSES+Jane",
+    "name": "Jane",
+    "quantity": "1.0",
+    "dayoffs" : [0, 6],
+    "skills" : [],
+    "activities": [
+      {
+        "id": "SHIFTS+Emergency+Tuesday+8+12",
+        "name": "Emergency",
+        "start": 1474988400000,
+        "end": 1475002800000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Consultation+Monday+8+12",
+        "name": "Consultation",
+        "start": 1474902000000,
+        "end": 1474916400000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Wednesday+8+12",
+        "name": "Emergency",
+        "start": 1475074800000,
+        "end": 1475089200000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Consultation+Friday+8+12",
+        "name": "Consultation",
+        "start": 1475247600000,
+        "end": 1475262000000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Consultation+Thursday+8+12",
+        "name": "Consultation",
+        "start": 1475161200000,
+        "end": 1475175600000,
+        "parent": "__RootActivity"
+      }
+    ]
+  },
+  {
+    "_id": "57e81e90038868fe404321c6",
+    "id": "NURSES+Janelle",
+    "name": "Janelle",
+    "quantity": "1.0",
+    "dayoffs" : [3, 5],
+    "skills" : [],
+    "activities": [
+      {
+        "id": "SHIFTS+Emergency+Thursday+8+12",
+        "name": "Emergency",
+        "start": 1475161200000,
+        "end": 1475175600000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Thursday+12+18",
+        "name": "Emergency",
+        "start": 1475175600000,
+        "end": 1475197200000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Monday+8+12",
+        "name": "Emergency",
+        "start": 1474902000000,
+        "end": 1474916400000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Consultation+Tuesday+12+18",
+        "name": "Consultation",
+        "start": 1475002800000,
+        "end": 1475024400000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Tuesday+8+12",
+        "name": "Emergency",
+        "start": 1474988400000,
+        "end": 1475002800000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Saturday+20+2",
+        "name": "Emergency",
+        "start": 1475377200000,
+        "end": 1475398800000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Sunday+20+2",
+        "name": "Emergency",
+        "start": 1475463600000,
+        "end": 1475485200000,
+        "parent": "__RootActivity"
+      }
+    ]
+  },
+  {
+    "_id": "57e81e90038868fe404321c7",
+    "id": "NURSES+Janice",
+    "name": "Janice",
+    "quantity": "1.0",
+    "dayoffs" : [2, 5],
+    "skills" : [],
+    "activities": [
+      {
+        "id": "SHIFTS+Consultation+Wednesday+12+18",
+        "name": "Consultation",
+        "start": 1475089200000,
+        "end": 1475110800000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Consultation+Thursday+12+18",
+        "name": "Consultation",
+        "start": 1475175600000,
+        "end": 1475197200000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Consultation+Monday+8+12",
+        "name": "Consultation",
+        "start": 1474902000000,
+        "end": 1474916400000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Saturday+20+2",
+        "name": "Emergency",
+        "start": 1475377200000,
+        "end": 1475398800000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Sunday+2+12",
+        "name": "Emergency",
+        "start": 1475398800000,
+        "end": 1475434800000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Saturday+2+12",
+        "name": "Emergency",
+        "start": 1475312400000,
+        "end": 1475348400000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Consultation+Wednesday+8+12",
+        "name": "Consultation",
+        "start": 1475074800000,
+        "end": 1475089200000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Consultation+Monday+12+18",
+        "name": "Consultation",
+        "start": 1474916400000,
+        "end": 1474938000000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Saturday+12+20",
+        "name": "Emergency",
+        "start": 1475348400000,
+        "end": 1475377200000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Sunday+12+20",
+        "name": "Emergency",
+        "start": 1475434800000,
+        "end": 1475463600000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Sunday+20+2",
+        "name": "Emergency",
+        "start": 1475463600000,
+        "end": 1475485200000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Consultation+Thursday+8+12",
+        "name": "Consultation",
+        "start": 1475161200000,
+        "end": 1475175600000,
+        "parent": "__RootActivity"
+      }
+    ]
+  },
+  {
+    "_id": "57e81e90038868fe404321c8",
+    "id": "NURSES+Jemma",
+    "name": "Jemma",
+    "quantity": "1.0",
+    "dayoffs" : [3, 5],
+    "skills" : ["Cardiac Care"],
+    "activities": [
+      {
+        "id": "SHIFTS+Consultation+Thursday+12+18",
+        "name": "Consultation",
+        "start": 1475175600000,
+        "end": 1475197200000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Saturday+20+2",
+        "name": "Emergency",
+        "start": 1475377200000,
+        "end": 1475398800000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Consultation+Tuesday+8+12",
+        "name": "Consultation",
+        "start": 1474988400000,
+        "end": 1475002800000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Consultation+Thursday+8+12",
+        "name": "Consultation",
+        "start": 1475161200000,
+        "end": 1475175600000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Consultation+Monday+8+12",
+        "name": "Consultation",
+        "start": 1474902000000,
+        "end": 1474916400000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Monday+12+18",
+        "name": "Emergency",
+        "start": 1474916400000,
+        "end": 1474938000000,
+        "parent": "__RootActivity"
+      }
+    ]
+  },
+  {
+    "_id": "57e81e90038868fe404321c9",
+    "id": "NURSES+Joan",
+    "name": "Joan",
+    "quantity": "1.0",
+    "dayoffs" : [4, 6],
+    "skills" : [],
+    "activities": [
+      {
+        "id": "SHIFTS+Emergency+Friday+8+12",
+        "name": "Emergency",
+        "start": 1475247600000,
+        "end": 1475262000000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Consultation+Wednesday+8+12",
+        "name": "Consultation",
+        "start": 1475074800000,
+        "end": 1475089200000,
+        "parent": "__RootActivity"
+      }
+    ]
+  },
+  {
+    "_id": "57e81e90038868fe404321ca",
+    "id": "NURSES+Joyce",
+    "name": "Joyce",
+    "quantity": "1.0",
+    "dayoffs" : [0, 4],
+    "skills" : ["Anaesthesiology", "Pediatrics"],
+    "activities": []
+  },
+  {
+    "_id": "57e81e90038868fe404321cb",
+    "id": "NURSES+Jude",
+    "name": "Jude",
+    "quantity": "1.0",
+    "dayoffs" : [2, 5],
+    "skills" : [],
+    "activities": [
+      {
+        "id": "SHIFTS+Emergency+Monday+8+12",
+        "name": "Emergency",
+        "start": 1474902000000,
+        "end": 1474916400000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Consultation+Wednesday+8+12",
+        "name": "Consultation",
+        "start": 1475074800000,
+        "end": 1475089200000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Consultation+Wednesday+12+18",
+        "name": "Consultation",
+        "start": 1475089200000,
+        "end": 1475110800000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Sunday+20+2",
+        "name": "Emergency",
+        "start": 1475463600000,
+        "end": 1475485200000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Thursday+12+18",
+        "name": "Emergency",
+        "start": 1475175600000,
+        "end": 1475197200000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Thursday+8+12",
+        "name": "Emergency",
+        "start": 1475161200000,
+        "end": 1475175600000,
+        "parent": "__RootActivity"
+      }
+    ]
+  },
+  {
+    "_id": "57e81e90038868fe404321cc",
+    "id": "NURSES+Julie",
+    "name": "Julie",
+    "quantity": "1.0",
+    "dayoffs" : [0],
+    "skills" : ["Geriatrics"],
+    "activities": [
+      {
+        "id": "SHIFTS+Emergency+Wednesday+8+12",
+        "name": "Emergency",
+        "start": 1475074800000,
+        "end": 1475089200000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Consultation+Monday+8+12",
+        "name": "Consultation",
+        "start": 1474902000000,
+        "end": 1474916400000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Consultation+Thursday+8+12",
+        "name": "Consultation",
+        "start": 1475161200000,
+        "end": 1475175600000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Friday+8+12",
+        "name": "Emergency",
+        "start": 1475247600000,
+        "end": 1475262000000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Consultation+Tuesday+8+12",
+        "name": "Consultation",
+        "start": 1474988400000,
+        "end": 1475002800000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Consultation+Friday+12+18",
+        "name": "Consultation",
+        "start": 1475262000000,
+        "end": 1475283600000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Consultation+Tuesday+12+18",
+        "name": "Consultation",
+        "start": 1475002800000,
+        "end": 1475024400000,
+        "parent": "__RootActivity"
+      }
+    ]
+  },
+  {
+    "_id": "57e81e90038868fe404321cd",
+    "id": "NURSES+Juliet",
+    "name": "Juliet",
+    "quantity": "1.0",
+    "dayoffs" : [2, 4],
+    "skills" : ["Pediatrics"],
+    "activities": []
+  },
+  {
+    "_id": "57e81e90038868fe404321ce",
+    "id": "NURSES+Kate",
+    "name": "Kate",
+    "quantity": "1.0",
+    "dayoffs" : [1, 2],
+    "skills" : ["Pediatrics"],
+    "activities": [
+      {
+        "id": "SHIFTS+Emergency+Friday+8+12",
+        "name": "Emergency",
+        "start": 1475247600000,
+        "end": 1475262000000,
+        "parent": "__RootActivity"
+      }
+    ]
+  },
+  {
+    "_id": "57e81e90038868fe404321d0",
+    "id": "NURSES+Nancy",
+    "name": "Nancy",
+    "quantity": "1.0",
+    "dayoffs" : [0],
+    "skills" : ["Cardiac Care"],
+    "activities": []
+  },
+  {
+    "_id": "57e81e90038868fe404321d1",
+    "id": "NURSES+Nathalie",
+    "name": "Nathalie",
+    "quantity": "1.0",
+    "dayoffs" : [0, 4],
+    "skills" : ["Geriatrics", "Anaesthesiology"],
+    "activities": []
+  },
+  {
+    "_id": "57e81e90038868fe404321d2",
+    "id": "NURSES+Nicole",
+    "name": "Nicole",
+    "quantity": "1.0",
+    "dayoffs" : [3, 5],
+    "skills" : [],
+    "activities": [
+      {
+        "id": "SHIFTS+Emergency+Saturday+12+20",
+        "name": "Emergency",
+        "start": 1475348400000,
+        "end": 1475377200000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Tuesday+2+8",
+        "name": "Emergency",
+        "start": 1474966800000,
+        "end": 1474988400000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Consultation+Tuesday+12+18",
+        "name": "Consultation",
+        "start": 1475002800000,
+        "end": 1475024400000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Saturday+20+2",
+        "name": "Emergency",
+        "start": 1475377200000,
+        "end": 1475398800000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Thursday+2+8",
+        "name": "Emergency",
+        "start": 1475139600000,
+        "end": 1475161200000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Consultation+Thursday+8+12",
+        "name": "Consultation",
+        "start": 1475161200000,
+        "end": 1475175600000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Sunday+12+20",
+        "name": "Emergency",
+        "start": 1475434800000,
+        "end": 1475463600000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Sunday+20+2",
+        "name": "Emergency",
+        "start": 1475463600000,
+        "end": 1475485200000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Consultation+Monday+12+18",
+        "name": "Consultation",
+        "start": 1474916400000,
+        "end": 1474938000000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Consultation+Thursday+12+18",
+        "name": "Consultation",
+        "start": 1475175600000,
+        "end": 1475197200000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Consultation+Monday+8+12",
+        "name": "Consultation",
+        "start": 1474902000000,
+        "end": 1474916400000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Thursday+18+2",
+        "name": "Emergency",
+        "start": 1475197200000,
+        "end": 1475226000000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Tuesday+18+2",
+        "name": "Emergency",
+        "start": 1475024400000,
+        "end": 1475053200000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Saturday+2+12",
+        "name": "Emergency",
+        "start": 1475312400000,
+        "end": 1475348400000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Monday+18+2",
+        "name": "Emergency",
+        "start": 1474938000000,
+        "end": 1474966800000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Monday+2+8",
+        "name": "Emergency",
+        "start": 1474880400000,
+        "end": 1474902000000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Consultation+Tuesday+8+12",
+        "name": "Consultation",
+        "start": 1474988400000,
+        "end": 1475002800000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Sunday+2+12",
+        "name": "Emergency",
+        "start": 1475398800000,
+        "end": 1475434800000,
+        "parent": "__RootActivity"
+      }
+    ]
+  },
+  {
+    "_id": "57e81e90038868fe404321d3",
+    "id": "NURSES+Patricia",
+    "name": "Patricia",
+    "quantity": "1.0",
+    "dayoffs" : [3, 6],
+    "skills" : [],
+    "activities": [
+      {
+        "id": "SHIFTS+Emergency+Monday+18+2",
+        "name": "Emergency",
+        "start": 1474938000000,
+        "end": 1474966800000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Consultation+Friday+12+18",
+        "name": "Consultation",
+        "start": 1475262000000,
+        "end": 1475283600000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Tuesday+2+8",
+        "name": "Emergency",
+        "start": 1474966800000,
+        "end": 1474988400000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Friday+18+2",
+        "name": "Emergency",
+        "start": 1475283600000,
+        "end": 1475312400000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Thursday+18+2",
+        "name": "Emergency",
+        "start": 1475197200000,
+        "end": 1475226000000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Tuesday+18+2",
+        "name": "Emergency",
+        "start": 1475024400000,
+        "end": 1475053200000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Monday+2+8",
+        "name": "Emergency",
+        "start": 1474880400000,
+        "end": 1474902000000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Sunday+2+12",
+        "name": "Emergency",
+        "start": 1475398800000,
+        "end": 1475434800000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Consultation+Tuesday+12+18",
+        "name": "Consultation",
+        "start": 1475002800000,
+        "end": 1475024400000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Consultation+Tuesday+8+12",
+        "name": "Consultation",
+        "start": 1474988400000,
+        "end": 1475002800000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Sunday+20+2",
+        "name": "Emergency",
+        "start": 1475463600000,
+        "end": 1475485200000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Sunday+12+20",
+        "name": "Emergency",
+        "start": 1475434800000,
+        "end": 1475463600000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Consultation+Friday+8+12",
+        "name": "Consultation",
+        "start": 1475247600000,
+        "end": 1475262000000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Thursday+2+8",
+        "name": "Emergency",
+        "start": 1475139600000,
+        "end": 1475161200000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Friday+2+8",
+        "name": "Emergency",
+        "start": 1475226000000,
+        "end": 1475247600000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Consultation+Monday+12+18",
+        "name": "Consultation",
+        "start": 1474916400000,
+        "end": 1474938000000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Consultation+Thursday+12+18",
+        "name": "Consultation",
+        "start": 1475175600000,
+        "end": 1475197200000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Monday+8+12",
+        "name": "Emergency",
+        "start": 1474902000000,
+        "end": 1474916400000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Thursday+8+12",
+        "name": "Emergency",
+        "start": 1475161200000,
+        "end": 1475175600000,
+        "parent": "__RootActivity"
+      }
+    ]
+  },
+  {
+    "_id": "57e81e90038868fe404321d4",
+    "id": "NURSES+Patrick",
+    "name": "Patrick",
+    "quantity": "1.0",
+    "dayoffs" : [0, 6],
+    "skills" : ["Oncology"],
+    "activities": [
+      {
+        "id": "SHIFTS+Consultation+Tuesday+8+12",
+        "name": "Consultation",
+        "start": 1474988400000,
+        "end": 1475002800000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Consultation+Thursday+8+12",
+        "name": "Consultation",
+        "start": 1475161200000,
+        "end": 1475175600000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Tuesday+12+18",
+        "name": "Emergency",
+        "start": 1475002800000,
+        "end": 1475024400000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Consultation+Friday+12+18",
+        "name": "Consultation",
+        "start": 1475262000000,
+        "end": 1475283600000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Consultation+Wednesday+8+12",
+        "name": "Consultation",
+        "start": 1475074800000,
+        "end": 1475089200000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Consultation+Monday+12+18",
+        "name": "Consultation",
+        "start": 1474916400000,
+        "end": 1474938000000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Consultation+Monday+8+12",
+        "name": "Consultation",
+        "start": 1474902000000,
+        "end": 1474916400000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Consultation+Thursday+12+18",
+        "name": "Consultation",
+        "start": 1475175600000,
+        "end": 1475197200000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Consultation+Wednesday+12+18",
+        "name": "Consultation",
+        "start": 1475089200000,
+        "end": 1475110800000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Consultation+Friday+8+12",
+        "name": "Consultation",
+        "start": 1475247600000,
+        "end": 1475262000000,
+        "parent": "__RootActivity"
+      }
+    ]
+  },
+  {
+    "_id": "57e81e90038868fe404321d5",
+    "id": "NURSES+Roberta",
+    "name": "Roberta",
+    "quantity": "1.0",
+    "dayoffs" : [5, 6],
+    "skills" : [],
+    "activities": []
+  },
+  {
+    "_id": "57e81e90038868fe404321d6",
+    "id": "NURSES+Suzanne",
+    "name": "Suzanne",
+    "quantity": "1.0",
+    "dayoffs" : [1],
+    "skills" : ["Pediatrics"],
+    "activities": [
+      {
+        "id": "SHIFTS+Emergency+Sunday+20+2",
+        "name": "Emergency",
+        "start": 1475463600000,
+        "end": 1475485200000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Consultation+Friday+8+12",
+        "name": "Consultation",
+        "start": 1475247600000,
+        "end": 1475262000000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Consultation+Wednesday+8+12",
+        "name": "Consultation",
+        "start": 1475074800000,
+        "end": 1475089200000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Saturday+12+20",
+        "name": "Emergency",
+        "start": 1475348400000,
+        "end": 1475377200000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Consultation+Thursday+12+18",
+        "name": "Consultation",
+        "start": 1475175600000,
+        "end": 1475197200000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Consultation+Tuesday+8+12",
+        "name": "Consultation",
+        "start": 1474988400000,
+        "end": 1475002800000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Tuesday+12+18",
+        "name": "Emergency",
+        "start": 1475002800000,
+        "end": 1475024400000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Consultation+Thursday+8+12",
+        "name": "Consultation",
+        "start": 1475161200000,
+        "end": 1475175600000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Saturday+20+2",
+        "name": "Emergency",
+        "start": 1475377200000,
+        "end": 1475398800000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Consultation+Friday+12+18",
+        "name": "Consultation",
+        "start": 1475262000000,
+        "end": 1475283600000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Consultation+Wednesday+12+18",
+        "name": "Consultation",
+        "start": 1475089200000,
+        "end": 1475110800000,
+        "parent": "__RootActivity"
+      }
+    ]
+  },
+  {
+    "_id": "57e81e90038868fe404321d7",
+    "id": "NURSES+Vickie",
+    "name": "Vickie",
+    "quantity": "1.0",
+    "dayoffs" : [3, 5],
+    "skills" : [],
+    "activities": [
+      {
+        "id": "SHIFTS+Consultation+Thursday+8+12",
+        "name": "Consultation",
+        "start": 1475161200000,
+        "end": 1475175600000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Consultation+Monday+8+12",
+        "name": "Consultation",
+        "start": 1474902000000,
+        "end": 1474916400000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Consultation+Tuesday+12+18",
+        "name": "Consultation",
+        "start": 1475002800000,
+        "end": 1475024400000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Consultation+Tuesday+8+12",
+        "name": "Consultation",
+        "start": 1474988400000,
+        "end": 1475002800000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Sunday+20+2",
+        "name": "Emergency",
+        "start": 1475463600000,
+        "end": 1475485200000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Consultation+Monday+12+18",
+        "name": "Consultation",
+        "start": 1474916400000,
+        "end": 1474938000000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Consultation+Thursday+12+18",
+        "name": "Consultation",
+        "start": 1475175600000,
+        "end": 1475197200000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Saturday+20+2",
+        "name": "Emergency",
+        "start": 1475377200000,
+        "end": 1475398800000,
+        "parent": "__RootActivity"
+      }
+    ]
+  },
+  {
+    "_id": "57e81e90038868fe404321d8",
+    "id": "NURSES+Wendie",
+    "name": "Wendie",
+    "quantity": "1.0",
+    "dayoffs" : [4, 6],
+    "skills" : ["Geriatrics"],
+    "activities": [
+      {
+        "id": "SHIFTS+Consultation+Wednesday+12+18",
+        "name": "Consultation",
+        "start": 1475089200000,
+        "end": 1475110800000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Tuesday+8+12",
+        "name": "Emergency",
+        "start": 1474988400000,
+        "end": 1475002800000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Monday+8+12",
+        "name": "Emergency",
+        "start": 1474902000000,
+        "end": 1474916400000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Friday+12+18",
+        "name": "Emergency",
+        "start": 1475262000000,
+        "end": 1475283600000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Consultation+Friday+8+12",
+        "name": "Consultation",
+        "start": 1475247600000,
+        "end": 1475262000000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Consultation+Monday+12+18",
+        "name": "Consultation",
+        "start": 1474916400000,
+        "end": 1474938000000,
+        "parent": "__RootActivity"
+      },
+      {
+        "id": "SHIFTS+Emergency+Wednesday+8+12",
+        "name": "Emergency",
+        "start": 1475074800000,
+        "end": 1475089200000,
+        "parent": "__RootActivity"
+      }
+    ]
+  },
+  {
+    "_id": "57e81e90038868fe404321d9",
+    "id": "NURSES+Zoe",
+    "name": "Zoe",
+    "quantity": "1.0",
+    "dayoffs" : [0, 6],
+    "skills" : ["Cardiac Care"],
+    "activities": []
+  }
+]
