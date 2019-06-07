@@ -52,6 +52,7 @@
     ]
   },
   "devDependencies": {
+    "all-contributors-cli": "^6.6.1",
     "gda-scripts": "^0.3.6",
     "husky": "^2.4.0",
     "lerna": "^3.14.1",

@@ -1,0 +1,39 @@
+{
+  "projectName": "@ibm/gantt-chart",
+  "projectOwner": "IBM",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "commitConvention": "none",
+  "contributors": [
+    {
+      "login": "ono70",
+      "name": "Olivier Noiret",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/3769170?v=4",
+      "profile": "https://github.com/ono70",
+      "contributions": [
+        "code",
+        "doc",
+        "example",
+        "platform"
+      ]
+    },
+    {
+      "login": "gillesdandrea",
+      "name": "Gilles d'Andréa",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/2739003?v=4",
+      "profile": "https://github.com/gillesdandrea",
+      "contributions": [
+        "code",
+        "doc",
+        "example",
+        "platform"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7
+}
