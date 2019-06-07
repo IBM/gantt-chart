@@ -2,6 +2,7 @@
   "name": "ibm-gantt-chart-react",
   "version": "0.5.0",
   "description": "IBM Gantt Chart React Component.",
+  "repository": "https://github.com/ibm/gantt-chart",
   "keywords": [
     "chart",
     "gantt",
