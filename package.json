@@ -31,7 +31,7 @@
     "prettier:list": "prettier -l \"packages/*/{src,test}/**/*.{js,jsx,css,scss,json,md}\" \"packages/*/.*.js\" \"packages/*/*.js\" \".*.js\" \"*.js\" \"docs/*.md\" \"*.md\"",
     "slint": "gda-scripts stylelint packages/*/{src,test}",
     "slint:fix": "gda-scripts stylelint packages/*/{src,test} --fix",
-    "start": "cd packages/gantt-chart && yarn start",
+    "start": "cd packages/ibm-gantt-chart-dev && yarn start",
     "update": "yarn upgrade-interactive --latest"
   },
   "lint-staged": {

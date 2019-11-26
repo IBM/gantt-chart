@@ -2,8 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eb89bfa6-2547-4a55-990f-157af355ba15" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lerna.json" beforeDir="false" afterPath="$PROJECT_DIR$/lerna.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/ibm-gantt-chart-dev/src/basic/basic.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/ibm-gantt-chart-dev/src/basic/basic.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/ibm-gantt-chart-dev/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/ibm-gantt-chart-dev/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/ibm-gantt-chart-docs/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/ibm-gantt-chart-docs/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/ibm-gantt-chart-docs/storybook/ibm-gantt-chart-docs-main.css" beforeDir="false" afterPath="$PROJECT_DIR$/packages/ibm-gantt-chart-docs/storybook/ibm-gantt-chart-docs-main.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/ibm-gantt-chart-docs/storybook/ibm-gantt-chart-docs-main.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/packages/ibm-gantt-chart-docs/storybook/ibm-gantt-chart-docs-main.css.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/ibm-gantt-chart-docs/storybook/ibm-gantt-chart-docs-vendors~main.css" beforeDir="false" afterPath="$PROJECT_DIR$/packages/ibm-gantt-chart-docs/storybook/ibm-gantt-chart-docs-vendors~main.css" afterDir="false" />
@@ -21,12 +24,9 @@
       <change beforePath="$PROJECT_DIR$/packages/ibm-gantt-chart-docs/storybook/vendors~main.bcd52b31c975153996fc.bundle.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/ibm-gantt-chart-docs/storybook/vendors~main.fcb321860dc142377bbd.bundle.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/ibm-gantt-chart-docs/storybook/vendors~main.fcb321860dc142377bbd.bundle.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/ibm-gantt-chart/src/core/dragdrop.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/ibm-gantt-chart/src/core/dragdrop.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/ibm-gantt-chart/src/core/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/ibm-gantt-chart/src/core/utils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/ibm-gantt-chart/src/jquery/split/split.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/ibm-gantt-chart/src/jquery/split/split.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/ibm-gantt-chart/src/loadchart/loadchart.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/ibm-gantt-chart/src/loadchart/loadchart.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/ibm-gantt-chart-react/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/ibm-gantt-chart-react/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/ibm-gantt-chart/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/ibm-gantt-chart/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/ibm-gantt-chart/src/panel/ganttpanel.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/ibm-gantt-chart/src/panel/ganttpanel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/ibm-gantt-chart/src/panel/ganttpanel.scss" beforeDir="false" afterPath="$PROJECT_DIR$/packages/ibm-gantt-chart/src/panel/ganttpanel.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/ibm-gantt-chart/src/timetable/timetable.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/ibm-gantt-chart/src/timetable/timetable.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -86,7 +86,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1574269722934</updated>
-      <workItem from="1574269724095" duration="25914000" />
+      <workItem from="1574269724095" duration="45480000" />
     </task>
     <servers />
   </component>
