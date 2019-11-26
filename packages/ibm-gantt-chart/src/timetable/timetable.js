@@ -499,6 +499,10 @@ export default class TimeTable extends Gantt.components.TimeTable {
     this.scroller.scrollTop = y;
   }
 
+  getScrollTop() {
+    return this.scroller.scrollTop;
+  }
+
   synchronizeTableTop(top) {
     const table = this.gantt.table && this.gantt.table.getScrollableTable();
     if (table) {
