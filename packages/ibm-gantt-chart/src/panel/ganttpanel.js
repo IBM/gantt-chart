@@ -555,7 +555,6 @@ class GanttPanel extends Gantt.components.GanttPanel {
     // If not setting the min width, the table width would be zero while data being loaded and
     // the split pane would not able to set its split position.
     tablePanel.style.minWidth = '100px';
-
     const TreeTableClass = Gantt.components.TreeTable.impl || Gantt.components.TreeTable;
     let tableConfig = this.config.table;
     if (this.legendConfig || this.config.rows) {
@@ -568,6 +567,14 @@ class GanttPanel extends Gantt.components.GanttPanel {
     this.table.setRowFilter(this.rowFilter);
     this.updates.table = this.table.createUpdates(this.updates);
     ctnr.appendChild(tablePanel);
+    window.addWheelListener(tablePanel, evt => {
+      const factor = evt.deltaMode === 1 /** DOM_DELTA_LINE */ ? 32 : 0.8; // necessary for FF !
+      const delta = factor * evt.deltaY || -evt.wheelDelta || evt.detail;
+      this.timeTable.scrollToY(this.timeTable.getScrollTop() + delta);
+      if (evt.preventDefault) {
+        evt.preventDefault();
+      }
+    });
     return tablePanel;
   }
 

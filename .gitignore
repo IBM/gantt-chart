@@ -12,3 +12,12 @@ node_modules/
 stats.html
 stats.json
 .DS_Store
+.idea/workspace.xml
+.idea/watcherTasks.xml
+.idea/vcs.xml
+.idea/modules.xml
+.idea/misc.xml
+.idea/inspectionProfiles/Project_Default.xml
+.idea/gantt-chart.iml
+.idea/deployment.xml
+.idea/$CACHE_FILE$
