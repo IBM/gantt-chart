@@ -44,6 +44,18 @@ const GanttStrings = {
   'gantt.end': 'End',
 };
 
+let intl = {
+  formatMessage: (m, v) => {
+    let message = GanttStrings[m.id] || m.defaultMessage || m.id;
+    if (v) {
+      Object.entries(v).forEach(([key, value]) => {
+        message = message.replace(`{${key}}`, value);
+      });
+    }
+    return message;
+  },
+};
+
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/isInteger
 Number.isInteger =
   Number.isInteger ||
@@ -295,12 +307,20 @@ Gantt.utils = {
   stringMatches(s, search) {
     return s.toLocaleLowerCase().indexOf(search.toLowerCase()) > -1;
   },
+  getIntl() {
+    return intl;
+  },
+  setIntl(nintl) {
+    intl = nintl;
+  },
   getString(key, defaultValue) {
-    return GanttStrings[key] || defaultValue || key;
+    // return GanttStrings[key] || defaultValue || key;
+    return this.getIntl().formatMessage({ id: key, defaultMessage: defaultValue });
   },
   formatString(tpl, obj) {
-    tpl = this.getString(tpl, tpl);
-    return tpl.replace(/\{(\w+)\}/g, (_, key) => obj[key]);
+    // tpl = this.getString(tpl, tpl);
+    // return tpl.replace(/\{(\w+)\}/g, (_, key) => obj[key]);
+    return this.getIntl().formatMessage({ id: key, defaultMessage: defaultValue }, obj);
   },
   addEventListener(target, evt, cb, capture) {
     if (target.addEventListener) {
