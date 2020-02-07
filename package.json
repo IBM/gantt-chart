@@ -24,7 +24,7 @@
     "elint:fix": "gda-scripts eslint packages/*/{src,test} --fix",
     "import:fix": "import-sort --write \"packages/*/{src,test}/**/*.{js,jsx}\" \"packages/*/.*.js\" \"packages/*/*.js\" \".*.js\" \"*.js\"",
     "import:list": "import-sort --list-different \"packages/*/{src,test}/**/*.{js,jsx}\" \"packages/*/.*.js\" \"packages/*/*.js\" \".*.js\" \"*.js\"",
-    "lerna:publish": "lerna publish",
+    "lerna:publish": "lerna publish from-package --no-git-tag-version --no-push",
     "lerna:version": "lerna version --no-git-tag-version --no-push",
     "precommit": "lint-staged",
     "prettier:fix": "prettier --write \"packages/*/{src,test}/**/*.{js,jsx,css,scss,json,md}\" \"packages/*/.*.js\" \"packages/*/*.js\" \".*.js\" \"*.js\" \"docs/*.md\" \"*.md\"",
