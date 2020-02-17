@@ -45,7 +45,7 @@ function getDefaultTableColumns() {
     {
       name: HIERARCHY_COLUMN_NAME,
       data: null,
-      title: 'Name',
+      title: Gantt.utils.getString('gantt.name', 'Name'),
     },
   ];
 }
@@ -78,7 +78,11 @@ export default class GanttDataTable extends Gantt.components.TreeTable {
       this.destroy();
     }
 
-    const defaultConfig = Gantt.utils.mergeObjects({}, defaultDataTableOptions);
+    const defaultConfig = Gantt.utils.mergeObjects({}, defaultDataTableOptions, {
+      language: {
+        emptyTable: Gantt.utils.getString('gantt.datatables.empty-table'),
+      },
+    });
     defaultConfig.columns = getDefaultTableColumns(); // Instead of doing a deep copy of the defaultDataTableOptions
     this.dataTableOptions = Gantt.utils.mergeObjects(defaultConfig, config && config.dataTables);
 
@@ -344,7 +348,11 @@ export default class GanttDataTable extends Gantt.components.TreeTable {
     const { columns } = this.dataTableOptions;
     for (let i = 0, th; i < columns.length; i++) {
       th = document.createElement('th');
-      th.innerHTML = (columns[i].title && Gantt.utils.getString(columns[i].title)) || columns[i].data || `Col${i + 1}`;
+      th.innerHTML =
+        (columns[i].key && Gantt.utils.getString(columns[i].key, columns[i].title)) ||
+        columns[i].title ||
+        columns[i].data ||
+        `Col${i + 1}`;
       tr.appendChild(th);
     }
 

@@ -42,6 +42,7 @@ const GanttStrings = {
   'gantt.id': 'Id',
   'gantt.start': 'Start',
   'gantt.end': 'End',
+  'gantt.datatables.empty-table': 'No data available in table',
 };
 
 let intl = {
