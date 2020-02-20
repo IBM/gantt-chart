@@ -464,7 +464,7 @@ class GanttPanel extends Gantt.components.GanttPanel {
             this.setTimeWindow({ start: today - day * 2, end: today + day * 2 });
           } else {
             stopLoading();
-            return Promise.reject('No time window defined');
+            return Promise.reject(Gantt.utils.getString('gantt.error.no-time-window-defined'));
           }
         }
         this.loading = true;
