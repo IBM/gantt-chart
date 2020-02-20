@@ -575,6 +575,7 @@ export default class GanttDataTable extends Gantt.components.TreeTable {
   }
 
   getVisibleRows() {
+    if (!this.$dataTable) return [];
     const trs = this.$dataTable.$('tr', { filter: 'applied' });
     const count = trs.length;
     const result = new Array(count);
@@ -719,10 +720,11 @@ export default class GanttDataTable extends Gantt.components.TreeTable {
         delete this.rows[i].activityRow;
       }
     }
-    this.$dataTable
-      .$('tr.variable-row-height')
-      .css({ height: 'inherit' })
-      .removeClass('variable-row-height');
+    this.$dataTable &&
+      this.$dataTable
+        .$('tr.variable-row-height')
+        .css({ height: 'inherit' })
+        .removeClass('variable-row-height');
   }
 
   expandParents(row) {
