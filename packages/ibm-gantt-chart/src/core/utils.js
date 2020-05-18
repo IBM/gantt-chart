@@ -322,7 +322,7 @@ Gantt.utils = {
   formatString(tpl, obj) {
     // tpl = this.getString(tpl, tpl);
     // return tpl.replace(/\{(\w+)\}/g, (_, key) => obj[key]);
-    return this.getIntl().formatMessage({ id: key, defaultMessage: defaultValue }, obj);
+    return this.getIntl().formatMessage({ id: tpl, defaultMessage: obj}, obj);
   },
   addEventListener(target, evt, cb, capture) {
     if (target.addEventListener) {
