@@ -1,6 +1,6 @@
 {
   "name": "ibm-gantt-chart-dev",
-  "version": "0.5.8",
+  "version": "0.5.7",
   "private": true,
   "description": "IBM Gantt Chart Dev",
   "license": "Apache-2.0",
@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.4.4",
-    "ibm-gantt-chart": "^0.5.8"
+    "ibm-gantt-chart": "^0.5.7"
   },
   "devDependencies": {
     "gda-scripts": "^0.3.0"
