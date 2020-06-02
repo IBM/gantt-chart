@@ -13,3 +13,7 @@ stats.html
 stats.json
 .DS_Store
 .idea/
+packages/ibm-gantt-chart-react/package.json
+packages/ibm-gantt-chart/package.json
+yarn.lock
+*.lock
