@@ -44,6 +44,7 @@ const GanttStrings = {
   'gantt.end': 'End',
   'gantt.datatables.empty-table': 'No data available in table',
   'gantt.error.no-time-window-defined': 'No time window defined',
+  'gantt.columns': 'columns',
 };
 
 let intl = {
