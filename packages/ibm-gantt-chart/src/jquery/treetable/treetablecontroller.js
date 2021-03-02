@@ -51,6 +51,7 @@ export default class TreeTableController {
 
       const oldCreatedRow = options.createdRow;
       options.createdRow = (row, node, index) => {
+        row.tabIndex = "0";
         const parentRow = node.children && node.children.length;
         if (rowRenderer) {
           rowRenderer.draw(node, row, node);
