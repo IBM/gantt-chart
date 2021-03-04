@@ -1,6 +1,6 @@
 {
   "name": "ibm-gantt-chart-react",
-  "version": "0.5.11",
+  "version": "0.5.12",
   "description": "IBM Gantt Chart React Component.",
   "repository": "https://github.com/ibm/gantt-chart",
   "keywords": [
@@ -27,7 +27,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "ibm-gantt-chart": "^0.5.11"
+    "ibm-gantt-chart": "^0.5.12"
   },
   "devDependencies": {
     "@hot-loader/react-dom": "^16.8.6",
@@ -42,5 +42,5 @@
     "react": "16.8.6",
     "react-dom": "16.8.6"
   },
-  "gitHead": "fc21f8ff2e545a1215bf6d1b5c78c73534c32a26"
+  "gitHead": "46c7163a65e972c11756fa41c12d37b05900ee1e"
 }
