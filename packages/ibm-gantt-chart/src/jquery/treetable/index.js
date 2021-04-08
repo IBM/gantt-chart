@@ -351,6 +351,7 @@ export default class GanttDataTable extends Gantt.components.TreeTable {
     const { columns } = this.dataTableOptions;
     for (let i = 0, th; i < columns.length; i++) {
       th = document.createElement('th');
+      th.scope = 'col';
       th.innerHTML =
         (columns[i].key && Gantt.utils.getString(columns[i].key, columns[i].title)) ||
         columns[i].title ||
