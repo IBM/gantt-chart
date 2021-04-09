@@ -308,7 +308,11 @@ Gantt.utils = {
     };
   },
   stringMatches(s, search) {
-    return s.toLocaleLowerCase().indexOf(search.toLowerCase()) > -1;
+    if (s && search) {
+      const tmp = '' + s;
+      return tmp.toLocaleLowerCase().indexOf(search.toLowerCase()) > -1;
+    }
+    return false;
   },
   getIntl() {
     return intl;
