@@ -1,6 +1,6 @@
 {
   "name": "ibm-gantt-chart-docs",
-  "version": "0.5.14",
+  "version": "0.5.15",
   "private": true,
   "description": "IBM Gantt Chart, docs and examples.",
   "keywords": [
@@ -19,7 +19,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "ibm-gantt-chart": "^0.5.14"
+    "ibm-gantt-chart": "^0.5.15"
   },
   "devDependencies": {
     "gda-scripts": "^0.3.0"
