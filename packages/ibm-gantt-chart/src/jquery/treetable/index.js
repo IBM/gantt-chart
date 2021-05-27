@@ -384,9 +384,6 @@ export default class GanttDataTable extends Gantt.components.TreeTable {
         this.triggerEvent(Gantt.events.TABLE_INIT);
         initResolver(rows);
         this.dataTableOptions.data = null;
-        $(thead)
-          .children('tr')
-          .removeAttr('role'); // No role: https://www.w3.org/TR/html-aria/#tr
       })
       .DataTable(Gantt.utils.mergeObjects({}, this.dataTableOptions, { data: rows }));
     // https://datatables.net/examples/api/counter_columns.html
@@ -437,6 +434,9 @@ export default class GanttDataTable extends Gantt.components.TreeTable {
       const row = tr && tr.length && this.getRow(tr[0]);
       this.gantt.highlightRow(null, true, true);
     });
+    $(thead)
+      .children('tr')
+      .removeAttr('role'); // No role: https://www.w3.org/TR/html-aria/#tr
     return initPms;
   }
 
