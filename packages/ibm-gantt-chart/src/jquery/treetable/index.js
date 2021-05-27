@@ -359,7 +359,6 @@ export default class GanttDataTable extends Gantt.components.TreeTable {
         `Col${i + 1}`;
       tr.appendChild(th);
     }
-
     thead.appendChild(tr);
     this.tableElt.appendChild(thead);
 
@@ -385,6 +384,9 @@ export default class GanttDataTable extends Gantt.components.TreeTable {
         this.triggerEvent(Gantt.events.TABLE_INIT);
         initResolver(rows);
         this.dataTableOptions.data = null;
+        $(thead)
+          .children('tr')
+          .removeAttr('role'); // No role: https://www.w3.org/TR/html-aria/#tr
       })
       .DataTable(Gantt.utils.mergeObjects({}, this.dataTableOptions, { data: rows }));
     // https://datatables.net/examples/api/counter_columns.html
