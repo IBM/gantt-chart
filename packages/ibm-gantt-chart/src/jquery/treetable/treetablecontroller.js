@@ -41,7 +41,7 @@ export default class TreeTableController {
         if (node.color) {
           prefix += '<div class="tree-node-color" style="background-color="' + node.color + '"></div>';
         }
-        return prefix + content;
+        return prefix + content.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
       };
       hCol.render.filter = function(node, type, full, meta) {
         return node ? node.name : '';
@@ -51,6 +51,7 @@ export default class TreeTableController {
 
       const oldCreatedRow = options.createdRow;
       options.createdRow = (row, node, index) => {
+        row.tabIndex = "0";
         const parentRow = node.children && node.children.length;
         if (rowRenderer) {
           rowRenderer.draw(node, row, node);

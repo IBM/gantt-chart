@@ -44,6 +44,7 @@ const GanttStrings = {
   'gantt.end': 'End',
   'gantt.datatables.empty-table': 'No data available in table',
   'gantt.error.no-time-window-defined': 'No time window defined',
+  'gantt.columns': 'columns',
 };
 
 let intl = {
@@ -307,7 +308,11 @@ Gantt.utils = {
     };
   },
   stringMatches(s, search) {
-    return s.toLocaleLowerCase().indexOf(search.toLowerCase()) > -1;
+    if (s && search) {
+      const tmp = '' + s;
+      return tmp.toLocaleLowerCase().indexOf(search.toLowerCase()) > -1;
+    }
+    return false;
   },
   getIntl() {
     return intl;

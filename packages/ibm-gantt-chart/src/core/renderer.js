@@ -105,7 +105,7 @@ export default class Renderer extends Gantt.components.Renderer {
 
     const t = document.createElement('div');
     t.className = 'text-content';
-    t.innerHTML = text;
+    t.innerHTML = text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
     t.style.display = 'flex';
     t.style.alignItems = 'center';
     t.style.whiteSpace = 'nowrap';

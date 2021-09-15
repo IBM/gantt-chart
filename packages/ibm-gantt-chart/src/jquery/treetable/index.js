@@ -338,16 +338,20 @@ export default class GanttDataTable extends Gantt.components.TreeTable {
 
     this.tableElt = document.createElement('table');
     this.tableElt.className = Gantt.components.TreeTable.defaultClass;
+    this.tableElt.setAttribute('aria-label', Gantt.utils.getString('gantt.columns'));
+    this.tableElt.tabIndex = 0;
     this.tableElt.cellSpacing = 0;
     // this.tableElt.style.width = '100%';
 
     const thead = document.createElement('thead');
     const tr = document.createElement('tr');
+    tr.tabIndex = 0;
 
     // Scan columns definitions
     const { columns } = this.dataTableOptions;
     for (let i = 0, th; i < columns.length; i++) {
       th = document.createElement('th');
+      th.scope = 'col';
       th.innerHTML =
         (columns[i].key && Gantt.utils.getString(columns[i].key, columns[i].title)) ||
         columns[i].title ||
