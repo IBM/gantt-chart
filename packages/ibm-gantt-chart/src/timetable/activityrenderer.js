@@ -172,13 +172,17 @@ const ActivityRendererPrototype = {
       } else {
         // TODO Don't put a setter in a get...
         this.setBackground = function(shapeElt, bg) {
-          if (Gantt.utils.hasClass('parent-activity')) {
+          if (Gantt.utils.hasClass(shapeElt, 'parent-activity')) {
             shapeElt.querySelectorAll('.activity-limit').forEach(elt => {
-              elt.style.borderColor = bg;
+              elt.style.borderTopColor = bg;
             });
-            shapeElt.querySelector('parent-activity-bar').style.backgroundColor = bg;
+            const parentBar = shapeElt.querySelector('.parent-activity-bar');
+            if (parentBar) {
+              parentBar.style.backgroundColor = bg;
+            }
           } else {
-            this.drawDefaultContentSet(shapeElt, bg);
+            this.drawDefaultContentSet(shapeElt, null, '');
+            shapeElt.style.backgroundColor = bg;
           }
         };
         this.drawDefaultContent = this.drawRightContent;
