@@ -17,3 +17,4 @@ packages/ibm-gantt-chart-react/package.json
 packages/ibm-gantt-chart/package.json
 yarn.lock
 *.lock
+.npmrc
