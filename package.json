@@ -1,62 +1,48 @@
 {
-  "name": "@ibm/gantt-chart",
-  "version": "0.5.0",
-  "private": true,
+  "name": "ibm-gantt-chart",
+  "version": "0.5.23",
   "description": "IBM Gantt Chart Component, integrable in Vanilla, jQuery, or React Framework.",
   "repository": "https://github.com/ibm/gantt-chart",
+  "keywords": [
+    "chart",
+    "gantt",
+    "jquery",
+    "react"
+  ],
   "license": "Apache-2.0",
   "contributors": [
     "Olivier Noiret (https://github.com/ono70)",
     "Gilles d'Andréa (https://github.com/gillesdandrea)"
   ],
-  "workspaces": [
-    "packages/*"
-  ],
+  "main": "dist/ibm-gantt-chart.js",
+  "module": "dist/ibm-gantt-chart.js",
+  "source": "src/index.js",
+  "style": "dist/ibm-gantt-chart.css",
   "scripts": {
-    "build": "lerna run build",
-    "check:fix": "yarn import:fix && yarn prettier:fix && yarn elint:fix && yarn slint:fix",
-    "check:list": "yarn import:list && yarn prettier:list && yarn elint && yarn slint",
-    "clean:all": "yarn clean:dist && yarn clean:junk && yarn clean:modules",
-    "clean:dist": "rimraf packages/*/dist packages/*/stats.html",
-    "clean:junk": "rimraf *-{debug,error}.log packages/*/*-{debug,error}.log packages/*/stats.html",
-    "clean:modules": "rimraf node_modules package-lock.json yarn.lock *-{debug,error}.log packages/*/node_modules packages/*/package-lock.json packages/*/yarn.lock packages/*/*-{debug,error}.log",
-    "elint": "gda-scripts eslint packages/*/{src,test}",
-    "elint:fix": "gda-scripts eslint packages/*/{src,test} --fix",
-    "import:fix": "import-sort --write \"packages/*/{src,test}/**/*.{js,jsx}\" \"packages/*/.*.js\" \"packages/*/*.js\" \".*.js\" \"*.js\"",
-    "import:list": "import-sort --list-different \"packages/*/{src,test}/**/*.{js,jsx}\" \"packages/*/.*.js\" \"packages/*/*.js\" \".*.js\" \"*.js\"",
-    "lerna:publish": "lerna publish from-package --no-git-tag-version --no-push",
-    "lerna:version": "lerna version --no-git-tag-version --no-push",
-    "precommit": "lint-staged",
-    "prettier:fix": "prettier --write \"packages/*/{src,test}/**/*.{js,jsx,css,scss,json,md}\" \"packages/*/.*.js\" \"packages/*/*.js\" \".*.js\" \"*.js\" \"docs/*.md\" \"*.md\"",
-    "prettier:list": "prettier -l \"packages/*/{src,test}/**/*.{js,jsx,css,scss,json,md}\" \"packages/*/.*.js\" \"packages/*/*.js\" \".*.js\" \"*.js\" \"docs/*.md\" \"*.md\"",
-    "slint": "gda-scripts stylelint packages/*/{src,test}",
-    "slint:fix": "gda-scripts stylelint packages/*/{src,test} --fix",
-    "start": "cd packages/ibm-gantt-chart-dev && yarn start",
-    "update": "yarn upgrade-interactive --latest"
+    "build": "gda-scripts webpack lib",
+    "build:all": "gda-scripts webpack all",
+    "build:jquery": "gda-scripts webpack jquery3",
+    "build:jquery:min": "gda-scripts webpack jquery.min",
+    "build:min": "gda-scripts webpack lib.min",
+    "test": "karma start karma.conf.js"
   },
-  "lint-staged": {
-    "packages/*/{src,test}/**/*.{css,scss}": [
-      "prettier --write",
-      "gda-scripts stylelint --fix",
-      "git add"
-    ],
-    "packages/*/{src,test}/**/*.{js,jsx} packages/*/.*.js packages/*/*.js .*.js *.js": [
-      "import-sort --write",
-      "prettier --write",
-      "gda-scripts eslint --fix",
-      "git add"
-    ],
-    "packages/*/{src,test}/**/*.{json,md} docs/*.md *.md": [
-      "prettier --write",
-      "git add"
-    ]
+  "dependencies": {
+    "datatables.net": "^1.11.3",
+    "datatables.net-dt": "^1.10.19",
+    "es6-promise": "^4.2.6",
+    "font-awesome": "^4.7.0",
+    "jquery": "^3.4.1",
+    "moment-with-locales-es6": "^1.0.1",
+    "vis": "^4.21.0"
   },
   "devDependencies": {
-    "all-contributors-cli": "^6.6.1",
-    "gda-scripts": "^0.3.6",
-    "husky": "^2.4.0",
-    "lerna": "^3.14.1",
-    "lint-staged": "^8.2.0",
-    "rimraf": "^2.6.3"
-  }
+    "chai": "^4.1.2",
+    "gda-scripts": "^0.3.0",
+    "imports-loader": "^0.8.0",
+    "karma": "^2.0.0",
+    "karma-chrome-launcher": "^2.2.0",
+    "karma-mocha": "^1.3.0",
+    "mocha": "^5.0.4"
+  },
+  "gitHead": "ab0924bd46f9c9ef2307724be62445e15c48c312"
 }
