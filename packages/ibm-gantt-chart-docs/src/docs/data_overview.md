@@ -62,7 +62,7 @@ The type of Gantt chart is specified with the **`type`** configuration property 
 Here is a schematic code for configuring an activity chart:
 
 ```
- var gantt = new Gantt( { type: 'Gantt.type.ACTIVITY_CHART', ... });
+ var gantt = new Gantt( { type: Gantt.type.ACTIVITY_CHART, ... });
 ```
 
 If a Schedule chart, the Gantt only requires:
