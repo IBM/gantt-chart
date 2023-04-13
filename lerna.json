@@ -5,7 +5,7 @@
   ],
   "npmClient": "yarn",
   "useWorkspaces": true,
-  "version": "0.5.28",
+  "version": "0.5.29",
   "command": {
     "publish": {
       "gitReset": false,
