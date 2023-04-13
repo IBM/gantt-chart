@@ -80,6 +80,7 @@ export default class TimeTable extends Gantt.components.TimeTable {
   create() {
     this.scroller = document.createElement('div');
     this.scroller.className = 'time-table-scroller';
+    this.scroller.tabIndex = 0;
     // CSS layout
     this.scroller.style.position = 'absolute';
     this.scroller.style.height = '100%';

@@ -339,7 +339,6 @@ export default class GanttDataTable extends Gantt.components.TreeTable {
     this.tableElt = document.createElement('table');
     this.tableElt.className = Gantt.components.TreeTable.defaultClass;
     this.tableElt.setAttribute('aria-label', Gantt.utils.getString('gantt.columns'));
-    this.tableElt.tabIndex = 0;
     this.tableElt.cellSpacing = 0;
     // this.tableElt.style.width = '100%';
 
