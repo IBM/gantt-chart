@@ -455,6 +455,9 @@ export default class GanttDataTable extends Gantt.components.TreeTable {
     this.scrollableBody.style.bottom = 0;
     this.scrollableBody.style.width = null;
     this.scrollableBody.style.height = null;
+    this.scrollableBody.ariaLabel = Gantt.utils.getString('gantt.treeTable');
+    this.scrollableBody.tabIndex = 0;
+    this.scrollableBody.role = "grid";
 
     const $scrollableHead = $(this.node).find('div.dataTables_scrollHead THEAD');
     this.tableHeader = $scrollableHead[0];
