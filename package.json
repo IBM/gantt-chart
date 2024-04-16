@@ -13,7 +13,7 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "lerna run build",
+    "build": "rimraf node_modules/vis/docs && lerna run build",
     "check:fix": "yarn import:fix && yarn prettier:fix && yarn elint:fix && yarn slint:fix",
     "check:list": "yarn import:list && yarn prettier:list && yarn elint && yarn slint",
     "clean:all": "yarn clean:dist && yarn clean:junk && yarn clean:modules",
