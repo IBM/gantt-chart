@@ -1,4 +1,4 @@
-import vis from 'vis';
+import * as vis from 'vis-timeline/peer';
 
 import Gantt from '../core/core';
 
@@ -205,6 +205,14 @@ class LoadResourceChart extends Gantt.components.LoadResourceChart {
           end: this.gantt.timeLine.scrollableHorizon.end,
         }
       );
+      const intl = Gantt.utils.getIntl();
+      if (intl) {
+        if (intl.locale) {
+          this.visTimeline.setOptions({
+            locale: intl.locale
+          });
+        }
+      }
       this.visTimeline.range.body.emitter.off('mousewheel');
       const fireReady = () => {
         this.visTimeline.off('changed', fireReady);

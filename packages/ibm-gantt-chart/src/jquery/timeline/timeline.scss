@@ -1,5 +1,5 @@
 @import '../../core/colors.scss';
-@import '../../../../../node_modules/vis/dist/vis.min.css';
+@import '../../../../../node_modules/vis-timeline/dist/vis-timeline-graph2d.min.css';
 
 .gantt-panel .vis-custom-time::before {
   display: inline-block;

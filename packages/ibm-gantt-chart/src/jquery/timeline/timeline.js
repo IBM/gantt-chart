@@ -1,7 +1,7 @@
 import $ from 'jquery';
 
-import momentIntl from 'moment-with-locales-es6';
-import vis from 'vis';
+// import momentIntl from 'moment-with-locales-es6';
+import * as vis from 'vis-timeline/peer';
 
 import Gantt from '../../core/core';
 
@@ -39,12 +39,6 @@ export default class TimeLine extends Gantt.components.TimeLine {
       start: Math.round(start - ((this.scrollableHorizonFactor - 1) / 2) * span),
       end: Math.round(end + ((this.scrollableHorizonFactor - 1) / 2) * span),
     };
-    const intl = Gantt.utils.getIntl();
-    if (intl) {
-      if (intl.locale) {
-        momentIntl.locale(intl.locale);
-      }
-    }
     try {
       // See https://github.com/almende/vis/issues/24 for time zone hack
       this.visTimeline = new vis.Timeline(this.timeLineElt, data, {
@@ -53,11 +47,19 @@ export default class TimeLine extends Gantt.components.TimeLine {
         height: '100%',
         start: this.scrollableHorizon.start,
         end: this.scrollableHorizon.end,
-        moment: momentIntl,
       });
     } catch (e) {
       console.error(e);
       throw e;
+    }
+    const intl = Gantt.utils.getIntl();
+    if (intl) {
+      if (intl.locale) {
+        this.visTimeline.setOptions({
+          locale: intl.locale
+        });
+        // moment.locale(intl.locale);
+      }
     }
     this.horizon = { start, end };
     this.node.appendChild(this.timeLineElt);
