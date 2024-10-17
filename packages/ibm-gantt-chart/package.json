@@ -1,6 +1,6 @@
 {
   "name": "ibm-gantt-chart",
-  "version": "0.5.32",
+  "version": "0.5.33",
   "description": "IBM Gantt Chart Component, integrable in Vanilla, jQuery, or React Framework.",
   "repository": "https://github.com/ibm/gantt-chart",
   "keywords": [
