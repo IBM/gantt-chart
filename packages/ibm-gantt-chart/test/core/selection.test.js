@@ -1,7 +1,7 @@
-describe('Selection', function() {
-  it('Test selection in table', function() {
+describe('Selection', () => {
+  it('Test selection in table', function testSelectionInTable() {
     const memModel = createResourceWidthActivitiesData();
-    return this.createGantt({ data: memModel }).then(function(gantt) {
+    return createGantt({ data: memModel }).then((gantt) => {
       const test = new GanttTest(gantt);
       test.clickRow(1, true);
       expect(test.isRowSelected(1)).to.be.true;
@@ -18,7 +18,7 @@ describe('Selection', function() {
     });
   });
 
-  it('Test selection mutually exclusive between table and time table', function() {
+  it('Test selection mutually exclusive between table and time table', function testSelectionMutuallyExclusive() {
     const memModel = createResourceWidthActivitiesData({
       getActivityCount(id, rowNum) {
         // Fix number of activities per resources
@@ -93,7 +93,7 @@ describe('Selection', function() {
         }
       },
     };
-    return this.createGantt({ data: memModel, selection: eventsCtrl }).then(function(gantt) {
+    return createGantt({ data: memModel, selection: eventsCtrl }).then((gantt) => {
       const test = new GanttTest(gantt);
 
       console.log('click row');
@@ -154,8 +154,12 @@ describe('Selection', function() {
     });
   });
 
-  it('Test Double click', function() {
-    const memModel = createResourceWidthActivitiesData();
+  it('Test Double click', function testDoubleClick() {
+    const memModel = createResourceWidthActivitiesData({
+      getActivityCount(id, rowNum) {
+        return 3;
+      },
+    });
     const dblClickListener = {
       lastDoubleClicked: null,
       activityDoubleClicked(e, act, date, row) {
@@ -165,15 +169,15 @@ describe('Selection', function() {
 
       rowDoubleClicked(row) {
         this.lastDoubleClicked = row;
-        console.log(`Double click row ${act}`);
+        console.log(`Double click row ${row}`);
       },
     };
-    return this.createGantt({ data: memModel, timeTable: { interactor: { click: dblClickListener } } }).then(function(
-      gantt
-    ) {
-      const test = new GanttTest(gantt);
-      test.doubleClickActivity(0, 4);
-      expect(dblClickListener.lastDoubleClicked).to.equal(test.getActivity(0, 4));
-    });
+    return createGantt({ data: memModel, timeTable: { interactor: { click: dblClickListener } } }).then(
+      (gantt) => {
+        const test = new GanttTest(gantt);
+        test.doubleClickActivity(0, 4);
+        expect(dblClickListener.lastDoubleClicked).to.equal(test.getActivity(0, 4));
+      }
+    );
   });
 });

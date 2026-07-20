@@ -1,4 +1,4 @@
-describe('Activity chart constraints', function() {
+describe('Activity chart constraints', () => {
   function toCssClass(name) {
     let index;
     while ((index = name.indexOf('.')) >= 0) {
@@ -24,52 +24,53 @@ describe('Activity chart constraints', function() {
     this.x = Number.parseInt(mainVertNode[0].style.left, 10) + 2; // + 2 because this x is for the constraint-link-ctnr that contains the visible constraint-link with a padding of 2
   }
 
-  Link.prototype.getNode = function(id) {
+  Link.prototype.getNode = function getNode(id) {
     return this.gantt.ctsChecker.getNode(id);
   };
 
-  Link.prototype.getFromHorizLink = function() {
+  Link.prototype.getFromHorizLink = function getFromHorizLink() {
     const actNode = this.getNode(this.cons.from);
     const top = actNode.top();
     const bottom = actNode.bottom();
-    return this.nodes.filter(function() {
-      if (!Gantt.utils.hasClass(this, 'constraint-horiz-link')) {
+    return this.nodes.filter((node) => {
+      if (!Gantt.utils.hasClass(node, 'constraint-horiz-link')) {
         return false;
       }
-      const thisTop = Number.parseInt(this.style.top, 10);
+      const thisTop = Number.parseInt(node.style.top, 10);
       return top <= thisTop && thisTop <= bottom;
     });
   };
 
-  Link.prototype.getToHorizLink = function() {
+  Link.prototype.getToHorizLink = function getToHorizLink() {
     const actNode = this.getNode(this.cons.to);
     const top = actNode.top();
     const bottom = actNode.bottom();
-    return this.nodes.filter(function() {
-      if (!Gantt.utils.hasClass(this, 'constraint-horiz-link')) {
+    return this.nodes.filter((node) => {
+      if (!Gantt.utils.hasClass(node, 'constraint-horiz-link')) {
         return false;
       }
-      const thisTop = Number.parseInt(this.style.top, 10);
+      const thisTop = Number.parseInt(node.style.top, 10);
       return top <= thisTop && thisTop < bottom - 2;
     });
   };
 
-  Link.prototype.getMainVertNode = function() {
+  Link.prototype.getMainVertNode = function getMainVertNode() {
     const fromNode = this.getNode(this.cons.from);
     const toNode = this.getNode(this.cons.to);
     const fromTop = fromNode.top();
     const fromBottom = fromNode.bottom();
-    return this.nodes.filter(function() {
-      if (!Gantt.utils.hasClass(this, 'constraint-vert-link')) {
+    return this.nodes.filter((node) => {
+      if (!Gantt.utils.hasClass(node, 'constraint-vert-link')) {
         return false;
       }
       const y =
-        Number.parseInt(this.style.top, 10) + (fromTop < toNode.top() ? 0 : Number.parseInt(this.offsetHeight, 10));
+        Number.parseInt(node.style.top, 10) +
+        (fromTop < toNode.top() ? 0 : Number.parseInt(node.style.height, 10));
       return fromTop <= y && y <= fromBottom;
     });
   };
 
-  Link.prototype.check = function() {
+  Link.prototype.check = function check() {
     let node = this.getFromHorizLink();
     expect(node.length).to.equal(1);
 
@@ -80,25 +81,32 @@ describe('Activity chart constraints', function() {
   function Node(gantt, id) {
     this.gantt = gantt;
     this.node = document.getElementById(`timeTableRow_${id}${id}`);
-    const pos = gantt.getTimeTableCoordinates(this.node, { x: 0, y: 0 });
-    this.y = pos.y;
-    this.x = pos.x;
+    const rowNode = this.node.closest('.time-table-row');
+    const container = rowNode.parentElement;
+    let row = container.firstElementChild;
+    this.y = Number.parseInt(container.style.top, 10) || 0;
+    while (row && row !== rowNode) {
+      this.y += Number.parseInt(row.style.height, 10) || 0;
+      row = row.nextElementSibling;
+    }
+    this.y += Number.parseInt(this.node.style.top, 10) || 0;
+    this.x = Number.parseInt(this.node.style.left, 10) || 0;
   }
 
-  Node.prototype.left = function() {
+  Node.prototype.left = function left() {
     return this.x;
   };
 
-  Node.prototype.top = function() {
+  Node.prototype.top = function top() {
     return this.y;
   };
 
-  Node.prototype.right = function() {
-    return this.x + this.node.offsetWidth;
+  Node.prototype.right = function right() {
+    return this.x + Number.parseInt(this.node.style.width, 10);
   };
 
-  Node.prototype.bottom = function() {
-    return this.y + this.node.offsetHeight;
+  Node.prototype.bottom = function bottom() {
+    return this.y + Number.parseInt(this.node.style.height, 10);
   };
 
   function ConstraintChecker(gantt, cts) {
@@ -109,21 +117,23 @@ describe('Activity chart constraints', function() {
     this.horizSwitchSideLinkToNodeDist = gantt.timeTable.ctsGraph.layout.horizSwitchSideLinkToNodeDist;
   }
 
-  ConstraintChecker.prototype.getGrapherNode = function() {
-    return $(this.gantt.node).find('.constraints-grapher');
+  ConstraintChecker.prototype.getGrapherNode = function getGrapherNode() {
+    const graphers = this.gantt.node.querySelectorAll('.constraints-grapher');
+    return graphers[graphers.length - 1];
   };
 
-  ConstraintChecker.prototype.checkConstraints = function() {
+  ConstraintChecker.prototype.checkConstraints = function checkConstraints() {
     if (this.cts) {
       let totalCount = 0;
       for (var i = 0, count = this.cts.length; i < count; i++) {
         totalCount += this.checkConstraint(this.cts[i]);
       }
-      expect(this.getGrapherNode().children().length).to.equal(totalCount);
+      const grapher = this.getGrapherNode();
+      expect(grapher.children.length).to.equal(totalCount);
     }
   };
 
-  ConstraintChecker.prototype.checkConstraint = function(cons) {
+  ConstraintChecker.prototype.checkConstraint = function checkConstraint(cons) {
     const link = this.getLink(cons);
     if (cons.type === Gantt.constraintTypes.START_TO_END || cons.type === Gantt.constraintTypes.END_TO_START) {
       expect(link.length).to.equal(6);
@@ -134,19 +144,22 @@ describe('Activity chart constraints', function() {
     return link.length;
   };
 
-  ConstraintChecker.prototype.getLink = function(cons) {
-    if ($.isNumeric(cons)) {
+  ConstraintChecker.prototype.getLink = function getLink(cons) {
+    // Convert numeric index to constraint object
+    if (typeof cons === 'number' && Number.isFinite(cons)) {
       cons = this.cts[cons];
     }
     const selector = `.${consCssClass(cons)}`;
-    return new Link(this.gantt, cons, this.getGrapherNode().find(selector));
+    const grapher = this.getGrapherNode();
+    const elements = grapher.querySelectorAll(selector);
+    return new Link(this.gantt, cons, Array.from(elements));
   };
 
-  ConstraintChecker.prototype.getNode = function(id) {
+  ConstraintChecker.prototype.getNode = function getNode(id) {
     return new Node(this.gantt, id);
   };
 
-  ConstraintChecker.prototype.checkBetween = function(value, minValue, maxValue) {
+  ConstraintChecker.prototype.checkBetween = function checkBetween(value, minValue, maxValue) {
     expect(value >= minValue).to.be.true;
     expect(value <= maxValue).to.be.true;
   };
@@ -164,69 +177,69 @@ describe('Activity chart constraints', function() {
         css: consCssClass,
       },
     };
-    return test.createGantt(config).then(function(gantt) {
+    return createGantt(config).then((gantt) => {
       gantt.ctsChecker = new ConstraintChecker(gantt, cts);
       gantt.ctsChecker.checkConstraints();
       return gantt.ctsChecker;
     });
   }
 
-  it('Simple right constraint', function() {
+  it('Simple right constraint', function testSimpleRightConstraint() {
     return createProjectActivityConstraintGantt(this, [
       {
         from: 'A-1',
         to: 'A-2',
         type: Gantt.constraintTypes.END_TO_START,
       },
-    ]).then(function(ctsChecker) {
+    ]).then((ctsChecker) => {
       const node = ctsChecker.getNode('A-1.3');
       expect(ctsChecker.getLink(0).x).to.equal(node.right() + ctsChecker.nodeToLinkMargin);
     });
   });
 
-  it('Right constraint over second right constraint', function() {
+  it('Right constraint over second right constraint', function testRightConstraintOverSecondRightConstraint() {
     return createProjectActivityConstraintGantt(this, [
       { from: 'A-1', to: 'A-2', type: Gantt.constraintTypes.END_TO_START },
       { from: 'A-1.1.2', to: 'A-1.3', type: Gantt.constraintTypes.END_TO_END },
-    ]).then(function(ctsChecker) {
+    ]).then((ctsChecker) => {
       expect(ctsChecker.getLink(0).x).to.equal(ctsChecker.getLink(1).x + ctsChecker.linkToLinkMargin);
     });
   });
 
-  it('Group of right constraint over second right constraint', function() {
+  it('Group of right constraint over second right constraint', function testGroupOfRightConstraintOverSecondRightConstraint() {
     return createProjectActivityConstraintGantt(this, [
       { from: 'A-1', to: 'A-2', type: Gantt.constraintTypes.END_TO_START },
       { from: 'A-1.1', to: 'A-2', type: Gantt.constraintTypes.END_TO_START },
       { from: 'A-1.1.2', to: 'A-1.3', type: Gantt.constraintTypes.END_TO_END },
-    ]).then(function(ctsChecker) {
+    ]).then((ctsChecker) => {
       expect(ctsChecker.getLink(0).x).to.equal(ctsChecker.getLink(1).x);
       expect(ctsChecker.getLink(0).x).to.equal(ctsChecker.getLink(2).x + ctsChecker.linkToLinkMargin);
     });
   });
 
-  it('Start to start constraint', function() {
+  it('Start to start constraint', function testStartToStartConstraint() {
     return createProjectActivityConstraintGantt(this, [
       { from: 'A-1', to: 'A-2', type: Gantt.constraintTypes.START_TO_START },
-    ]).then(function(ctsChecker) {
+    ]).then((ctsChecker) => {
       expect(ctsChecker.getLink(0).x).to.equal(ctsChecker.getNode('A-1').x - ctsChecker.nodeToLinkMargin);
     });
   });
 
-  it('Start to start over other start constraint', function() {
+  it('Start to start over other start constraint', function testStartToStartOverOtherStartConstraint() {
     return createProjectActivityConstraintGantt(this, [
       { from: 'A-1', to: 'A-2', type: Gantt.constraintTypes.START_TO_START },
       { from: 'A-1.1.1', to: 'A-3', type: Gantt.constraintTypes.START_TO_START },
-    ]).then(function(ctsChecker) {
+    ]).then((ctsChecker) => {
       expect(ctsChecker.getLink(0).x).to.equal(ctsChecker.getLink(1).x - ctsChecker.linkToLinkMargin);
     });
   });
 
-  it('Start to start group over other start constraint', function() {
+  it('Start to start group over other start constraint', function testStartToStartGroupOverOtherStartConstraint() {
     return createProjectActivityConstraintGantt(this, [
       { from: 'A-1', to: 'A-2', type: Gantt.constraintTypes.START_TO_START },
       { from: 'A-1.1', to: 'A-2', type: Gantt.constraintTypes.START_TO_START },
       { from: 'A-1.1.2', to: 'A-1.3', type: Gantt.constraintTypes.START_TO_START },
-    ]).then(function(ctsChecker) {
+    ]).then((ctsChecker) => {
       if (ctsChecker.getLink(2).x < ctsChecker.getNode('A-1').x) {
         // Depends on the time scale
         expect(ctsChecker.getLink(0).x).to.equal(ctsChecker.getLink(2).x - ctsChecker.linkToLinkMargin);
@@ -236,19 +249,19 @@ describe('Activity chart constraints', function() {
     });
   });
 
-  it('Start complex', function() {
+  it('Start complex', function testStartComplex() {
     return createProjectActivityConstraintGantt(this, [
       { from: 'A-1', to: 'A-2', type: Gantt.constraintTypes.START_TO_START },
       { from: 'A-1.1', to: 'A-2', type: Gantt.constraintTypes.START_TO_START },
       { from: 'A-1.1.1', to: 'A-2', type: Gantt.constraintTypes.START_TO_END },
       { from: 'A-1.2', to: 'A-1.1', type: Gantt.constraintTypes.START_TO_END },
-    ]).then(function(ctsChecker) {
+    ]).then((ctsChecker) => {
       expect(ctsChecker.getLink(0).x).to.equal(ctsChecker.getLink(3).x - ctsChecker.linkToLinkMargin);
       expect(ctsChecker.getLink(3).x).to.equal(ctsChecker.getLink(2).x - ctsChecker.linkToLinkMargin);
     });
   });
 
-  it('All projects sample', function() {
-    return createProjectActivityConstraintGantt(this).then(function(ctsChecker) {});
+  it('All projects sample', function testAllProjectsSample() {
+    return createProjectActivityConstraintGantt(this).then((ctsChecker) => {});
   });
 });

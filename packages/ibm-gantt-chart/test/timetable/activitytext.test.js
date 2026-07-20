@@ -1,4 +1,6 @@
-describe('Clipping of activity text', function() {
+import { expect } from 'chai';
+
+describe('Clipping of activity text', () => {
   const ACTIVITY_TEXT_CLASSNAME = 'activity-text';
 
   function createTextBox(boxText) {
@@ -28,7 +30,7 @@ describe('Clipping of activity text', function() {
     return cont;
   }
 
-  it('Should show an empty Gantt', function() {
+  it('Should show an empty Gantt', () => {
     const separator = document.createElement('div');
     separator.borderBottom = '2px solid black';
     document.body.insertBefore(separator, document.body.childNodes[0]);

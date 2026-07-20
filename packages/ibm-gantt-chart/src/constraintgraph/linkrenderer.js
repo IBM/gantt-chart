@@ -1,16 +1,10 @@
-import Gantt from '../core/core';
+import NodeLabelLayout from './NodeLabelLayout';
 
 const ID_DELIM = '_';
 const CONSTRAINT_LINK_CLASS = 'constraint-link';
 const CONSTRAINT_LINK_CTNR_CLASS = 'constraint-link-ctnr';
 const STYLE_ARROW = 1;
 const CONSTRAINT_ARROW = 'constraint-arrow';
-
-class NodeLabelLayout {
-  startLayout(act, ctx) {}
-
-  getNodeToLabelSpacing(act, bbox, textWidth, ctx) {}
-}
 
 class DefaultNodeLabelLayout extends NodeLabelLayout {
   constructor(left) {
@@ -156,7 +150,7 @@ const LinkRendererPrototype = {
   },
 
   getTooltipProperties(cons, ctx) {
-    const getName = function(act) {
+    const getName = function getActivityName(act) {
       return act.name || act.id;
     };
     const props = [

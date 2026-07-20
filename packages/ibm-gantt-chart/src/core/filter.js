@@ -89,7 +89,7 @@ class Filter {
     }
     if (filterList.length) {
       filter = orFilter
-        ? function(args) {
+        ? function orFilterFn(args) {
             for (let f = 0; f < filterList.length; f++) {
               if (filterList[f](args)) {
                 return true;
@@ -97,12 +97,13 @@ class Filter {
             }
             return false;
           }
-        : function(args) {
+        : function andFilterFn(args) {
             for (let f = 0; f < filterList.length; f++) {
               if (!filterList[f](args)) {
                 return false;
               }
             }
+            return true;
           };
       return filter;
     }
@@ -128,27 +129,27 @@ class Filter {
       if (typeof filter === 'string') {
         return (
           (filter &&
-            function() {
+            function stringFilter() {
               const params = arguments[0];
               params.push(filter);
               const result = self.acceptString.apply(self, params);
               params.pop();
               return result;
             }) ||
-          function() {
+          function acceptAll() {
             return true;
           }
         );
       }
       if (typeof filter === 'function') {
-        return function() {
+        return function applyFunctionFilter() {
           return filter.apply(self, arguments[0]);
         };
       }
       if (filter[this.getObjectFilterMethodName()]) {
         // Filter is an object with the appropriate filter method
         const fct = filter[this.getObjectFilterMethodName()];
-        return function() {
+        return function applyObjectFilter() {
           return fct.apply(filter, arguments[0]);
         };
       }
@@ -158,11 +159,6 @@ class Filter {
       if (filter.and) {
         return this.createFilterSet(filter.and, false);
       }
-
-      console.log('Cannot process filter:');
-      console.log(filter);
-    } else {
-      console.log('Null filter specified');
     }
     return null;
   }

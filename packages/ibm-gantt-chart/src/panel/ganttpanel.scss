@@ -1,8 +1,9 @@
-@import '../core/colors.scss';
+@import '../core/colors';
 
 .gantt-panel {
   box-sizing: border-box;
   font-family: 'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif;
+
   * {
     box-sizing: border-box;
   }
@@ -24,25 +25,26 @@
     background-color: $gantt-header-background;
     border: solid $gantt-border-color 1px;
   }
+
   // .gantt-toolbars {
   // }
   .gantt-body {
     border: solid $gantt-border-color 1px;
   }
+
   // .table-panel {
   // }
   .split-pane {
     position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
+    inset: 0;
   }
+
   .split-pane-left {
     overflow: hidden;
 
     /* TODO Check we can remove */
   }
+
   .split-pane-right {
     margin-left: 5px;
     overflow: hidden;
@@ -51,11 +53,13 @@
 
     /* because of divider width not taken into account */
   }
+
   .split-pane-top {
     overflow: hidden;
 
     /* TODO Check we can remove */
   }
+
   .split-pane-bottom {
     overflow: hidden;
 
@@ -72,7 +76,7 @@
   .loading-panel {
     position: relative;
     z-index: 3;
-    background-color: rgba(192, 192, 192, 0.75);
+    background-color: rgb(192 192 192 / 75%);
 
     .label {
       color: #a6266e;
@@ -95,6 +99,7 @@
     0% {
       transform: rotate(0deg);
     }
+
     100% {
       transform: rotate(360deg);
     }

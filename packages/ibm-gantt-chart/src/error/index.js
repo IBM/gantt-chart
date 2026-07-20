@@ -1,4 +1,5 @@
 import Gantt from '../core/core';
+import ErrorGroup from './error-group';
 
 import './error.scss';
 
@@ -14,75 +15,6 @@ const defaults = {
   errorExpandedDefault: true,
   fadingOutDuration: 600,
 };
-
-class ErrorGroup {
-  constructor(node) {
-    this.node = node;
-    this.errs = [];
-    this.errNodes = [];
-    this.errorList = null;
-  }
-
-  addError(err, node, maxErrors) {
-    if (maxErrors && maxErrors > 0 && this.errs.length >= maxErrors) {
-      this.errs.splice(0, this.errs.length - maxErrors + 1);
-      const removed = this.errNodes.splice(0, this.errNodes.length - maxErrors + 1);
-      removed.forEach(removedElt => {
-        this.errorList.removeChild(removedElt);
-      });
-    }
-    this.errs.push(err);
-    this.errNodes.push(node);
-    this.errorList.appendChild(node);
-    return node;
-  }
-
-  removeError(err) {
-    for (let i = 0; i < this.errs.length; i++) {
-      if (this.errs[i] === err || this.errNodes[i] === err) {
-        this.errs.splice(i, 1);
-        const nodes = this.errNodes.splice(i, 1);
-        if (nodes.length) {
-          this.errorList.removeChild(nodes[0]);
-        }
-        return true;
-      }
-    }
-  }
-
-  clear() {
-    if (this.errorList && this.errorList.parentNode === this.node) {
-      this.node.removeChild(this.errorList);
-    }
-    this.errs = [];
-    this.errNodes = [];
-    this.errorList = null;
-  }
-
-  updateErrorList() {
-    if (this.errorList) {
-      if (this.errs.length) {
-        this.errorList.style.display = '';
-        if (!this.errorList.parentNode) {
-          this.beforeSettingErrorList(this.node);
-          this.node.appendChild(this.errorList);
-        }
-      } else {
-        this.errorList.style.display = 'none';
-      }
-    }
-  }
-
-  beforeSettingErrorList(node) {
-    while (node.firstChild) {
-      node.removeChild(node.firstChild);
-    }
-  }
-
-  hasErrors() {
-    return !!this.errs.length;
-  }
-}
 
 function ensureErrorGroup(node, errorGroups) {
   for (let i = 0; i < errorGroups.length; i++) {
@@ -118,6 +50,7 @@ export default class ErrorHandler extends Gantt.components.ErrorHandler {
         return errNode;
       }
     }
+    return undefined;
   }
 
   lock() {
@@ -161,9 +94,9 @@ export default class ErrorHandler extends Gantt.components.ErrorHandler {
 
     const textContent = document.createElement('div');
     const divTitle = document.createElement('span');
-    divTitle.innerHTML = errDetails.title;
+    divTitle.textContent = errDetails.title;
     divTitle.className = 'error-title';
-    divTitle.onclick = evt => this._toggleErrorDisplay(node);
+    divTitle.onclick = (evt) => this._toggleErrorDisplay(node);
     textContent.appendChild(divTitle);
 
     const divErrorBar = document.createElement('div');
@@ -172,14 +105,15 @@ export default class ErrorHandler extends Gantt.components.ErrorHandler {
     if (errDetails.desc) {
       const divDesc = document.createElement('div');
       divDesc.className = 'error-desc';
+      // desc is already HTML-escaped in convertError, safe to use innerHTML for <br /> tags
       divDesc.innerHTML = errDetails.desc;
       textContent.appendChild(divDesc);
 
       const detailsBtn = document.createElement('span');
       detailsBtn.tabIndex = 0;
       detailsBtn.className = 'error-details-btn';
-      detailsBtn.innerHTML = Gantt.utils.getString('gantt.error.details');
-      detailsBtn.onclick = evt => this._toggleErrorDisplay(node);
+      detailsBtn.textContent = Gantt.utils.getString('gantt.error.details');
+      detailsBtn.onclick = (evt) => this._toggleErrorDisplay(node);
       divErrorBar.appendChild(detailsBtn);
     }
 
@@ -187,7 +121,7 @@ export default class ErrorHandler extends Gantt.components.ErrorHandler {
     const removeErrorBtn = document.createElement('span');
     removeErrorBtn.className = 'remove-error-btn';
     removeErrorBtn.tabIndex = 0;
-    removeErrorBtn.onclick = evt => this.removeError(err);
+    removeErrorBtn.onclick = (evt) => this.removeError(err);
     divErrorBar.appendChild(removeErrorBtn);
 
     errorContent.appendChild(divErrorBar);
@@ -214,7 +148,14 @@ export default class ErrorHandler extends Gantt.components.ErrorHandler {
     }
     let desc = err.desc || err.description || err.stack;
     if (desc) {
-      desc = desc.replace(/(?:\r\n|\r|\n)/g, '<br />');
+      // Escape HTML entities first to prevent XSS, then convert line breaks to <br />
+      desc = desc
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;')
+        .replace(/(?:\r\n|\r|\n)/g, '<br />');
     }
     return {
       title,

@@ -1,12 +1,12 @@
 {
   "name": "ibm-gantt-chart",
   "version": "0.5.33",
-  "description": "IBM Gantt Chart Component, integrable in Vanilla, jQuery, or React Framework.",
+  "description": "IBM Gantt Chart Component - high-performance timeline visualization library",
   "repository": "https://github.com/ibm/gantt-chart",
   "keywords": [
     "chart",
     "gantt",
-    "jquery",
+    "timeline",
     "react"
   ],
   "license": "Apache-2.0",
@@ -15,35 +15,38 @@
     "Gilles d'Andréa (https://github.com/gillesdandrea)"
   ],
   "main": "dist/ibm-gantt-chart.js",
-  "module": "dist/ibm-gantt-chart.js",
+  "module": "dist/ibm-gantt-chart.esm.js",
   "source": "src/index.js",
   "style": "dist/ibm-gantt-chart.css",
   "scripts": {
-    "build": "gda-scripts webpack lib",
-    "build:all": "gda-scripts webpack all",
-    "build:jquery": "gda-scripts webpack jquery3",
-    "build:jquery:min": "gda-scripts webpack jquery.min",
-    "build:min": "gda-scripts webpack lib.min",
-    "test": "karma start karma.conf.js"
+    "build": "webpack --config webpack.config.js",
+    "build:lib": "webpack --config webpack.config.js --env output=lib",
+    "build:lib:min": "webpack --config webpack.config.js --env output=lib-min",
+    "pretest": "webpack --config webpack.config.js --env output=lib && webpack --config webpack.config.js --env output=esm",
+    "test": "vitest run && vitest run --config vitest.browser.config.js"
   },
   "dependencies": {
-    "datatables.net": "1.11.3",
-    "datatables.net-dt": "1.11.3",
-    "es6-promise": "^4.2.6",
-    "font-awesome": "^4.7.0",
-    "jquery": "^3.4.1",
     "moment": "^2.30.1",
     "vis-data": "7.1.8",
     "vis-timeline": "7.7.3"
   },
   "devDependencies": {
+    "@babel/core": "^7",
+    "@babel/preset-env": "^7",
+    "@vitest/browser": "^1.0.0",
+    "@vitest/ui": "^1.0.0",
+    "autoprefixer": "^10.5.2",
+    "babel-loader": "^10.1.1",
     "chai": "^4.1.2",
-    "gda-scripts": "^0.3.0",
-    "imports-loader": "^0.8.0",
-    "karma": "^2.0.0",
-    "karma-chrome-launcher": "^2.2.0",
-    "karma-mocha": "^1.3.0",
-    "mocha": "^5.0.4"
+    "css-loader": "^7.1.4",
+    "mini-css-extract-plugin": "^2.10.2",
+    "postcss": "^8",
+    "postcss-loader": "^8.2.1",
+    "sass": "^1.101.0",
+    "sass-loader": "^17.0.0",
+    "vitest": "^1.0.0",
+    "webpack": "^5.108.4",
+    "webpack-cli": "^7.2.1"
   },
   "gitHead": "ec24c5000b1c547c1496474106a233103c3d09f5"
 }

@@ -133,9 +133,9 @@ const ActivityRendererPrototype = {
   getTooltipProperties(act) {
     const props = [
       Gantt.utils.getString('gantt.start'),
-      new Date(act.start).format(),
+      Gantt.utils.formatDate(new Date(act.start)),
       Gantt.utils.getString('gantt.end'),
-      new Date(act.end).format(),
+      Gantt.utils.formatDate(new Date(act.end)),
     ];
     if (act.id !== undefined) {
       props.push(Gantt.utils.getString('gantt.id'));
@@ -164,16 +164,16 @@ const ActivityRendererPrototype = {
     const gantt = this.paletteHandler;
     this.defaultSetBackground = this.setBackground;
     this.drawDefaultContentSet = this.drawDefaultContent;
-    this.ganttLoadListener = e => {
+    this.ganttLoadListener = (e) => {
       if (gantt.isResourceGantt()) {
         this.drawDefaultContent = this.drawNoDisplayOverflowContent;
         this.setBackground = this.defaultSetBackground;
         this.drawDefaultContent = this.drawDefaultContentSet;
       } else {
         // TODO Don't put a setter in a get...
-        this.setBackground = function(shapeElt, bg) {
+        this.setBackground = function setBackground(shapeElt, bg) {
           if (Gantt.utils.hasClass(shapeElt, 'parent-activity')) {
-            shapeElt.querySelectorAll('.activity-limit').forEach(elt => {
+            shapeElt.querySelectorAll('.activity-limit').forEach((elt) => {
               elt.style.borderTopColor = bg;
             });
             const parentBar = shapeElt.querySelector('.parent-activity-bar');

@@ -4,6 +4,7 @@
 dist/
 monitor/
 node_modules/
+.yarn/install-state.gz
 .eslintcache
 .stylelintcache
 *.log

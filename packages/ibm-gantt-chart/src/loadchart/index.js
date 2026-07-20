@@ -1,5 +1,5 @@
-export LoadResourceChartCtrl from './loadchartctrl';
-export LoadResourceChart from './loadchart';
+export { default as LoadResourceChartCtrl } from './loadchartctrl';
+export { default as LoadResourceChart } from './loadchart';
 
 export const LOAD_RESOURCE_CHART_OPENED = 'load-resource-chart-opened';
 export const LOAD_RESOURCE_CHART_CLOSED = 'load-resource-chart-closed';

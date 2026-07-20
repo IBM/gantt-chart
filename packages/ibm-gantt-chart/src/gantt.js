@@ -6,6 +6,9 @@
  */
 
 /* import-sort-ignore */
+import './core/utils';
+import './core/data-fetcher';
+import './core/timeline';
 import './core/plugins';
 import './core/selection';
 import './core/renderer';
@@ -14,11 +17,6 @@ import './panel';
 import './timetable';
 import './loadchart';
 
-// import P from 'es6-promise/dist/es6-promise.min';
+import Gantt from './core/core';
 
-export default from './core/core';
-
-// if (typeof Promise === 'undefined' /* && Promise.toString().indexOf("[native code]") !== -1 */) {
-//   console.log('Use of es6-promise');
-//   P.polyfill();
-// }
+export default Gantt;

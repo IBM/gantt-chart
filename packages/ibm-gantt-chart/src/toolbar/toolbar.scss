@@ -1,13 +1,11 @@
-@import '../core/core.scss';
-@import '../core/colors.scss';
+@import '../core/core';
+@import '../core/colors';
 
 /* Toolbar */
 .gantt-toolbar {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  flex-flow: row wrap;
   align-items: center;
-  -webkit-justify-content: flex-end;
   justify-content: flex-end;
   padding: 6px;
   color: $toolbar-title-color;
@@ -47,7 +45,8 @@
     background: $toolbar-button-background;
     border: $toolbar-button-border-color solid 1px;
     cursor: pointer;
-    //.border-radius(2px);
+
+    // .border-radius(2px);
 
     svg {
       fill: white;
@@ -100,7 +99,7 @@
       min-width: 150px;
       color: inherit;
       text-align: center;
-      text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+      text-shadow: 0 -1px 0 rgb(0 0 0 / 25%);
       background-color: inherit;
       border: none;
       outline: 0;
@@ -136,18 +135,14 @@
     }
 
     &:first-child {
-      -webkit-border-top-left-radius: 8px;
       border-top-left-radius: 8px;
-      -webkit-border-bottom-left-radius: 8px;
       border-bottom-left-radius: 8px;
       -moz-border-radius-topleft: 8px;
       -moz-border-radius-bottomleft: 8px;
     }
 
     &:last-child {
-      -webkit-border-top-right-radius: 8px;
       border-top-right-radius: 8px;
-      -webkit-border-bottom-right-radius: 8px;
       border-bottom-right-radius: 8px;
       -moz-border-radius-topright: 8px;
       -moz-border-radius-bottomright: 8px;

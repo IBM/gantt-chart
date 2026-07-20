@@ -1,4 +1,5 @@
 import Gantt from '../core/core';
+import { getComponent } from '../core/component-factory';
 
 function updateTimeWindow(wnd, activity) {
   if (activity.start && wnd.start > activity.start) {
@@ -31,7 +32,7 @@ export default class GanttModel extends Gantt.components.GanttModel {
 
   setConfiguration(config) {
     this.destroy();
-    const ftchClass = Gantt.components.DataFetcher.impl || Gantt.components.DataFetcher;
+    const FetcherClass = getComponent('DataFetcher', Gantt.components.DataFetcher);
     let fetchConfig;
     const checkFetcher = (fetcher, type) => {
       if (!fetcher.get) {
@@ -50,14 +51,14 @@ export default class GanttModel extends Gantt.components.GanttModel {
         throw new Error(`Could not process date format ${config.dateFormat}: ${err}`);
       }
     }
-    const makeTimeFct = fct => {
+    const makeTimeFct = (fct) => {
       if (this.dateParser) {
         let final;
-        return obj => {
+        return (obj) => {
           if (!final) {
             const value = fct(obj);
             if (Gantt.utils.isString(value)) {
-              final = obj => this.dateParser(fct(obj));
+              final = (obj) => this.dateParser(fct(obj));
               return this.dateParser(value);
             }
             final = fct;
@@ -71,7 +72,7 @@ export default class GanttModel extends Gantt.components.GanttModel {
 
     this.allFetcher = null;
     if ((fetchConfig = config.all)) {
-      this.allFetcher = new ftchClass(
+      this.allFetcher = new FetcherClass(
         fetchConfig,
         ['reader', 'resources', 'activities', 'reservations', 'constraints'],
         { gantt: this.gantt }
@@ -80,7 +81,7 @@ export default class GanttModel extends Gantt.components.GanttModel {
       this.allFetcher._reader =
         fetchConfig.reader && Gantt.utils.isFunction(fetchConfig.reader)
           ? fetchConfig.reader
-          : function(data) {
+          : function getReader(data) {
               return fetchConfig.reader;
             };
       this.allFetcher._resourcesGetter = fetchConfig.resources && Gantt.utils.propertyEvaluator(fetchConfig.resources);
@@ -94,7 +95,9 @@ export default class GanttModel extends Gantt.components.GanttModel {
 
     this.resourceFetcher = null;
     if ((fetchConfig = config.resources)) {
-      this.resourceFetcher = new ftchClass(fetchConfig, ['id', 'parent', 'name', 'activities'], { gantt: this.gantt });
+      this.resourceFetcher = new FetcherClass(fetchConfig, ['id', 'parent', 'name', 'activities'], {
+        gantt: this.gantt,
+      });
       checkFetcher(this.resourceFetcher, 'resources');
       if (fetchConfig.parent) {
         this.resourceFetcher._parentIdGetter = Gantt.utils.propertyEvaluator(fetchConfig.parent || 'parentId');
@@ -110,8 +113,8 @@ export default class GanttModel extends Gantt.components.GanttModel {
     if ((fetchConfig = config.activities)) {
       // Do no not create an activity getter if activities are provided along with the resources
       this.activityFetcher =
-        (this.resourceFetcher && this.resourceFetcher._activityGetter && {}) ||
-        new ftchClass(fetchConfig, ['id', 'parent', 'name', 'start', 'end', 'resource'], { gantt: this.gantt });
+        (this.gantt.isResourceGantt() && this.resourceFetcher && this.resourceFetcher._activityGetter && {}) ||
+        new FetcherClass(fetchConfig, ['id', 'parent', 'name', 'start', 'end', 'resource'], { gantt: this.gantt });
       if (!this.resourceFetcher || !this.resourceFetcher._activityGetter) {
         checkFetcher(this.activityFetcher, 'activities');
       }
@@ -129,7 +132,7 @@ export default class GanttModel extends Gantt.components.GanttModel {
     }
 
     if ((fetchConfig = config.reservations)) {
-      this.reservationFetcher = new ftchClass(fetchConfig, ['activity', 'resource'], { gantt: this.gantt });
+      this.reservationFetcher = new FetcherClass(fetchConfig, ['activity', 'resource'], { gantt: this.gantt });
       checkFetcher(this.reservationFetcher, 'reservations');
       // noinspection JSUnresolvedVariable
       this.reservationFetcher._activityGetter = Gantt.utils.propertyEvaluator(fetchConfig.activity || 'activity');
@@ -137,7 +140,7 @@ export default class GanttModel extends Gantt.components.GanttModel {
     }
 
     if ((fetchConfig = config.constraints)) {
-      this.constraintFetcher = new ftchClass(fetchConfig, ['from', 'to', 'type'], { gantt: this.gantt });
+      this.constraintFetcher = new FetcherClass(fetchConfig, ['from', 'to', 'type'], { gantt: this.gantt });
       checkFetcher(this.constraintFetcher, 'constraints');
       this.constraintFetcher._fromGetter = Gantt.utils.propertyEvaluator(fetchConfig.from || 'from');
       // noinspection JSUnresolvedVariable
@@ -147,7 +150,7 @@ export default class GanttModel extends Gantt.components.GanttModel {
     }
 
     if ((fetchConfig = config.timeWindow)) {
-      this.timeWindowFetcher = new ftchClass(fetchConfig, null, { gantt: this.gantt });
+      this.timeWindowFetcher = new FetcherClass(fetchConfig, null, { gantt: this.gantt });
       checkFetcher(this.timeWindowFetcher, 'timeWindow');
       this.timeWindowFetcher._startGetter = makeTimeFct(Gantt.utils.propertyEvaluator(fetchConfig.start || 'start'));
       this.timeWindowFetcher._endGetter = makeTimeFct(Gantt.utils.propertyEvaluator(fetchConfig.end || 'end'));
@@ -162,7 +165,7 @@ export default class GanttModel extends Gantt.components.GanttModel {
 
     this.allData = null;
     if (this.allFetcher) {
-      return this.allFetcher.get().then(data => this.loadFromData(data));
+      return this.allFetcher.get().then((data) => this.loadFromData(data));
     }
     return this.loadFromData();
   }
@@ -187,7 +190,7 @@ export default class GanttModel extends Gantt.components.GanttModel {
     let wnd;
     let wndPromise;
     if (this.timeWindowFetcher) {
-      wndPromise = this.timeWindowFetcher.get(data).then(obj => ({
+      wndPromise = this.timeWindowFetcher.get(data).then((obj) => ({
         start: this.timeWindowFetcher._startGetter(obj),
         end: this.timeWindowFetcher._endGetter(obj),
       }));
@@ -203,9 +206,9 @@ export default class GanttModel extends Gantt.components.GanttModel {
     } else {
       let timeWindowProcessed = !!wndPromise;
       if (this.resourceFetcher) {
-        resourcePromise = this.resourceFetcher.get(data).then(resources => {
+        resourcePromise = this.resourceFetcher.get(data).then((resources) => {
           // Compute here the time window only if this is resource chart with activities provided along with resources
-          const computeTimeWindow = !timeWindowProcessed && (resourceGantt && this.resourceFetcher._activityGetter);
+          const computeTimeWindow = !timeWindowProcessed && resourceGantt && this.resourceFetcher._activityGetter;
           this.resources = this.createTreeNodes(resources, this.resourceFetcher, false, computeTimeWindow && wnd);
           timeWindowProcessed = timeWindowProcessed || computeTimeWindow;
           return this.resources;
@@ -213,7 +216,7 @@ export default class GanttModel extends Gantt.components.GanttModel {
       }
 
       if (this.activityFetcher && (!resourceGantt || !this.resourceFetcher || !this.resourceFetcher._activityGetter)) {
-        actPromise = this.activityFetcher.get(data).then(activities => {
+        actPromise = this.activityFetcher.get(data).then((activities) => {
           // Compute here the time window only if a time window fetcher was not specified
           this.activities = this.createTreeNodes(activities, this.activityFetcher, true, !timeWindowProcessed && wnd);
           return this.activities;
@@ -254,7 +257,8 @@ export default class GanttModel extends Gantt.components.GanttModel {
           this.timeWindow = { start: wndResult.start, end: wndResult.end };
           this.triggerEvent(Gantt.events.TIME_WINDOW_CHANGED, this.timeWindow);
         }
-        return (this.rows = resourceGantt ? resources : activities);
+        this.rows = resourceGantt ? resources : activities;
+        return this.rows;
       }
     );
   }
@@ -281,14 +285,14 @@ export default class GanttModel extends Gantt.components.GanttModel {
             this.reservations.byIds[resa.id] = resa;
           }
         } else if (actId) {
-          console.error(`Cannot find activity "${actId}" for reservation ${JSON.stringify(resa)}`);
+          Gantt.log.error(`Cannot find activity "${actId}" for reservation ${JSON.stringify(resa)}`);
         } else {
-          console.error(`No activity specified for reservation ${JSON.stringify(resa)}`);
+          Gantt.log.error(`No activity specified for reservation ${JSON.stringify(resa)}`);
         }
       } else if (resId || resId === 0) {
-        console.error(`Cannot find resource "${resId}" for reservation ${JSON.stringify(resa)}`);
+        Gantt.log.error(`Cannot find resource "${resId}" for reservation ${JSON.stringify(resa)}`);
       } else {
-        console.error(`No resource specified for reservation ${JSON.stringify(resa)}`);
+        Gantt.log.error(`No resource specified for reservation ${JSON.stringify(resa)}`);
       }
     }
   }
@@ -301,10 +305,10 @@ export default class GanttModel extends Gantt.components.GanttModel {
         if ((res = rowByIds[resId])) {
           (res.activities || (res.activities = [])).push(this.createReservationNode(actNode, res));
         } else {
-          console.error(`Cannot find resource "${resId}" for activity ${JSON.stringify(actNode.getData())}`);
+          Gantt.log.error(`Cannot find resource "${resId}" for activity ${JSON.stringify(actNode.getData())}`);
         }
       } else {
-        console.error(`No resource specified for activity ${JSON.stringify(actNode.getData())}`);
+        Gantt.log.error(`No resource specified for activity ${JSON.stringify(actNode.getData())}`);
       }
     }
   }
@@ -317,7 +321,8 @@ export default class GanttModel extends Gantt.components.GanttModel {
       consNodes[i] = node = this.createConstraintNode(data[i], this.activities, i);
       consNodes.byIds[node.id] = node;
     }
-    return (this.constraints = consNodes);
+    this.constraints = consNodes;
+    return this.constraints;
   }
 
   isResourceGanttModel() {
@@ -334,11 +339,11 @@ export default class GanttModel extends Gantt.components.GanttModel {
     node.name = this.activityFetcher._nameGetter(activity);
     node.start = this.activityFetcher._startGetter(activity);
     node.end = this.activityFetcher._endGetter(activity);
-    node.getData = function() {
+    node.getData = function getData() {
       return activity;
     };
     node.gantt = this.gantt;
-    node.getObjectType = function() {
+    node.getObjectType = function getObjectType() {
       return Gantt.ObjectTypes.Activity;
     };
     return node;
@@ -348,7 +353,7 @@ export default class GanttModel extends Gantt.components.GanttModel {
     const node = Object.create(activity);
     node.row = row;
     node.gantt = this.gantt;
-    node.getObjectType = function() {
+    node.getObjectType = function getObjectType() {
       return Gantt.ObjectTypes.Activity;
     }; // No reservation type as for now an activity acts as a reservation as the copy objects points to a row
     return node;
@@ -377,7 +382,7 @@ export default class GanttModel extends Gantt.components.GanttModel {
     node.to = to;
     node.type = this.constraintFetcher._typeGetter(cons);
     node.gantt = this.gantt;
-    node.getData = function() {
+    node.getData = function getData() {
       return cons;
     };
     node.id = this.constraintFetcher._idGetter ? this.constraintFetcher._idGetter(cons) : `cons_${index}`;
@@ -385,7 +390,7 @@ export default class GanttModel extends Gantt.components.GanttModel {
     else from.consOuts.push(node);
     if (!to.consIns) to.consIns = [node];
     else to.consIns.push(node);
-    node.getObjectType = function() {
+    node.getObjectType = function getObjectType() {
       return Gantt.ObjectTypes.Constraint;
     };
     return node;
@@ -396,10 +401,10 @@ export default class GanttModel extends Gantt.components.GanttModel {
 
     row.id = id;
     row.gantt = this.gantt;
-    row.getData = function() {
+    row.getData = function getData() {
       return data;
     };
-    row.hasAncestor = function(node) {
+    row.hasAncestor = function hasAncestor(node) {
       for (let p = row.parent; p; p = p.parent) {
         if (p === node) {
           return true;
@@ -408,7 +413,7 @@ export default class GanttModel extends Gantt.components.GanttModel {
       return true;
     };
 
-    row.getAncestorsCount = function() {
+    row.getAncestorsCount = function getAncestorsCount() {
       let count = 0;
       for (let { parent } = row; parent; parent = parent.parent) {
         count++;
@@ -416,9 +421,9 @@ export default class GanttModel extends Gantt.components.GanttModel {
       return count;
     };
 
-    row.setRowHeight = function(row, h) {};
+    row.setRowHeight = function setRowHeight(row, h) {};
 
-    row.isGanttRow = function() {
+    row.isGanttRow = function isGanttRow() {
       return true;
     };
     return row;
@@ -461,7 +466,6 @@ export default class GanttModel extends Gantt.components.GanttModel {
     function addNode(node, parentNode) {
       result[resultIndex++] = node;
       node.parent = parentNode;
-      // const childNodes = children[node.id].sort(sortNodes);
       const childNodes = children[node.id];
       node.children = childNodes;
       const childCount = childNodes.length;
@@ -503,11 +507,11 @@ export default class GanttModel extends Gantt.components.GanttModel {
         row.start = rowFetcher._startGetter(origData);
         row.end = rowFetcher._endGetter(origData);
         row.activities = [row];
-        row.getObjectType = function() {
+        row.getObjectType = function getObjectType() {
           return Gantt.ObjectTypes.Activity;
         };
       } else {
-        row.getObjectType = function() {
+        row.getObjectType = function getObjectType() {
           return Gantt.ObjectTypes.Resource;
         };
       }

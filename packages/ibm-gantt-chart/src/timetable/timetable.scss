@@ -1,5 +1,5 @@
-@import '../core/core.scss';
-@import '../core/colors.scss';
+@import '../core/core';
+@import '../core/colors';
 
 .gantt-panel .time-panel {
   // .time-table {
@@ -65,10 +65,7 @@
 
     .select-content {
       position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
+      inset: 0;
       z-index: 1;
       overflow: visible;
     }
@@ -154,6 +151,7 @@
         &::before {
           margin-left: -15px;
         }
+
         &::after {
           margin-right: -15px;
         }
@@ -161,17 +159,9 @@
 
       .shape {
         /* Rotate */
-        -webkit-transform: rotate(-45deg);
-        -moz-transform: rotate(-45deg);
-        -ms-transform: rotate(-45deg);
-        -o-transform: rotate(-45deg);
         transform: rotate(-45deg);
 
         /* Rotate Origin */
-        -webkit-transform-origin: 0 100%;
-        -moz-transform-origin: 0 100%;
-        -ms-transform-origin: 0 100%;
-        -o-transform-origin: 0 100%;
         transform-origin: 0 100%;
       }
     }
@@ -197,18 +187,18 @@
 
   .time-table-decoration-ctnr {
     .time-table-invalid {
-      background: rgba(192, 192, 192, 0.5)
+      background: rgb(192 192 192 / 50%)
         repeating-linear-gradient(
           45deg,
           transparent,
           transparent 35px,
-          rgba(255, 255, 255, 0.5) 35px,
-          rgba(255, 255, 255, 0.5) 70px
+          rgb(255 255 255 / 50%) 35px,
+          rgb(255 255 255 / 50%) 70px
         );
     }
 
     .time-table-break {
-      background: rgba(192, 192, 192, 0.5);
+      background: rgb(192 192 192 / 50%);
     }
   }
 }
@@ -220,7 +210,7 @@
   }
 }
 
-.gantt-panel.activity_chart .time-table-activity {
+.gantt-panel.activity-chart .time-table-activity {
   color: $activity-background;
 
   .text-container {

@@ -1,10 +1,14 @@
 import * as vis from 'vis-timeline/peer';
 
 import Gantt from '../core/core';
+import { getComponent } from '../core/component-factory';
 
 import { Block, RESOURCE_LOAD_CLASS } from './block';
 
 import './loadchart.scss';
+
+/** @typedef {import('./types').VisTimeline} VisTimeline */
+/** @typedef {import('./types').VisTimelineOptions} VisTimelineOptions */
 
 const CHART_TOP_MARGIN = 8;
 
@@ -15,7 +19,7 @@ function ResNode(resource, activity, load, maxLoad) {
   this.maxLoad = maxLoad;
 }
 
-ResNode.prototype.toString = function() {
+ResNode.prototype.toString = function toString() {
   return this.resource.name + ' - ' + this.activity.name;
 };
 
@@ -123,7 +127,7 @@ class LoadResourceChart extends Gantt.components.LoadResourceChart {
       if (Gantt.utils.isString(config)) {
         return Gantt.utils.propertyEvaluator(config);
       }
-      return function() {
+      return function getConfigValue() {
         return config;
       };
     }
@@ -131,12 +135,12 @@ class LoadResourceChart extends Gantt.components.LoadResourceChart {
     this.resourceMaxLoad = config.maxLoad && createGetter(config.maxLoad);
     this.resourceActivityLoad =
       (config.load && createGetter(config.load)) ||
-      function() {
+      function getDefaultLoad() {
         return 1;
       };
 
     const loadChart = this;
-    const RendererClass = Gantt.components.Renderer.impl || Gantt.components.Renderer;
+    const RendererClass = getComponent('Renderer', Gantt.components.Renderer);
     this.chartRenderer = new RendererClass(
       {},
       {
@@ -194,6 +198,7 @@ class LoadResourceChart extends Gantt.components.LoadResourceChart {
 
     try {
       // See https://github.com/almende/vis/issues/24 for time zone hack
+      /** @type {VisTimeline} */
       this.visTimeline = new vis.Timeline(
         this.timeLineElt,
         {},
@@ -205,36 +210,48 @@ class LoadResourceChart extends Gantt.components.LoadResourceChart {
           end: this.gantt.timeLine.scrollableHorizon.end,
         }
       );
+
       const intl = Gantt.utils.getIntl();
-      if (intl) {
-        if (intl.locale) {
-          this.visTimeline.setOptions({
-            locale: intl.locale
-          });
-        }
+      if (intl && intl.locale && this.visTimeline) {
+        this.visTimeline.setOptions({
+          locale: intl.locale,
+        });
       }
-      this.visTimeline.range.body.emitter.off('mousewheel');
+
+      // Type-safe access to nested properties with null checks
+      if (this.visTimeline && this.visTimeline.range && this.visTimeline.range.body && this.visTimeline.range.body.emitter) {
+        this.visTimeline.range.body.emitter.off('mousewheel');
+      }
+
       const fireReady = () => {
-        this.visTimeline.off('changed', fireReady);
-        this.timeScaleElt = this.timeLineElt.getElementsByClassName('vis-panel vis-bottom')[0];
-        const style = window.getComputedStyle(this.timeScaleElt);
-        let bottom = style.bottom;
-        bottom = bottom ? Number.parseInt(bottom, 10) : 0;
-        if (Number.isNaN(bottom)) {
-          bottom = 0;
+        if (this.visTimeline && typeof this.visTimeline.off === 'function') {
+          this.visTimeline.off('changed', fireReady);
         }
-        let topBorder = style.borderTopWidth;
-        topBorder = topBorder ? Number.parseInt(topBorder, 10) : 0;
-        this.timeScaleHeight = $(this.timeScaleElt).outerHeight() + bottom - topBorder; // visjs set a -2px bottom
-        this.updatePlottingArea();
-        this.triggerEvent(Gantt.events.TIME_LINE_INIT);
-        if (onInit) {
-          onInit();
+        const timeScaleElts = this.timeLineElt.getElementsByClassName('vis-panel vis-bottom');
+        if (timeScaleElts && timeScaleElts.length > 0) {
+          this.timeScaleElt = timeScaleElts[0];
+          const style = window.getComputedStyle(this.timeScaleElt);
+          let bottom = style.bottom;
+          bottom = bottom ? Number.parseInt(bottom, 10) : 0;
+          if (Number.isNaN(bottom)) {
+            bottom = 0;
+          }
+          let topBorder = style.borderTopWidth;
+          topBorder = topBorder ? Number.parseInt(topBorder, 10) : 0;
+          this.timeScaleHeight = $(this.timeScaleElt).outerHeight() + bottom - topBorder; // visjs set a -2px bottom
+          this.updatePlottingArea();
+          this.triggerEvent(Gantt.events.TIME_LINE_INIT);
+          if (onInit && typeof onInit === 'function') {
+            onInit();
+          }
         }
       };
-      this.visTimeline.on('changed', fireReady);
+
+      if (this.visTimeline && typeof this.visTimeline.on === 'function') {
+        this.visTimeline.on('changed', fireReady);
+      }
     } catch (e) {
-      console.error(e);
+      Gantt.log.error(e);
       throw e;
     }
     this.timeLineScrollerElt.appendChild(this.timeLineElt);
@@ -263,15 +280,17 @@ class LoadResourceChart extends Gantt.components.LoadResourceChart {
   }
 
   unselectRows(rows) {
-    rows.forEach(row => (row.backgroundColor = undefined));
+    rows.forEach((row) => {
+      row.backgroundColor = undefined;
+    });
   }
 
   drawCharts() {
     const firstBlock = new Block(0, 0);
     let maxLoad;
     let load;
-    (this.resources || []).forEach(res => {
-      (res.activities || []).forEach(act => {
+    (this.resources || []).forEach((res) => {
+      (res.activities || []).forEach((act) => {
         load = this.resourceActivityLoad(res, act);
         maxLoad = this.resourceMaxLoad && this.resourceMaxLoad(res, act);
         firstBlock.insert(act.start, act.end, new ResNode(res, act, load, maxLoad));
@@ -294,7 +313,10 @@ class LoadResourceChart extends Gantt.components.LoadResourceChart {
         items.push(item);
       }
     }
-    this.visTimeline.setItems(items);
+    // Type-safe call to vis-timeline API with null check
+    if (this.visTimeline && typeof this.visTimeline.setItems === 'function') {
+      this.visTimeline.setItems(items);
+    }
   }
 
   updateLegend() {
@@ -327,7 +349,7 @@ class LoadResourceChart extends Gantt.components.LoadResourceChart {
         name.className = 'legend-item-name';
         name.style.display = 'table-cell';
         name.style.verticalAlign = 'middle';
-        name.innerHTML = res.name;
+        name.textContent = res.name;
         li.appendChild(name);
         this.legend.appendChild(li);
       }
@@ -412,8 +434,8 @@ class LoadResourceChart extends Gantt.components.LoadResourceChart {
   // Tooltips
   //
   initTooltips() {
-    const isResourceLoadNode = elt => Gantt.utils.hasClass(elt, RESOURCE_LOAD_CLASS);
-    const getResourceLoadNode = elt => {
+    const isResourceLoadNode = (elt) => Gantt.utils.hasClass(elt, RESOURCE_LOAD_CLASS);
+    const getResourceLoadNode = (elt) => {
       for (; elt && elt !== this.body; elt = elt.parentNode) {
         if (isResourceLoadNode(elt)) {
           return elt;
@@ -421,7 +443,7 @@ class LoadResourceChart extends Gantt.components.LoadResourceChart {
       }
       return null;
     };
-    const getResource = id => id && this.gantt.table.getRow(id);
+    const getResource = (id) => id && this.gantt.table.getRow(id);
     const gantt = this.gantt;
     const loadchart = this;
     this.gantt.tooltip.installTooltip({

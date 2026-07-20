@@ -1,4 +1,5 @@
 import Gantt from '../core/core';
+import { getComponent } from '../core/component-factory';
 
 import {
   CONSTRAINT_ARROW,
@@ -31,13 +32,14 @@ export default class ConstraintsGraph extends Gantt.components.ConstraintsGraph 
     this.ready = Promise.resolve([]);
 
     if (config.layout && Gantt.utils.isFunction(config.layout)) {
-      this.layout = new config.layout(this.gantt);
+      const LayoutClass = config.layout;
+      this.layout = new LayoutClass(this.gantt);
     } else {
-      const LayoutClass = Gantt.components.ConstraintLayout.impl || Gantt.components.ConstraintLayout;
+      const LayoutClass = getComponent('ConstraintLayout', Gantt.components.ConstraintLayout);
       this.layout = new LayoutClass(this.gantt, config.layout);
     }
 
-    const LinkRendererClass = Gantt.components.Renderer.impl || Gantt.components.Renderer;
+    const LinkRendererClass = getComponent('Renderer', Gantt.components.Renderer);
     this.linkRenderer = new LinkRendererClass(config.renderer, LinkRendererPrototype, this.gantt);
     if (config.linkOutlineWidth) {
       this.linkRenderer.linkOutlineWidth = config.linkOutlineWidth;
@@ -66,19 +68,19 @@ export default class ConstraintsGraph extends Gantt.components.ConstraintsGraph 
     this.node = node;
     if (node) {
       if (!this.tooltipEnter) {
-        this.tooltipEnter = evt => {
+        this.tooltipEnter = (evt) => {
           const ctNode = this.getConstraintNode(evt.target);
           if (ctNode && (!this.gantt.timeTable.isDragAndDropping || !this.gantt.timeTable.isDragAndDropping())) {
             this.showTooltip(ctNode);
           }
         };
-        this.tooltipLeave = evt => {
+        this.tooltipLeave = (evt) => {
           const ctNode = this.getConstraintNode(evt.target);
           if (ctNode && this.tooltipElt === node) {
             this.hideTooltip(TOOLTIP_FADING_TIME);
           }
         };
-        this.clickHandler = e => this.processClick(e);
+        this.clickHandler = (e) => this.processClick(e);
       }
       Gantt.utils.addEventListener(this.node, 'mouseenter', this.tooltipEnter, true);
       Gantt.utils.addEventListener(this.node, 'mouseleave', this.tooltipLeave, true);
@@ -95,7 +97,7 @@ export default class ConstraintsGraph extends Gantt.components.ConstraintsGraph 
   setConstraints(cts) {
     this.cts = cts;
     if (cts && cts.length) {
-      this.ready = new Promise(resolve => {
+      this.ready = new Promise((resolve) => {
         setTimeout(() => {
           this.processConstraints(cts);
           resolve();
@@ -107,7 +109,13 @@ export default class ConstraintsGraph extends Gantt.components.ConstraintsGraph 
   }
 
   processConstraints(cts) {
+    if (this.node) this.node.replaceChildren();
     const table = this.gantt.table;
+    if (!table) {
+      this.layout.startInitialize();
+      this.layout.stopInitialize();
+      return;
+    }
     const activityFilter = this.gantt.timeTable.getActivityFilter();
     let row;
     let count;
@@ -197,6 +205,7 @@ export default class ConstraintsGraph extends Gantt.components.ConstraintsGraph 
   draw(rows, drawCB) {
     if (!rows.length) return this.ready;
     return this.ready.then(() => {
+      this.clear();
       const table = this.gantt.table;
       let firstRowIndex = rows[0].row.index;
       let lastRowIndex = rows[rows.length - 1].row.index;
@@ -208,40 +217,55 @@ export default class ConstraintsGraph extends Gantt.components.ConstraintsGraph 
           row = rows[0].row;
           y = rows[0].y;
           while (index < firstRowIndex) {
-            row = table.prevRow(row);
+            const prev = table.prevRow(row);
+            if (!prev) {
+              break;
+            }
+            row = prev;
             drawCB(row);
-            y -= row.activityRow.height;
+            y -= row.activityRow?.height || 0;
             rows.splice(0, 0, {
               y,
               row,
-              height: row.activityRow.height,
+              height: row.activityRow?.height || 0,
               index: --firstRowIndex,
             });
           }
         } else if (index > lastRowIndex) {
-          row = rows[lastRowIndex];
-          y = row.y + row.height;
-          row = row.row;
+          const lastRow = rows[rows.length - 1];
+          row = lastRow.row;
+          y = lastRow.y + lastRow.height;
           while (index > lastRowIndex) {
-            row = table.nextRow(row);
+            const next = table.nextRow(row);
+            if (!next) {
+              break;
+            }
+            row = next;
             drawCB(row);
             rows.push({
               y,
               row,
-              height: row.activityRow.height,
+              height: row.activityRow?.height || 0,
               index: ++lastRowIndex,
             });
-            y += row.activityRow.height;
+            y += row.activityRow?.height || 0;
           }
         }
-        row = rows[index - firstRowIndex];
+        const actRow = act.row || table.getRow(index);
+        row = rows.find((entry) => entry.index === index || (actRow && entry.row === actRow));
+        if (!row) {
+          row = {
+            y: actRow ? table.getRowTop(actRow) : 0,
+            height: actRow?.activityRow?.height || 0,
+          };
+        }
         return act.node
           ? {
-              x: act.left,
+              x: act.left || 0,
               y: row.y,
               top: Number.parseInt(act.node.style.top, 10),
-              width: act.node.offsetWidth,
-              height: act.node.offsetHeight,
+              width: act.node.offsetWidth || Number.parseInt(act.node.style.width, 10) || 0,
+              height: act.node.offsetHeight || Number.parseInt(act.node.style.height, 10) || 0,
               rowHeight: row.height,
             }
           : {
@@ -324,7 +348,7 @@ export default class ConstraintsGraph extends Gantt.components.ConstraintsGraph 
         limitElt: this.gantt.getBody(),
         showDelay: TOOLTIP_SHOWING_DELAY,
       };
-      this.gantt.tooltip.showTooltip(consNode, ctx, parent => {
+      this.gantt.tooltip.showTooltip(consNode, ctx, (parent) => {
         const tooltipCtx = { gantt: this.gantt };
         this.linkRenderer.getTooltip(parent, cons, tooltipCtx);
       });

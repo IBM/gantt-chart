@@ -1,4 +1,5 @@
 import Gantt from './core';
+import SelectionType from './selection-type';
 
 const START_SELECTION_METHOD = 'startSelection';
 const STOP_SELECTION_METHOD = 'stopSelection';
@@ -11,85 +12,12 @@ const CLEAR_SELECTION_EVENT = 'SelectionCleared';
 const START_SELECTING = 'StartSelecting';
 const STOP_SELECTING = 'StopSelecting';
 
-class Type {
-  constructor(config) {
-    Gantt.utils.mergeObjects(this, config);
-    this[SELECTION_CHANGED_EVENT] = {
-      event: () => this.getSelectionChangedEvent(),
-      method: () => this.getSelectionChangedMethod(),
-    };
-    this[SELECT_EVENT] = {
-      event: () => this.getSelectionEvent(),
-      method: () => this.getSelectionMethod(),
-    };
-    this[UNSELECT_EVENT] = {
-      event: () => this.getUnselectionEvent(),
-      method: () => this.getUnselectionMethod(),
-    };
-    this[CLEAR_SELECTION_EVENT] = {
-      event: () => this.getClearSelectionEvent(),
-      method: () => this.getClearSelectionMethod(),
-    };
-  }
-
-  accept(obj) {
-    return false;
-  }
-
-  getTypeEvent(event) {
-    return this[event] && this[event].event();
-  }
-
-  getTypeMethod(method) {
-    return this.name + method;
-  }
-
-  notify(o, event, params) {
-    let m = this[event] && this[event].method();
-    if ((m = o[m])) {
-      m.apply(o, params);
-    }
-  }
-
-  getClearSelectionEvent() {
-    return this.name + CLEAR_SELECTION_EVENT;
-  }
-
-  getClearSelectionMethod() {
-    return this.clearSelectionMethod || this.getTypeMethod(SELECT_EVENT);
-  }
-
-  getSelectionEvent() {
-    return this.name + SELECT_EVENT;
-  }
-
-  getSelectionMethod() {
-    return this.selectionMethod || this.getTypeMethod(SELECT_EVENT);
-  }
-
-  getUnselectionEvent() {
-    return this.name + UNSELECT_EVENT;
-  }
-
-  getUnselectionMethod() {
-    return this.unselectionMethod || this.getTypeMethod(UNSELECT_EVENT);
-  }
-
-  getSelectionChangedEvent() {
-    return this.name + SELECTION_CHANGED_EVENT;
-  }
-
-  getSelectionChangedMethod() {
-    return this.selectionChangedMethod || this.getTypeMethod(SELECTION_CHANGED_EVENT);
-  }
-}
-
 export default class SelectionHandler extends Gantt.components.SelectionHandler {
   constructor(config, proto) {
     super(config, proto);
     this.lock = 0;
     this.types = [];
-    this.genericType = new Type({ name: '' });
+    this.genericType = new SelectionType({ name: '' });
     this.genericType[CLEAR_SELECTION_EVENT] = {
       event() {
         return Gantt.events.SELECTION_CLEARED;
@@ -209,7 +137,7 @@ export default class SelectionHandler extends Gantt.components.SelectionHandler 
       let selecting = false;
       const uns = (Gantt.utils.isArray(obj) && obj) || [obj];
       const foundUns = [];
-      uns.forEach(o => {
+      uns.forEach((o) => {
         const index = this.selections.indexOf(obj);
         if (index >= 0) {
           if (!selecting) {
@@ -324,7 +252,7 @@ export default class SelectionHandler extends Gantt.components.SelectionHandler 
   // Object types
   //
   registerType(type) {
-    type = new Type(type);
+    type = new SelectionType(type);
     this.types.push(type);
     return type;
   }

@@ -1,0 +1,18 @@
+# SvelteKit
+.svelte-kit/
+
+# Playwright
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/
+
+# Package build output (already covered by root dist/ but explicit here)
+dist/
+
+# Demo app and Storybook build artifacts
+build/
+storybook-static/
+
+# This monorepo uses yarn; do not commit package-lock in a workspace package
+package-lock.json

@@ -1,4 +1,5 @@
 import Gantt from './core';
+import { getComponent } from './component-factory';
 
 const AUTOMATIC_COLOR = 'automatic';
 const TEXT_OVERFLOW_ELLIPSIS = 'ellipsis';
@@ -8,7 +9,7 @@ const TEXT_OVERFLOW_CUT = 'cut';
 function createSelectorFunction(selector, fct, oldFct, fctCtx) {
   return (
     fct &&
-    function(object, ctx, ext) {
+    function selectAndApply(object, ctx, ext) {
       if (!selector || selector(object, ctx)) {
         return fctCtx ? fct.call(fctCtx, object, ctx, ext) : fct(object, ctx, ext);
       }
@@ -105,7 +106,7 @@ export default class Renderer extends Gantt.components.Renderer {
 
     const t = document.createElement('div');
     t.className = 'text-content';
-    t.innerHTML = text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+    t.textContent = text;
     t.style.display = 'flex';
     t.style.alignItems = 'center';
     t.style.whiteSpace = 'nowrap';
@@ -126,7 +127,7 @@ export default class Renderer extends Gantt.components.Renderer {
     elt.style.overflow = 'hidden';
     const t = document.createElement('div');
     t.className = 'text-content';
-    t.innerHTML = text;
+    t.textContent = text;
     elt.appendChild(t);
     return t;
   }
@@ -143,7 +144,7 @@ export default class Renderer extends Gantt.components.Renderer {
     t.className = 'text-content';
     t.style.textOverflow = 'ellipsis';
     t.style.overflow = 'hidden';
-    t.innerHTML = text;
+    t.textContent = text;
     elt.appendChild(t);
     return t;
   }
@@ -160,7 +161,7 @@ export default class Renderer extends Gantt.components.Renderer {
     const t = document.createElement('div');
     t.className = 'text-content';
     t.overflow = 'visible';
-    t.innerHTML = text;
+    t.textContent = text;
     elt.appendChild(t);
     return t;
   }
@@ -188,13 +189,13 @@ export default class Renderer extends Gantt.components.Renderer {
     }
     // Else the config is a descriptive object of the CSS setter
     if (!classOptions.property) {
-      console.warn('Missing "property" field in class setter description:');
-      console.warn(classOptions);
+      Gantt.log.warn('Missing "property" field in class setter description:');
+      Gantt.log.warn(classOptions);
       return null;
     }
 
     const propGetter = Gantt.utils.propertyEvaluator(classOptions.property);
-    return createSelectorFunction(selector, obj => {
+    return createSelectorFunction(selector, (obj) => {
       let prop = propGetter.call(obj, obj);
       if (prop) {
         if (classOptions.prefix) {
@@ -221,7 +222,7 @@ export default class Renderer extends Gantt.components.Renderer {
           this.cssGetters.push(getter);
         } else {
           this.cssGetters = [getter];
-          this.getCSS = function(object, ctx) {
+          this.getCSS = function getCSS(object, ctx) {
             let cssClasses = '';
             let cssToAdd;
             for (let i = 0; i < this.cssGetters.length; i++) {
@@ -244,7 +245,7 @@ export default class Renderer extends Gantt.components.Renderer {
     } else if (typeof config === 'string') {
       const getter = Gantt.utils.propertyEvaluator(config);
       if (getter) {
-        filter = function(object, ctx, search) {
+        filter = function stringFilter(object, ctx, search) {
           if (search) {
             const value = getter(object, ctx);
             return value && Gantt.utils.stringMatches(value, search);
@@ -253,12 +254,12 @@ export default class Renderer extends Gantt.components.Renderer {
         };
       }
     } else {
-      console.warn('Cannot process filter config. Must be a string or a function.');
-      console.warn(config);
+      Gantt.log.warn('Cannot process filter config. Must be a string or a function.');
+      Gantt.log.warn(config);
     }
     if (filter) {
       const oldFilter = this.filter;
-      this.filter = function(object, ctx, search) {
+      this.filter = function combinedFilter(object, ctx, search) {
         if (!oldFilter(object, ctx, search)) {
           return false;
         }
@@ -277,8 +278,8 @@ export default class Renderer extends Gantt.components.Renderer {
     if (typeof config === 'function') {
       tooltipPropsGetter = config;
     } else {
-      console.warn('Cannot process tooltip properties config. Must be a a function.');
-      console.warn(config);
+      Gantt.log.warn('Cannot process tooltip properties config. Must be a a function.');
+      Gantt.log.warn(config);
     }
     if (tooltipPropsGetter) {
       if (selector) {
@@ -297,8 +298,8 @@ export default class Renderer extends Gantt.components.Renderer {
     if (typeof config === 'function') {
       tooltipGetter = (...params) => config.apply(ctx, params);
     } else {
-      console.warn('Cannot process tooltip config. Must be a function.');
-      console.warn(config);
+      Gantt.log.warn('Cannot process tooltip config. Must be a function.');
+      Gantt.log.warn(config);
     }
     if (tooltipGetter) {
       if (selector) {
@@ -314,8 +315,8 @@ export default class Renderer extends Gantt.components.Renderer {
     } else if (typeof config === 'string') {
       textGetter = Gantt.utils.propertyEvaluator(config);
     } else {
-      console.warn('Cannot process text config. Must be a string or a function.');
-      console.warn(config);
+      Gantt.log.warn('Cannot process text config. Must be a string or a function.');
+      Gantt.log.warn(config);
     }
     if (textGetter) {
       if (selector) {
@@ -331,8 +332,8 @@ export default class Renderer extends Gantt.components.Renderer {
     } else if (typeof config === 'string') {
       iconGetter = Gantt.utils.propertyEvaluator(config);
     } else {
-      console.warn('Cannot process icon config. Must be a string or a function.');
-      console.warn(config);
+      Gantt.log.warn('Cannot process icon config. Must be a string or a function.');
+      Gantt.log.warn(config);
     }
     if (iconGetter) {
       if (selector) {
@@ -344,7 +345,7 @@ export default class Renderer extends Gantt.components.Renderer {
   addDrawConfiguration(selector, config) {
     if (selector) {
       const oldDraw = this.draw;
-      this.draw = function(object, elt, ctx) {
+      this.draw = function selectedDraw(object, elt, ctx) {
         if (selector(object, ctx)) {
           config.draw(object, elt, ctx);
         } else {
@@ -352,7 +353,7 @@ export default class Renderer extends Gantt.components.Renderer {
         }
       };
     } else {
-      this.draw = function(object, elt, ctx) {
+      this.draw = function overrideDraw(object, elt, ctx) {
         config.draw(object, elt, ctx);
       };
     }
@@ -361,7 +362,7 @@ export default class Renderer extends Gantt.components.Renderer {
   addDrawContentConfiguration(selector, config) {
     if (selector) {
       const oldDrawContent = this.drawContent;
-      this.drawContent = function(elt, text, object, ctx) {
+      this.drawContent = function selectedDrawContent(elt, text, object, ctx) {
         if (selector(object, ctx)) {
           config.drawContent(elt, text, object, ctx);
         } else {
@@ -369,7 +370,7 @@ export default class Renderer extends Gantt.components.Renderer {
         }
       };
     } else {
-      this.drawContent = function(elt, text, object, ctx) {
+      this.drawContent = function overrideDrawContent(elt, text, object, ctx) {
         config.drawContent(elt, text, object, ctx);
       };
     }
@@ -386,7 +387,7 @@ export default class Renderer extends Gantt.components.Renderer {
     }
     if (selector) {
       const oldDrawDefaultContent = this.drawDefaultContent;
-      this.drawDefaultContent = function(elt, text, object, ctx) {
+      this.drawDefaultContent = function selectedDrawDefaultContent(elt, text, object, ctx) {
         if (selector(object, ctx)) {
           drawDefaultContent.call(this, elt, text, object, ctx);
         } else {
@@ -429,8 +430,8 @@ export default class Renderer extends Gantt.components.Renderer {
             try {
               textColor = this.getTextColorFromBackgroundColor(bg);
             } catch (err) {
-              console.error(`Invalid color format ${bg}`);
-              console.error(err);
+              Gantt.log.error(`Invalid color format ${bg}`);
+              Gantt.log.error(err);
               textColor = 'black';
             }
             if (!this.colors) {
@@ -467,7 +468,7 @@ export default class Renderer extends Gantt.components.Renderer {
         getValues:
           config.values &&
           ((Gantt.utils.isFunction(config.values) && config.values) ||
-            function() {
+            function getValues() {
               return config.values;
             }),
         makeColors(obj, ctx) {
@@ -476,13 +477,13 @@ export default class Renderer extends Gantt.components.Renderer {
             if (Gantt.utils.isString(paletteConfig)) {
               palette = this.paletteHandler.getPalette(paletteConfig);
             } else {
-              palette = new (Gantt.components.Palette.impl || Gantt.components.Palette)(paletteConfig);
+              palette = new (getComponent('Palette', Gantt.components.Palette))(paletteConfig);
             }
           } else {
             palette = this.paletteHandler.getPalette();
           }
           if (!palette && !this.colors) {
-            console.error(`No palette found for ${paletteConfig}`);
+            Gantt.log.error(`No palette found for ${paletteConfig}`);
             palette = Gantt.defaultPalettes[Gantt.defaultPaletteName];
           }
           this.values = (this.getValues && this.getValues(obj, ctx)) || [];
@@ -505,12 +506,12 @@ export default class Renderer extends Gantt.components.Renderer {
       if (typeof config.selector === 'function') {
         selector = (...params) => config.selector(...params);
       } else if (typeof config.selector !== 'object' || !config.selector.property || !config.selector.value) {
-        console.warn('Renderer selector must be a function or an object with "property" and "value" fields.');
-        console.warn(config.selector);
+        Gantt.log.warn('Renderer selector must be a function or an object with "property" and "value" fields.');
+        Gantt.log.warn(config.selector);
       } else {
         const prop = Gantt.utils.propertyEvaluator(this.config.selector.property);
         const values = this.config.selector.value.split(',');
-        selector = function(object) {
+        selector = function propertySelector(object) {
           const value = prop(object);
           return value && values.indexOf(value) >= 0;
         };
@@ -549,7 +550,7 @@ export default class Renderer extends Gantt.components.Renderer {
     }
 
     if (config.createShape) {
-      console.warn('config.createShape: Not implemented');
+      Gantt.log.warn('config.createShape: Not implemented');
     }
 
     if (config.drawContent) {
@@ -617,7 +618,7 @@ export default class Renderer extends Gantt.components.Renderer {
     const body = document.createElement('tbody');
     let tr;
     let td;
-    for (let iProp = 0, count = props.length; iProp < count; ) {
+    for (let iProp = 0, count = props.length; iProp < count;) {
       tr = document.createElement('tr');
       td = document.createElement('td');
       td.className = 'tooltip-key';

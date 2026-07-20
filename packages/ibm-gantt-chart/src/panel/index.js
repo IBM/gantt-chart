@@ -1,1 +1,3 @@
-export default from './ganttpanel';
+import GanttPanel from './ganttpanel';
+
+export default GanttPanel;

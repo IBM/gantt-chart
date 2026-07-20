@@ -3,7 +3,7 @@ import Gantt from '../core/core';
 const defaultOptions = {
   cascadeOffset: 5,
   topMargin: 1,
-  bottomMargin: 1,
+  bottomMargin: 2,
   subRowPadding: 1,
   constantRowHeight: false,
   compareBoundingBoxes: false,
@@ -16,7 +16,7 @@ const STRATEGIES = {};
 const MINI_ACTIVITY_CLASS = 'mini-activity';
 const MILESTONE = 'milestone';
 
-STRATEGIES[STRATEGY_LOGISTIC] = function(row) {
+STRATEGIES[STRATEGY_LOGISTIC] = function logisticLayout(row) {
   // this is the activity layout calling this function
   ActivityLayout.sortTasksOnStart(row);
   const subRowsCount = ActivityLayout.computeSubRows(row);
@@ -39,7 +39,7 @@ STRATEGIES[STRATEGY_LOGISTIC] = function(row) {
   }
 };
 
-STRATEGIES[STRATEGY_TILE] = function(row) {
+STRATEGIES[STRATEGY_TILE] = function tileLayout(row) {
   let rowHeight = row.tableRowHeight;
 
   let { topMargin } = this;
@@ -57,10 +57,10 @@ STRATEGIES[STRATEGY_TILE] = function(row) {
   // Then we sort the array by start time or x position, depending on the overlap
   // detection strategy being used.
   const activitiyComparator = this.compareBoundingBoxes
-    ? function(act1, act2) {
+    ? function compareByLeft(act1, act2) {
         return act1.left - act2.left;
       }
-    : function(act1, act2) {
+    : function compareByStart(act1, act2) {
         return act1.start - act2.start;
       };
   row.activities.sort(activitiyComparator);
@@ -185,9 +185,7 @@ export default class ActivityLayout extends Gantt.components.ActivityLayout {
   }
 
   static sortTasksOnStart(row) {
-    row.activities.sort(function(act1, act2) {
-      return act1.start - act2.start;
-    });
+    row.activities.sort((act1, act2) => act1.start - act2.start);
   }
 
   static computeSubRows(row) {

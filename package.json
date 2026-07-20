@@ -20,42 +20,63 @@
     "clean:dist": "rimraf packages/*/dist packages/*/stats.html",
     "clean:junk": "rimraf *-{debug,error}.log packages/*/*-{debug,error}.log packages/*/stats.html",
     "clean:modules": "rimraf node_modules package-lock.json yarn.lock *-{debug,error}.log packages/*/node_modules packages/*/package-lock.json packages/*/yarn.lock packages/*/*-{debug,error}.log",
-    "elint": "gda-scripts eslint packages/*/{src,test}",
-    "elint:fix": "gda-scripts eslint packages/*/{src,test} --fix",
+    "elint": "eslint --ext .js,.jsx,.ts,.tsx --color --report-unused-disable-directives --cache packages/*/{src,test}",
+    "elint:fix": "eslint --ext .js,.jsx,.ts,.tsx --color --report-unused-disable-directives --cache --fix packages/*/{src,test}",
     "import:fix": "import-sort --write \"packages/*/{src,test}/**/*.{js,jsx}\" \"packages/*/.*.js\" \"packages/*/*.js\" \".*.js\" \"*.js\"",
     "import:list": "import-sort --list-different \"packages/*/{src,test}/**/*.{js,jsx}\" \"packages/*/.*.js\" \"packages/*/*.js\" \".*.js\" \"*.js\"",
     "lerna:publish": "lerna publish from-package --no-git-tag-version --no-push",
     "lerna:version": "lerna version --no-git-tag-version --no-push",
     "precommit": "lint-staged",
-    "prettier:fix": "prettier --write \"packages/*/{src,test}/**/*.{js,jsx,css,scss,json,md}\" \"packages/*/.*.js\" \"packages/*/*.js\" \".*.js\" \"*.js\" \"docs/*.md\" \"*.md\"",
-    "prettier:list": "prettier -l \"packages/*/{src,test}/**/*.{js,jsx,css,scss,json,md}\" \"packages/*/.*.js\" \"packages/*/*.js\" \".*.js\" \"*.js\" \"docs/*.md\" \"*.md\"",
-    "slint": "gda-scripts stylelint packages/*/{src,test}",
-    "slint:fix": "gda-scripts stylelint packages/*/{src,test} --fix",
+    "prettier:fix": "prettier --write \"packages/*/{src,test}/**/*.{js,jsx,css,scss,json,md}\" \"packages/*/*.js\" \".*.js\" \"*.md\"",
+    "prettier:list": "prettier -l \"packages/*/{src,test}/**/*.{js,jsx,css,scss,json,md}\" \"packages/*/*.js\" \".*.js\" \"*.md\"",
+    "slint": "stylelint --color --cache \"packages/*/{src,test}/**/*.{css,scss}\"",
+    "slint:fix": "stylelint --color --cache --fix \"packages/*/{src,test}/**/*.{css,scss}\"",
     "start": "cd packages/ibm-gantt-chart-dev && yarn start",
     "update": "yarn upgrade-interactive --latest"
   },
   "lint-staged": {
     "packages/*/{src,test}/**/*.{css,scss}": [
       "prettier --write",
-      "gda-scripts stylelint --fix",
-      "git add"
+      "stylelint --fix"
     ],
     "packages/*/{src,test}/**/*.{js,jsx} packages/*/.*.js packages/*/*.js .*.js *.js": [
       "import-sort --write",
       "prettier --write",
-      "gda-scripts eslint --fix",
-      "git add"
+      "eslint --fix"
     ],
     "packages/*/{src,test}/**/*.{json,md} docs/*.md *.md": [
-      "prettier --write",
-      "git add"
+      "prettier --write"
     ]
   },
+  "resolutions": {
+    "node-sass": "npm:sass@^1.77.0"
+  },
   "devDependencies": {
+    "@babel/core": "^7.26.0",
+    "@babel/eslint-parser": "^7.29.7",
+    "@babel/preset-env": "^7.26.0",
+    "@babel/preset-react": "^7.26.0",
+    "@babel/preset-typescript": "^7.26.0",
     "all-contributors-cli": "^6.26.1",
-    "gda-scripts": "^0.3.6",
+    "eslint": "^8.57.1",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-react": "^7.37.0",
+    "eslint-plugin-react-hooks": "^4.6.2",
     "husky": "^2.4.0",
+    "import-sort-cli": "^6.0.0",
+    "import-sort-parser-babylon": "^6.0.0",
+    "import-sort-style-gda": "^2.3.0",
+    "lerna": "^9.0.0",
     "lint-staged": "^8.2.0",
-    "rimraf": "^2.6.3"
+    "postcss": "^8.4.49",
+    "prettier": "^3.3.3",
+    "rimraf": "^2.6.3",
+    "stylelint": "^15.11.0",
+    "stylelint-config-standard-scss": "^11.1.0",
+    "stylelint-order": "^6.0.4",
+    "stylelint-scss": "^5.3.2"
   }
 }

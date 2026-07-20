@@ -26,7 +26,7 @@ class Tooltip extends Gantt.components.Tooltip {
     Gantt.utils.addEventListener(
       this._tooltip,
       'mouseenter',
-      evt => {
+      (evt) => {
         if (this._hideTimer !== undefined) {
           clearTimeout(this._hideTimer);
           this._hideTimer = null;
@@ -38,7 +38,7 @@ class Tooltip extends Gantt.components.Tooltip {
     Gantt.utils.addEventListener(
       this._tooltip,
       'mouseleave',
-      evt => {
+      (evt) => {
         if (evt.target === this._tooltip) {
           this.hideTooltip(300);
         }
@@ -219,8 +219,7 @@ class Tooltip extends Gantt.components.Tooltip {
     Gantt.utils.addEventListener(
       config.container,
       'mouseenter',
-      evt => {
-        // console.log('Enter ' + printElement(evt.target) + ', relatedTarget: ' + (evt.relatedTarget && printElement(evt.relatedTarget) || 'none'));
+      (evt) => {
         const tooltipNode = config.getTooltipElement(evt.target);
         if (tooltipNode) {
           const tooltipData = config.getTooltipData && config.getTooltipData(tooltipNode);
@@ -232,8 +231,7 @@ class Tooltip extends Gantt.components.Tooltip {
             limitElt: (config.getTooltipDisplayContainer && config.getTooltipDisplayContainer()) || document.body,
             showDelay: TOOLTIP_SHOWING_DELAY,
           };
-          // console.log('   show tooltip: ' + tooltipNode);
-          this.showTooltip(tooltipNode, ctx, parent => {
+          this.showTooltip(tooltipNode, ctx, (parent) => {
             config.renderTooltip(tooltipNode, tooltipData, parent);
           });
         } else {
@@ -245,8 +243,7 @@ class Tooltip extends Gantt.components.Tooltip {
     Gantt.utils.addEventListener(
       config.container,
       'mouseleave',
-      evt => {
-        // console.log('Leave ' + printElement(evt.target) + ', relatedTarget: ' + (evt.relatedTarget && printElement(evt.relatedTarget) || 'none'));
+      (evt) => {
         const tooltipNode = config.getTooltipElement(evt.target);
         if (tooltipNode) {
           if (this._tooltipElt === tooltipNode) {

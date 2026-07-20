@@ -1,4 +1,5 @@
 import Gantt from '../core/core';
+import { getComponent } from '../core/component-factory';
 
 export default class LoadResourceChartCtrl {
   constructor(gantt, visible, config) {
@@ -21,7 +22,7 @@ export default class LoadResourceChartCtrl {
 
     this.layoutSynch = this.gantt.synchLayout({
       timeTableBoundsChanged(bounds) {
-        ctlr.loadCharts.forEach(loadChart =>
+        ctlr.loadCharts.forEach((loadChart) =>
           loadChart.setTimeLineBounds(ctlr.layoutSynch.convertBounds(bounds, loadChart.getTimeLineNode))
         );
       },
@@ -29,23 +30,23 @@ export default class LoadResourceChartCtrl {
         ctlr.timeWindowChanged(start, end);
       },
       timeLineSizeChanged(width) {
-        ctlr.loadCharts.forEach(loadChart => loadChart.setTimeLineWidth(width));
+        ctlr.loadCharts.forEach((loadChart) => loadChart.setTimeLineWidth(width));
       },
       timeLineInitialized() {},
       timeLineScrolled(x) {
-        ctlr.loadCharts.forEach(loadChart => loadChart.setTimeLineScrollLeft(x));
+        ctlr.loadCharts.forEach((loadChart) => loadChart.setTimeLineScrollLeft(x));
       },
     });
     this.setConfiguration(config);
   }
 
   setConfiguration(config) {
-    const RendererClass = Gantt.components.Renderer.impl || Gantt.components.Renderer;
+    const RendererClass = getComponent('Renderer', Gantt.components.Renderer);
     this.resourceRenderer = new RendererClass(
       Gantt.utils.mergeObjects(
         {
           background: {
-            getValue: res => this.resources.indexOf(res),
+            getValue: (res) => this.resources.indexOf(res),
           },
         },
         config && config.renderer
@@ -78,7 +79,7 @@ export default class LoadResourceChartCtrl {
   setVisible(visible) {
     if (this.visible !== visible) {
       this.visible = visible;
-      this.loadCharts.forEach(loadChart => loadChart.setVisible(visible));
+      this.loadCharts.forEach((loadChart) => loadChart.setVisible(visible));
       if (this.visible) {
         if (this.savedTimeW) {
           const { start, end } = this.savedTimeW;
@@ -115,7 +116,7 @@ export default class LoadResourceChartCtrl {
   }
 
   setTimeWindow(start, end, onInit) {
-    this.loadCharts.forEach(loadChart => loadChart.setTimeWindow(start, end, onInit));
+    this.loadCharts.forEach((loadChart) => loadChart.setTimeWindow(start, end, onInit));
   }
 
   timeTableXScrolled(left) {
@@ -125,7 +126,7 @@ export default class LoadResourceChartCtrl {
   }
 
   setScrollLeft(left) {
-    this.loadCharts.forEach(loadChart => loadChart.setScrollLeft(left));
+    this.loadCharts.forEach((loadChart) => loadChart.setScrollLeft(left));
   }
 
   setResources(resources) {
@@ -137,7 +138,7 @@ export default class LoadResourceChartCtrl {
         res.backgroundColor = this.visible && this.resourceRenderer.background(res);
       }
       this.gantt.drawRows(this.resources);
-      this.loadCharts.forEach(loadChart => {
+      this.loadCharts.forEach((loadChart) => {
         loadChart.setResources(allRes);
         loadChart.draw();
       });
@@ -146,8 +147,8 @@ export default class LoadResourceChartCtrl {
 
   unselectRows(rows, redraw) {
     const all = [];
-    const unselectDeep = ar => {
-      ar.forEach(row => {
+    const unselectDeep = (ar) => {
+      ar.forEach((row) => {
         all.push(row);
         row.backgroundColor = undefined;
         if (row.children) {

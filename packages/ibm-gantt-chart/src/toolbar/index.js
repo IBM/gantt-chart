@@ -2,6 +2,7 @@
 'use strict';
 
 import Gantt from '../core/core';
+import { getComponent } from '../core/component-factory';
 
 import './toolbar.scss';
 
@@ -14,7 +15,7 @@ function makeId(prefix) {
 var checkClass;
 function Checkbox(gantt, config) {
   if (!checkClass) {
-    checkClass = Gantt.components.CheckBox.impl || Gantt.components.CheckBox;
+    checkClass = getComponent('CheckBox', Gantt.components.CheckBox);
   }
   return new checkClass(gantt, config);
 }
@@ -22,7 +23,7 @@ function Checkbox(gantt, config) {
 var buttonClass;
 function Button(gantt, config) {
   if (!buttonClass) {
-    buttonClass = Gantt.components.Button.impl || Gantt.components.Button;
+    buttonClass = getComponent('Button', Gantt.components.Button);
   }
   return new buttonClass(gantt, config);
 }
@@ -30,7 +31,7 @@ function Button(gantt, config) {
 var selectClass;
 function Select(gantt, config) {
   if (!selectClass) {
-    selectClass = Gantt.components.DropDownList.impl || Gantt.components.DropDownList;
+    selectClass = getComponent('DropDownList', Gantt.components.DropDownList);
   }
   return new selectClass(gantt, config);
 }
@@ -38,17 +39,17 @@ function Select(gantt, config) {
 var toggleClass;
 function Toggle(gantt, config) {
   if (!toggleClass) {
-    toggleClass = Gantt.components.Toggle.impl || Gantt.components.Toggle;
+    toggleClass = getComponent('Toggle', Gantt.components.Toggle);
   }
   return new toggleClass(gantt, config);
 }
 
 const ToolbarComponents = {
   title: {
-    node: function(parentElt, gantt) {
+    node: function (parentElt, gantt) {
       const node = Gantt.components.Toolbar.createTitle(gantt.getTitle());
       gantt.on(Gantt.events.TITLE_CHANGED, (event, title) => {
-        node.innerHTML = title;
+        node.textContent = title;
       });
       return node;
     },
@@ -56,14 +57,14 @@ const ToolbarComponents = {
     justifyLeft: true,
   },
   separator: {
-    node: function(parentElt) {
+    node: function (parentElt) {
       const sep = document.createElement('div');
       sep.className = 'separator';
       return sep;
     },
   },
   whitespace: {
-    node: function(parentElt) {
+    node: function (parentElt) {
       const sep = document.createElement('div');
       sep.className = 'white-space';
       return sep;
@@ -72,9 +73,9 @@ const ToolbarComponents = {
 
   search: {
     component(gantt) {
-      return new (Gantt.components.Input.impl || Gantt.components.Input)(gantt, {
+      return new (getComponent('Input', Gantt.components.Input))(gantt, {
         type: 'search',
-        onchange: function(text) {
+        onchange: function (text) {
           gantt.search(text, true, true);
         },
       });
@@ -107,12 +108,12 @@ const ToolbarComponents = {
             paths: ['M4 5h16v2H4zM4 9h16v2H4zM4 13h16v2H4zM4 17h16v2H4z'],
           },
         },
-        isSelected: function() {
+        isSelected: function () {
           const ganttNode = gantt.getPanelNode();
           return Gantt.utils.hasClass(ganttNode, 'mini');
         },
 
-        onclick: function() {
+        onclick: function () {
           const ganttNode = gantt.getPanelNode();
           Gantt.utils.toggleClass(ganttNode, 'mini');
           gantt.draw();
@@ -146,7 +147,7 @@ const ToolbarComponents = {
           ],
         },
         tooltip: Gantt.utils.getString('gantt.toolbar.fit.tooltip'),
-        onclick: function() {
+        onclick: function () {
           gantt.fitToContent();
         },
       });
@@ -166,7 +167,7 @@ const ToolbarComponents = {
                 },*/
         text: Gantt.utils.getString('gantt.toolbar.refresh.text'),
         tooltip: Gantt.utils.getString('gantt.toolbar.fit.tooltip'),
-        onclick: function() {
+        onclick: function () {
           gantt.draw();
         },
       });
@@ -188,7 +189,7 @@ const ToolbarComponents = {
           ],
         },
         tooltip: Gantt.utils.getString('gantt.toolbar.zoomIn.tooltip'),
-        onclick: function() {
+        onclick: function () {
           gantt.zoomIn();
         },
       });
@@ -212,7 +213,7 @@ const ToolbarComponents = {
           ],
         },
         tooltip: Gantt.utils.getString('gantt.toolbar.zoomOut.tooltip'),
-        onclick: function() {
+        onclick: function () {
           gantt.zoomOut();
         },
       });
@@ -232,11 +233,11 @@ const ToolbarComponents = {
           fontIcon: 'fa fa-bar-chart fa-lg',
           tooltip: Gantt.utils.getString('gantt.loadResourceChart.hide.tooltip'),
         },
-        isSelected: function() {
+        isSelected: function () {
           return gantt.isLoadChartVisible();
         },
 
-        onclick: function() {
+        onclick: function () {
           gantt.toggleLoadChartVisible();
         },
       });
@@ -271,7 +272,7 @@ class Toolbar extends Gantt.components.Toolbar {
     }
     for (let i = 0, count = config.length, cfgNode, handler, node, comp; i < count; i++) {
       cfgNode = config[i];
-      if (Gantt.utils.isString(cfgNode)) {
+      if (typeof cfgNode === 'string' || cfgNode instanceof String) {
         handler = ToolbarComponents[cfgNode];
       } else {
         handler = cfgNode;
@@ -287,10 +288,10 @@ class Toolbar extends Gantt.components.Toolbar {
           comp = {
             id:
               handler.id !== undefined
-                ? Gantt.utils.isFunction(handler.id)
+                ? typeof handler.id === 'function'
                   ? handler.id(handler)
                   : handler.id
-                : makeId(Gantt.utils.isString(cfgNode) ? cfgNode : 'toolbarComp'),
+                : makeId(typeof cfgNode === 'string' || cfgNode instanceof String ? cfgNode : 'toolbarComp'),
           };
           comp.node = document.createElement('div');
           let tpl = Gantt.utils.formatString(handler.template, comp);
@@ -304,7 +305,7 @@ class Toolbar extends Gantt.components.Toolbar {
           } else if (handler.type === 'select') {
             comp = Select(this.gantt, handler);
           } else if (handler.type === 'buttonGroup') {
-            comp = new (Gantt.components.ButtonGroup.impl || Gantt.components.ButtonGroup)(this.gantt, handler);
+            comp = new (getComponent('ButtonGroup', Gantt.components.ButtonGroup))(this.gantt, handler);
           } else if (handler.type === 'separator') {
             handler = ToolbarComponents.separator;
             comp = {};
@@ -318,9 +319,13 @@ class Toolbar extends Gantt.components.Toolbar {
         } else {
           throw new Error('a node property must be specified in a toolbar element: ' + cfgNode);
         }
-      } else if (Gantt.utils.isString(handler.node)) {
-        comp = { id: handler.node, node: document.getElementById(handler.node) };
-      } else if (Gantt.utils.isFunction(handler.node)) {
+      } else if (typeof handler.node === 'string' || handler.node instanceof String) {
+        const domNode = document.getElementById(handler.node);
+        if (!domNode) {
+          Gantt.log.warn(`Toolbar element not found: ${handler.node}`);
+        }
+        comp = { id: handler.node, node: domNode };
+      } else if (typeof handler.node === 'function') {
         comp = {};
         comp.node = handler.node(toolbarNode, this.gantt, comp);
         append(comp, handler);
@@ -349,7 +354,7 @@ class Toolbar extends Gantt.components.Toolbar {
   }
 
   onInitialized() {
-    this.components.forEach(c => {
+    this.components.forEach((c) => {
       if (c.onInitialized) {
         c.onInitialized();
       }
@@ -433,7 +438,7 @@ class FlatCheckbox extends Gantt.components.CheckBox {
       btn.appendChild(document.createTextNode(config.text));
     }
     this.node = btn;
-    btn.onclick = e => {
+    btn.onclick = (e) => {
       Gantt.utils.toggleClass(btn, 'selected');
       if (config.onclick) {
         config.onclick(this.gantt);

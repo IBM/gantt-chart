@@ -1,1 +1,3 @@
-export default from './timetable';
+import TimeTable from './timetable';
+
+export default TimeTable;

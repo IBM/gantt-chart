@@ -1,13 +1,13 @@
 import Gantt from '../core/core';
+import Link from './Link';
+import Node, { CONNECTOR_COUNT, SIDE_COUNT } from './Node';
 
 const LOCKED = Number.MAX_VALUE;
 
 const STYLE_ARROW = 1;
 const LEFT = 0;
 const RIGHT = 1;
-const SIDE_COUNT = 2;
 
-const CONNECTOR_COUNT = 4;
 const INCOMINGS = new Array(4);
 INCOMINGS[Gantt.constraintTypes.START_TO_START] = 0;
 INCOMINGS[Gantt.constraintTypes.START_TO_END] = 2;
@@ -19,171 +19,6 @@ OUTGINGS[Gantt.constraintTypes.START_TO_START] = 1;
 OUTGINGS[Gantt.constraintTypes.START_TO_END] = 1;
 OUTGINGS[Gantt.constraintTypes.END_TO_START] = 3;
 OUTGINGS[Gantt.constraintTypes.END_TO_END] = 3;
-
-class Link {
-  constructor(cons) {
-    this.ar = [cons];
-    if (cons.from.consNode.index < cons.to.consNode.index) {
-      this.topNode = cons.from.consNode;
-      this.bottomNode = cons.to.consNode;
-    } else {
-      this.topNode = cons.to.consNode;
-      this.bottomNode = cons.from.consNode;
-    }
-  }
-
-  addConstraint(cons) {
-    this.ar.push(cons);
-    const rowIndex = cons.from.consNode.index;
-    if (rowIndex < this.topNode.index) {
-      this.topNode = cons.from.consNode;
-    } else if (rowIndex > this.bottomNode.index) {
-      this.bottomNode = cons.from.consNode;
-    }
-  }
-
-  topIndex() {
-    return this.topNode.index;
-  }
-
-  bottomIndex() {
-    return this.bottomNode.index;
-  }
-
-  toNode() {
-    return this.ar[0].to.consNode;
-  }
-
-  switchSides() {
-    const { type } = this.ar[0];
-    return type === Gantt.constraintTypes.END_TO_START || type === Gantt.constraintTypes.START_TO_END;
-  }
-
-  isDisplayed() {
-    for (let i = 0; i < this.ar.length; i++) {
-      if (!this.ar[i].nodes) {
-        return false;
-      }
-    }
-    return true;
-  }
-
-  toString() {
-    let s = 'Link[';
-    if (this.ar.length > 1) {
-      s += `(${this.ar
-        .map(function(cons) {
-          return cons.from.consNode.toString();
-        })
-        .join(',')})`;
-    } else s += this.ar[0].from.consNode.toString();
-    s += ' -> ';
-    s += this.ar[0].to.consNode.toString();
-    return `${s}]`;
-  }
-
-  resetLayout() {
-    this.x = undefined;
-    for (let i = 0; i < this.ar.length; i++) {
-      this.ar[i].nodes = undefined;
-    }
-  }
-}
-
-function compareLinks(l1, l2) {
-  let i1 = l1.topIndex();
-  let i2 = l2.topIndex();
-  if (i1 < i2) return 1;
-  if (i1 > i2) return -1;
-  i1 = l1.bottomIndex();
-  i2 = l2.bottomIndex();
-  return i1 < i2 ? 1 : i1 > i2 ? -1 : 0;
-}
-
-class Node {
-  constructor(act, index) {
-    this.act = act;
-    this.index = index;
-    this.links = [[], []];
-    this.layoutLinks = 0;
-    this.linksDisplayed = 0;
-    this.bbox = null;
-    this.incomingLinks = new Array(4);
-    this.connectors = new Array(CONNECTOR_COUNT);
-    this.nodeLabelLayout = false;
-    for (let i = 0; i < CONNECTOR_COUNT; i++) {
-      this.connectors[i] = 0;
-    }
-  }
-
-  addLink(link, side) {
-    const ar = this.links[side];
-    for (let i = 0, count = ar.length, thisLink; i < count; i++) {
-      thisLink = ar[i];
-      if (compareLinks(ar[i], link) >= 0) {
-        ar.splice(i, 0, link);
-        return;
-      }
-    }
-    ar.push(link);
-  }
-
-  getLinks(side) {
-    return this.links[side];
-  }
-
-  getIncomingLink(type) {
-    return this.incomingLinks[type];
-  }
-
-  setIncomingLink(type, link) {
-    this.incomingLinks[type] = link;
-  }
-
-  incConnectionCount(type) {
-    this.connectors[type]++;
-  }
-
-  setBBox(bbox) {
-    this.bbox = bbox;
-  }
-
-  hasLinks() {
-    for (let side = 0; side < SIDE_COUNT; side++) {
-      if (this.links[side].length) return true;
-    }
-    return false;
-  }
-
-  clearLinks() {
-    this.links = [[], []];
-    this.connectors = new Array(CONNECTOR_COUNT);
-    this.bbox = null;
-  }
-
-  resetLayout() {
-    for (let side = 0; side < SIDE_COUNT; ++side) {
-      for (let iLink = 0, ar = this.links[side], link; iLink < ar.length; iLink++) {
-        if ((link = ar[iLink]).toNode() === this) {
-          ar[iLink].resetLayout();
-        }
-      }
-    }
-    this.nodeLabelLayout = false;
-  }
-
-  topRight() {
-    let n = this;
-    while (n.next) {
-      n = n.next;
-    }
-    return n;
-  }
-
-  toString() {
-    return this.act.name || this.act.id;
-  }
-}
 
 const defaultLayoutOptions = {
   horizLinkToNodeDist: 11,
@@ -340,7 +175,7 @@ export default class ConstraintLayout extends Gantt.components.ConstraintLayout 
     if (labelLayout) {
       const labelW = label.getTextWidth();
 
-      const iterLinks = side => {
+      const iterLinks = (side) => {
         const limit = consNode.bbox.x + (side === LEFT ? 0 : consNode.bbox.width);
         const links = consNode.links[side];
         let lastX = limit;

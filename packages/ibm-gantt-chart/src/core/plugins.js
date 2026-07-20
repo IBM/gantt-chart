@@ -13,6 +13,7 @@ Gantt.plugins = {
         this.plugins.push(arguments[i]);
       }
     }
+    return undefined;
   },
 
   /**
@@ -25,6 +26,7 @@ Gantt.plugins = {
         this.plugins.splice(index, 1);
       }
     }
+    return undefined;
   },
 
   /**
@@ -85,6 +87,7 @@ Gantt.plugins = {
         }
       }
     }
+    return undefined;
   },
 };
 

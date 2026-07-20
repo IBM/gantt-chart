@@ -1,4 +1,4 @@
-@import '../core/colors.scss';
+@import '../core/colors';
 
 .load-resource-chart {
   background-color: white;
@@ -13,6 +13,7 @@
 
   .vis-item.vis-background {
     background-color: transparent;
+
     .vis-item-content {
       height: 100%;
       padding: 0;
@@ -42,13 +43,15 @@
       padding: 0;
       font-size: 18px;
     }
+
     .vertical-expand-button {
       padding: 3px 6px;
       border: none;
     }
+
     &.collapsed {
       top: -53px;
-      background-color: rgba(255, 255, 255, 0.5);
+      background-color: rgb(255 255 255 / 50%);
     }
   }
 
@@ -61,10 +64,12 @@
     background-color: $table-header-color;
     border: 2px solid $gantt-border-color;
   }
+
   .legend-panel.empty-legend {
     background-color: transparent;
     border: none;
   }
+
   .legend {
     margin: 0;
     padding: 0;
@@ -88,10 +93,12 @@
   .y-axis {
     font-size: 12px;
     border-right: 5px solid $gantt-border-color;
+
     .y-axis-label {
       padding-right: 15px;
       color: $gantt-border-color;
     }
+
     .y-axis-tick {
       width: 10px;
       border-top: solid 2px $gantt-border-color;
@@ -99,16 +106,14 @@
   }
 
   .no-selection {
-    background-color: rgba(192, 192, 192, 0.1);
+    background-color: rgb(192 192 192 / 10%);
 
     .no-selection-message {
       padding: 8px 12px;
       color: $black5;
       background-color: $table-header-color;
       border: 2px solid $gantt-border-color;
-      -webkit-box-shadow: 5px 5px 23px 0 rgba(146, 148, 151, 1);
-      -moz-box-shadow: 5px 5px 23px 0 rgba(146, 148, 151, 1);
-      box-shadow: 5px 5px 23px 0 rgba(146, 148, 151, 1);
+      box-shadow: 5px 5px 23px 0 rgb(146 148 151 / 100%);
     }
   }
 }

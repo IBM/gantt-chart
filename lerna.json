@@ -1,11 +1,8 @@
 {
-  "lerna": "3.3.0",
-  "packages": [
-    "packages/*"
-  ],
-  "npmClient": "yarn",
-  "useWorkspaces": true,
+  "$schema": "node_modules/lerna/schemas/lerna-schema.json",
   "version": "0.5.33",
+  "npmClient": "yarn",
+  "packages": ["packages/*"],
   "command": {
     "publish": {
       "gitReset": false,

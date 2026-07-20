@@ -1,4 +1,4 @@
-describe('Filtering', function() {
+describe('Filtering', () => {
   function createFilterModel() {
     const hours = 3600000;
     const memModel = createResourceWidthActivitiesData({
@@ -22,8 +22,8 @@ describe('Filtering', function() {
     });
     return memModel;
   }
-  it('Test filtering of activities and setHideEmptyRows', function() {
-    return this.createGantt({ data: createFilterModel() }).then(function(gantt) {
+  it('Test filtering of activities and setHideEmptyRows', function testFilteringAndSetHideEmptyRows() {
+    return createGantt({ data: createFilterModel() }).then((gantt) => {
       expect(gantt.getVisibleRows().length).to.equal(30);
       gantt.search('Odd', false, true);
       let newCount = gantt.getVisibleRows().length;
@@ -34,8 +34,8 @@ describe('Filtering', function() {
     });
   });
 
-  it('Test config table.hideEmptyRows', function() {
-    return this.createGantt({ data: createFilterModel(), table: { hideEmptyRows: true } }).then(function(gantt) {
+  it('Test config table.hideEmptyRows', function testConfigTableHideEmptyRows() {
+    return createGantt({ data: createFilterModel(), table: { hideEmptyRows: true } }).then((gantt) => {
       gantt.search('Odd', false, true);
       expect(gantt.getVisibleRows().length).to.equal(20);
     });

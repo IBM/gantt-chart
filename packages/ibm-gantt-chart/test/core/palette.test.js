@@ -1,4 +1,4 @@
-describe('Palette', function() {
+describe('Palette', () => {
   const colorbrewer = {
     YlGn: {
       3: ['#f7fcb9', '#addd8e', '#31a354'],
@@ -29,10 +29,10 @@ describe('Palette', function() {
 
   function createPalette(oarams) {}
 
-  it('Create palette from colorbrewer lib format', function() {
+  it('Create palette from colorbrewer lib format', () => {
     const palette = new (Gantt.components.Palette.impl || Gantt.components.Palette)(colorbrewer.YlGn);
 
-    Object.keys(colorbrewer.YlGn).forEach(function(key) {
+    Object.keys(colorbrewer.YlGn).forEach((key) => {
       const colors = colorbrewer.YlGn[key];
       expectSameArrays(colors, palette.getColors(colors.length));
     });
@@ -40,7 +40,7 @@ describe('Palette', function() {
     expectSameArrays(palette.getColors(2), ['#f7fcb9', '#addd8e']);
   });
 
-  it('Create palette from a color array', function() {
+  it('Create palette from a color array', () => {
     const colorArray = ['#ffffd9', '#edf8b1', '#c7e9b4', '#7fcdbb', '#41b6c4', '#1d91c0', '#225ea8', '#0c2c84'];
     const palette = new (Gantt.components.Palette.impl || Gantt.components.Palette)(colorArray);
 
@@ -50,11 +50,11 @@ describe('Palette', function() {
     expectSameArrays(palette.getColors(10), colorArray.concat(['#ffffd9', '#edf8b1'])); // compared result is orig array of size 8 + 2 first elements of the same array. This is the current alog when asking more colors than defined with the palette.
   });
 
-  it('Create palette from a function', function() {
+  it('Create palette from a function', () => {
     const colorArray = ['#ffffd9', '#edf8b1', '#c7e9b4', '#7fcdbb', '#41b6c4', '#1d91c0', '#225ea8', '#0c2c84'];
-    const palette = new (Gantt.components.Palette.impl || Gantt.components.Palette)(function(count) {
-      return count >= 0 && count <= colorArray.length ? colorArray.slice(0, count) : colorArray;
-    });
+    const palette = new (Gantt.components.Palette.impl || Gantt.components.Palette)((count) =>
+      count >= 0 && count <= colorArray.length ? colorArray.slice(0, count) : colorArray
+    );
 
     expectSameArrays(colorArray, palette.getColors(colorArray.length));
     expectSameArrays(colorArray.slice(0, 5), palette.getColors(5));

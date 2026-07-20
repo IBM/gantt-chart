@@ -5,7 +5,21 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-// embed jquery and datatables.net
-import './jquery-datatables';
+/* import-sort-ignore */
+import Gantt from './gantt';
 
-export default from './index-jquery';
+// Expose Gantt to global scope
+if (typeof window !== 'undefined') {
+  window.Gantt = Gantt;
+}
+if (typeof globalThis !== 'undefined') {
+  globalThis.Gantt = Gantt;
+}
+
+// Handle webpack DefinePlugin variables - they may come from globalThis in test environments
+let ver = typeof globalThis !== 'undefined' && globalThis.VERSION ? globalThis.VERSION : 'dev';
+let name = typeof globalThis !== 'undefined' && globalThis.NAME ? globalThis.NAME : 'ibm-gantt-chart';
+
+Gantt.version = ver;
+
+export default Gantt;

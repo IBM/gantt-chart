@@ -1,8 +1,8 @@
-describe('Milestones', function() {
+describe('Milestones', () => {
   const { expect } = chai;
 
-  describe('Use minimal table implementation', function() {
-    it('Should show an empty Gantt', function() {
+  describe('Use minimal table implementation', () => {
+    it('Should show an empty Gantt', function testShouldShowEmptyGantt() {
       const memModel = createResourceWidthActivitiesData({
         generateResources: { resourceCounts: [10, 2] },
         createActivities(resId) {
@@ -22,7 +22,7 @@ describe('Milestones', function() {
           ];
         },
       });
-      return this.createGantt({
+      return createGantt({
         data: memModel,
         timeTable: {
           renderer: [
@@ -33,9 +33,12 @@ describe('Milestones', function() {
             },
           ],
         },
-      }).then(function(gantt) {
-        // noinspection JSUnresolvedVariable
-        expect(sameColors($('.milestone .shape').css('backgroundColor'), '#00ff00')).to.be.true;
+      }).then((gantt) => {
+        // Get milestone element and check its background color
+        const milestoneShape = document.querySelector('.milestone .shape');
+        expect(milestoneShape).to.exist;
+        const bgColor = window.getComputedStyle(milestoneShape).backgroundColor;
+        expect(sameColors(bgColor, '#00ff00')).to.be.true;
       });
     });
   });

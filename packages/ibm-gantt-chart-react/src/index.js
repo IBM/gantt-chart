@@ -1,4 +1,5 @@
-export GanttChart from './components/GanttChart/GanttChart';
+import { version } from '../package.json';
 
-export const version = VERSION;
-// console.log(`[LOADED] ${NAME}@${VERSION}`);
+export { default as GanttChart } from './components/GanttChart/GanttChart';
+
+export const VERSION = version;

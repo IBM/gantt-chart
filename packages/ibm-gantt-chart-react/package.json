@@ -13,34 +13,56 @@
     "Olivier Noiret (https://github.com/ono70)",
     "Gilles d'Andréa (https://github.com/gillesdandrea)"
   ],
-  "main": "dist/ibm-gantt-chart-react.js",
-  "module": "dist/ibm-gantt-chart-react.js",
+  "type": "module",
+  "main": "./dist/ibm-gantt-chart-react.umd.js",
+  "module": "./dist/ibm-gantt-chart-react.es.js",
+  "style": "./dist/ibm-gantt-chart-react.css",
   "source": "src/index.js",
-  "style": "dist/ibm-gantt-chart-react.css",
+  "exports": {
+    ".": {
+      "import": "./dist/ibm-gantt-chart-react.es.js",
+      "require": "./dist/ibm-gantt-chart-react.umd.js"
+    },
+    "./dist/*.css": "./dist/*.css"
+  },
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "build": "gda-scripts webpack lib",
-    "build:all": "gda-scripts webpack lib",
-    "build:min": "gda-scripts webpack lib.min",
-    "build:storybook": "gda-scripts build-storybook",
-    "start": "gda-scripts webpack-dev-server dev",
-    "storybook": "gda-scripts storybook",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "vite build",
+    "dev": "vite --port 3002",
+    "preview": "vite preview --port 3002",
+    "storybook": "storybook dev --port 9001",
+    "build:storybook": "storybook build",
+    "test": "vitest run",
+    "test:dom": "playwright test"
   },
   "dependencies": {
-    "ibm-gantt-chart": "^0.5.33"
+    "ibm-gantt-chart": "workspace:^"
   },
   "devDependencies": {
-    "@hot-loader/react-dom": "^16.8.6",
-    "gda-scripts": "^0.3.0",
-    "prop-types": "^15.7.2",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "@playwright/test": "^1.61.1",
+    "@storybook/addon-essentials": "^8.6.18",
+    "@storybook/react": "^8.6.18",
+    "@storybook/react-vite": "^8.6.18",
+    "@testing-library/react": "^16.3.2",
+    "@vitejs/plugin-react": "^4.3.0",
+    "jsdom": "^29.1.1",
+    "prop-types": "^15.8.0",
+    "react": "^18.3.0",
+    "react-dom": "^18.3.0",
+    "sass": "^1.77.0",
+    "storybook": "^8.6.18",
+    "vite": "^6.0.0",
+    "vitest": "^4.1.10"
   },
   "peerDependencies": {
     "ibm-gantt-chart": "^0.5.0",
     "prop-types": "^15.7.2",
-    "react": "16.8.6",
-    "react-dom": "16.8.6"
+    "react": "^16.8.6 || ^17.0.0 || ^18.0.0",
+    "react-dom": "^16.8.6 || ^17.0.0 || ^18.0.0"
   },
-  "gitHead": "ec24c5000b1c547c1496474106a233103c3d09f5"
+  "publishConfig": {
+    "access": "public"
+  }
 }

@@ -1,4 +1,5 @@
 import Gantt from '../core/core';
+import { getComponent } from '../core/component-factory';
 
 import {
   GANTT_LOAD_RESOURCE_CHART,
@@ -72,7 +73,7 @@ class GanttPanel extends Gantt.components.GanttPanel {
     if (this.tooltip && this.tooltip.destroy) {
       this.tooltip.destroy();
     }
-    const TooltipClass = Gantt.components.Tooltip.impl || Gantt.components.Tooltip;
+    const TooltipClass = getComponent('Tooltip', Gantt.components.Tooltip);
     this.tooltip = new TooltipClass(this.config.tooltip);
 
     if (this.config.title) {
@@ -84,7 +85,7 @@ class GanttPanel extends Gantt.components.GanttPanel {
     } else this.title = null;
 
     const stringMatcher = Gantt.utils.stringMatches;
-    const FilterClass = Gantt.components.Filter.impl || Gantt.components.Filter;
+    const FilterClass = getComponent('Filter', Gantt.components.Filter);
     this.rowFilter = Gantt.utils.mergeObjects(
       new FilterClass(this.config && this.config.rows && this.config.rows.filter),
       {
@@ -133,7 +134,7 @@ class GanttPanel extends Gantt.components.GanttPanel {
       this.defaultPalette = null;
     }
 
-    const SelectionClass = Gantt.components.SelectionHandler.impl || Gantt.components.SelectionHandler;
+    const SelectionClass = getComponent('SelectionHandler', Gantt.components.SelectionHandler);
     this.selectionHandler = new SelectionClass(this.config && this.config.selection, {
       setObjectSelected(obj, selected) {
         if (selected) {
@@ -197,7 +198,7 @@ class GanttPanel extends Gantt.components.GanttPanel {
     const typeForRow = rc ? resType : actType;
     const defaultNotify = this.selectionHandler.notify;
     const handler = this.selectionHandler;
-    this.selectionHandler.notify = function(type, event) {
+    this.selectionHandler.notify = function notify(type, event) {
       const args = new Array(arguments.length);
       for (let i = 0; i < arguments.length; i++) {
         args[i] = arguments[i];
@@ -209,10 +210,10 @@ class GanttPanel extends Gantt.components.GanttPanel {
       }
     };
 
-    const ErrorClass = Gantt.components.ErrorHandler.impl || Gantt.components.ErrorHandler;
+    const ErrorClass = getComponent('ErrorHandler', Gantt.components.ErrorHandler);
     this.errorHandler = new ErrorClass(this.node, this.config && this.config.error);
 
-    this.updates = new (Gantt.components.GanttUpdates.impl || Gantt.components.GanttUpdates)();
+    this.updates = new (getComponent('GanttUpdates', Gantt.components.GanttUpdates))();
     const oldApplyUpdates = this.updates.applyUpdates;
     this.updates.applyUpdates = () => {
       const containsRowChanges = this.updates.containsRowChanges;
@@ -260,14 +261,14 @@ class GanttPanel extends Gantt.components.GanttPanel {
   }
 
   createModel(config) {
-    const ModelClass = Gantt.components.GanttModel.impl || Gantt.components.GanttModel;
+    const ModelClass = getComponent('GanttModel', Gantt.components.GanttModel);
     const model = new ModelClass(this, config);
     model.on(Gantt.events.TIME_WINDOW_CHANGED, (event, wnd) => this.setTimeWindow(wnd));
     return model;
   }
 
   create() {
-    const getLoadConfig = p => {
+    const getLoadConfig = (p) => {
       const c = this.config.loadResourceChart;
       return Gantt.utils.isArray(c) ? (c.length ? c[0][p] : undefined) : c[p];
     };
@@ -321,7 +322,7 @@ class GanttPanel extends Gantt.components.GanttPanel {
     this.contentElt.appendChild(bodyElt); // Need to be added here for the split pane to be created in a element in the DOM
 
     let bodyCtnr;
-    const SplitClass = Gantt.components.Split.impl || Gantt.components.Split;
+    const SplitClass = getComponent('Split', Gantt.components.Split);
     if (this.config.loadResourceChart) {
       this.legendConfig = {
         selector: () => this.loadChartCtrl.isVisible(),
@@ -348,7 +349,7 @@ class GanttPanel extends Gantt.components.GanttPanel {
             hideSecond: !this.loadChartCtrl.isVisible(),
           })
         );
-        this.loadChartSplit.onDividerDragEnd = e => {
+        this.loadChartSplit.onDividerDragEnd = (e) => {
           if (this.initPromise) {
             this.initPromise.then(() => {
               this.triggerEvent(Gantt.events.SPLIT_RESIZED);
@@ -367,7 +368,7 @@ class GanttPanel extends Gantt.components.GanttPanel {
     }
     try {
       this.splitPane = new SplitClass(bodyCtnr, this.config && this.config.divider);
-      this.splitPane.onresized = e => {
+      this.splitPane.onresized = (e) => {
         this.triggerEvent(Gantt.events.SPLIT_RESIZED);
       };
     } catch (err) {
@@ -454,7 +455,7 @@ class GanttPanel extends Gantt.components.GanttPanel {
 
     return this.model
       .load()
-      .then(rows => {
+      .then((rows) => {
         const wnd = this.getTimeWindow();
         if (!wnd || !wnd.start) {
           if (!rows.length) {
@@ -487,15 +488,16 @@ class GanttPanel extends Gantt.components.GanttPanel {
           this.timeTable.setConstraints(this.model.constraints);
           this.updates.timeTable.reload();
           this.stopUpdating();
+          const drawPromise = this.drawTimeTable(true);
           if (this.toobars) {
-            this.toolbars.forEach(bar => {
+            this.toolbars.forEach((bar) => {
               bar.ganttLoaded(this, rows);
             });
           }
-          return rows;
+          return Promise.resolve(drawPromise).then(() => rows);
         });
       })
-      .catch(err => {
+      .catch((err) => {
         stopLoading();
         this.errorHandler.addError(err, 'Loading error', this.tablePanel);
         return Promise.reject(err);
@@ -526,13 +528,14 @@ class GanttPanel extends Gantt.components.GanttPanel {
       return Promise.resolve(this.timeWindow);
     }
     this.timeWindow = { start, end };
-    return (this.timeLineInit = this.timeLine.setTimeWindow(start, end).then(({ start, end }) => {
+    this.timeLineInit = this.timeLine.setTimeWindow(start, end).then(({ start, end }) => {
       this.updateTableHeaderHeight();
       this.updateWidthFromTimeLine();
       this.scrollTimeTableToX(this.timeLine.getXFromMillis(this.timeLine.getHorizon().start));
       this.updateTimeLineHeight();
       this.triggerEvent(Gantt.events.TIME_WINDOW_CHANGED, start, end);
-    }));
+    });
+    return this.timeLineInit;
   }
 
   getBody() {
@@ -555,7 +558,7 @@ class GanttPanel extends Gantt.components.GanttPanel {
     // If not setting the min width, the table width would be zero while data being loaded and
     // the split pane would not able to set its split position.
     tablePanel.style.minWidth = '100px';
-    const TreeTableClass = Gantt.components.TreeTable.impl || Gantt.components.TreeTable;
+    const TreeTableClass = getComponent('TreeTable', Gantt.components.TreeTable);
     let tableConfig = this.config.table;
     if (this.legendConfig || this.config.rows) {
       const rowsConfig = Gantt.utils.mergeObjects({}, this.legendConfig && { rows: { renderer: this.legendConfig } }, {
@@ -567,7 +570,7 @@ class GanttPanel extends Gantt.components.GanttPanel {
     this.table.setRowFilter(this.rowFilter);
     this.updates.table = this.table.createUpdates(this.updates);
     ctnr.appendChild(tablePanel);
-    window.addWheelListener(tablePanel, evt => {
+    window.addWheelListener(tablePanel, (evt) => {
       const factor = evt.deltaMode === 1 /** DOM_DELTA_LINE */ ? 32 : 0.8; // necessary for FF !
       const delta = factor * evt.deltaY || -evt.wheelDelta || evt.detail;
       this.timeTable.scrollToY(this.timeTable.getScrollTop() + delta);
@@ -601,15 +604,12 @@ class GanttPanel extends Gantt.components.GanttPanel {
       vScrollerFiller.style.display = rightMargin ? 'block' : 'none';
     };
 
-    this.updateTableHeaderHeight = force => {
+    this.updateTableHeaderHeight = (force) => {
       if (!this.initializing && this.timeLine) {
         // Timeline is created after first resize events are fired
         const h = this.timeLine.getTimeAxisHeight();
         if (force || this.headersHeight !== h) {
           this.headersHeight = h;
-          if (!this.table) {
-            console.log('no table');
-          }
           this.table.setHeaderHeight(h);
           if (h) {
             this.timeTablePanel.style.top = vScrollerFiller.style.height = `${h}px`;
@@ -636,7 +636,7 @@ class GanttPanel extends Gantt.components.GanttPanel {
 
     this.timePanel.appendChild(this.timeTablePanel);
 
-    const TimeTableClass = Gantt.components.TimeTable.impl || Gantt.components.TimeTable;
+    const TimeTableClass = getComponent('TimeTable', Gantt.components.TimeTable);
     let timeTableConfig = this.config && this.config.timeTable;
     if (this.legendConfig || this.config.rows) {
       const rowsConfig = Gantt.utils.mergeObjects(
@@ -649,7 +649,7 @@ class GanttPanel extends Gantt.components.GanttPanel {
     this.timeTable = new TimeTableClass(this, this.timeTablePanel, timeTableConfig);
     this.updates.timeTable = this.timeTable.createUpdates(this.updates);
     this.attachTimeTableMouseWheel(this.timeTable.getScroller());
-    this.timeTable.getScroller().addEventListener('scroll', e => {
+    this.timeTable.getScroller().addEventListener('scroll', (e) => {
       this.timeLineScroller.scrollLeft = e.target.scrollLeft;
       this.triggerEvent(Gantt.events.TIME_LINE_SCROLLED, e.target.scrollLeft);
     });
@@ -661,7 +661,7 @@ class GanttPanel extends Gantt.components.GanttPanel {
     if (clear && this.table.deleteDrawCache) {
       this.table.deleteDrawCache();
     }
-    this.timeTable.draw(clear);
+    return this.timeTable.draw(clear);
   }
 
   createLoadingPanel(config) {
@@ -698,7 +698,7 @@ class GanttPanel extends Gantt.components.GanttPanel {
     let loadChartNode;
     let chartPanel;
     (Gantt.utils.isArray(config) && config.length && Gantt.utils.isArray(config[0]) ? config : [config]).forEach(
-      loadConfig => {
+      (loadConfig) => {
         // Construct the bar node
         if (!chartPanel) {
           chartPanel = document.createElement('div');
@@ -715,7 +715,7 @@ class GanttPanel extends Gantt.components.GanttPanel {
         if (!this.loadCharts) {
           this.loadCharts = [];
         }
-        const loadChart = new (Gantt.components.LoadResourceChart.impl || Gantt.components.LoadResourceChart)(
+        const loadChart = new (getComponent('LoadResourceChart', Gantt.components.LoadResourceChart))(
           this,
           loadChartNode,
           Gantt.utils.mergeObjects({}, loadConfig, { height: '' })
@@ -723,7 +723,7 @@ class GanttPanel extends Gantt.components.GanttPanel {
         this.loadChartCtrl.addLoadResourceChart(loadChart);
         loadChart.node.style.flex = '1 1';
         this.loadCharts.push(loadChart);
-        window.addWheelListener(loadChart.getScroller(), evt => {
+        window.addWheelListener(loadChart.getScroller(), (evt) => {
           evt.preventDefault();
         });
       }
@@ -759,7 +759,7 @@ class GanttPanel extends Gantt.components.GanttPanel {
   }
 
   attachTimeTableMouseWheel(scroller) {
-    window.addWheelListener(scroller, evt => {
+    window.addWheelListener(scroller, (evt) => {
       if (evt.ctrlKey && evt.deltaY !== 0) {
         if (evt.deltaY < 0) {
           this.zoomIn(evt);
@@ -773,7 +773,7 @@ class GanttPanel extends Gantt.components.GanttPanel {
 
   // noinspection JSUnusedLocalSymbols
   createTimeLine(timeLineCtnr) {
-    const TimeLineClass = Gantt.components.TimeLine.impl || Gantt.components.TimeLine;
+    const TimeLineClass = getComponent('TimeLine', Gantt.components.TimeLine);
     this.timeLine = new TimeLineClass(this, timeLineCtnr, this.config);
     this.timeLine.on(
       [Gantt.events.TIME_LINE_RANGE_CHANGE, Gantt.events.TIME_LINE_RANGE_CHANGED, Gantt.events.TIME_LINE_PAN_MOVED],
@@ -788,7 +788,7 @@ class GanttPanel extends Gantt.components.GanttPanel {
       this.drawTimeTable(true);
       this.triggerEvent(Gantt.events.TIME_LINE_SIZE_CHANGED, w, h);
     });
-    this.timeLine.on(Gantt.events.TIME_LINE_INIT, e => {
+    this.timeLine.on(Gantt.events.TIME_LINE_INIT, (e) => {
       this.triggerEvent(Gantt.events.TIME_LINE_INIT);
     });
     return this.timeLine;
@@ -796,14 +796,18 @@ class GanttPanel extends Gantt.components.GanttPanel {
 
   createToolbars(config) {
     this.toolbars = [];
-    const ToolbarClass = Gantt.components.Toolbar.impl || Gantt.components.Toolbar;
+    const ToolbarClass = getComponent('Toolbar', Gantt.components.Toolbar);
     let toolbarNode;
     this.toolbarElt = null;
     (Gantt.utils.isArray(config) && config.length && Gantt.utils.isArray(config[0]) ? config : [config]).forEach(
-      barConfig => {
+      (barConfig) => {
         if (barConfig.node) {
           if (Gantt.utils.isString(barConfig.node)) {
             toolbarNode = document.getElementById(barConfig.node);
+            if (!toolbarNode) {
+              Gantt.log.warn(`Toolbar container element not found: ${barConfig.node}`);
+              return;
+            }
           } else if (Gantt.utils.isDomElement(node)) {
             toolbarNode = node;
           } else if (Gantt.utils.isFunction(barConfig.node)) {
@@ -833,7 +837,7 @@ class GanttPanel extends Gantt.components.GanttPanel {
       this.contentElt.appendChild(this.toolbarElt);
     }
     // Wait for all toolbar components to be created before triggering onInitialized as components can refer to each others
-    this.toolbars.forEach(t => {
+    this.toolbars.forEach((t) => {
       t.onInitialized();
     });
     return this.toolbarElt;
@@ -963,9 +967,9 @@ class GanttPanel extends Gantt.components.GanttPanel {
           return acts[i];
         }
       }
-    } else {
-      return this.model.getActivity(param);
+      return undefined;
     }
+    return this.model.getActivity(param);
   }
 
   getActivityNode(param, res) {
@@ -982,6 +986,7 @@ class GanttPanel extends Gantt.components.GanttPanel {
         }
       }
     }
+    return undefined;
   }
 
   onResize() {
@@ -1036,7 +1041,7 @@ class GanttPanel extends Gantt.components.GanttPanel {
     }
 
     if (this.toolbars) {
-      this.toolbars.forEach(bar => {
+      this.toolbars.forEach((bar) => {
         bar.destroy();
       });
 
@@ -1092,7 +1097,7 @@ class GanttPanel extends Gantt.components.GanttPanel {
   /*   Layout synchronizer   */
   /*                         */
   synchLayout(config) {
-    const ls = new (Gantt.components.LayoutSynchronizer.impl || Gantt.components.LayoutSynchronizer)(config);
+    const ls = new (getComponent('LayoutSynchronizer', Gantt.components.LayoutSynchronizer))(config);
     ls.connect(this);
     return ls;
   }
@@ -1351,19 +1356,19 @@ class GanttPanel extends Gantt.components.GanttPanel {
   setPaletteConfiguration(config) {
     if (Gantt.utils.isArray(config) || Gantt.utils.isFunction(config)) {
       this.palettes = null;
-      this.defaultPalette = new (Gantt.components.Palette.impl || Gantt.components.Palette)(config);
+      this.defaultPalette = new (getComponent('Palette', Gantt.components.Palette))(config);
     } else if (Gantt.utils.isString(config)) {
       this.palettes = null;
       this.defaultPalette = Gantt.defaultPalettes[config];
       if (!this.defaultPalette) {
-        console.error(`Palette [${config}] does not exist`);
+        Gantt.log.error(`Palette [${config}] does not exist`);
       }
     } else {
       const paletteNames = Object.keys(config);
       this.palettes = {};
       this.defaultPalette = null;
       for (let i = 0, count = paletteNames.length; i < count; ++i) {
-        this.palettes[paletteNames[i]] = new (Gantt.components.Palette.impl || Gantt.components.Palette)(
+        this.palettes[paletteNames[i]] = new (getComponent('Palette', Gantt.components.Palette))(
           config[paletteNames[i]]
         );
       }

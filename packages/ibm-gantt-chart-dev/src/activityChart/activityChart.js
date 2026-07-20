@@ -99,4 +99,7 @@ function createActivitiesGanttConfig() {
   };
 }
 
-new Gantt('gantt' /* the id of the DOM element to contain the Gantt chart */, createActivitiesGanttConfig());
+window.gantt = new Gantt(
+  'gantt' /* the id of the DOM element to contain the Gantt chart */,
+  createActivitiesGanttConfig()
+);

@@ -1,0 +1,13 @@
+# Build outputs
+dist/
+storybook/
+storybook-static/
+
+# Generated package locks (monorepo uses yarn.lock at root)
+package-lock.json
+
+# Playwright
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/

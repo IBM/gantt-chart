@@ -14,14 +14,28 @@
     "Gilles d'Andréa (https://github.com/gillesdandrea)"
   ],
   "scripts": {
-    "build": "gda-scripts build-storybook-html -s ./data",
-    "start": "gda-scripts storybook-html -s ./data",
+    "build": "storybook build -o storybook",
+    "start": "storybook dev -p 9001",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "ibm-gantt-chart": "^0.5.33"
+    "ibm-gantt-chart": "workspace:^"
   },
   "devDependencies": {
-    "gda-scripts": "^0.3.0"
+    "@storybook/addon-essentials": "^8.6.0",
+    "@storybook/addon-links": "^8.6.0",
+    "@storybook/addon-storysource": "^8.6.0",
+    "@storybook/html-webpack5": "^8.6.0",
+    "autoprefixer": "^10.5.2",
+    "copy-webpack-plugin": "^12.0.2",
+    "css-loader": "^7.1.4",
+    "marked": "^15.0.0",
+    "postcss": "^8.5.0",
+    "postcss-loader": "^8.2.1",
+    "sass": "^1.101.0",
+    "sass-loader": "^17.0.0",
+    "storybook": "^8.6.0",
+    "style-loader": "^4.0.0",
+    "webpack": "^5.108.4"
   }
 }

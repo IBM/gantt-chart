@@ -1,4 +1,5 @@
 import Gantt from '../core/core';
+import { getComponent } from '../core/component-factory';
 import DragDrop from '../core/dragdrop';
 import ActivityRendererPrototype from './activityrenderer';
 import RowRendererPrototype from './rowrenderer';
@@ -31,9 +32,9 @@ export default class TimeTable extends Gantt.components.TimeTable {
     super(gantt, node, Gantt.utils.mergeObjects({}, defaultOptions, config));
 
     // Selection management
-    Gantt.utils.addEventListener(node, 'click', e => this.processClick(e), true);
-    Gantt.utils.addEventListener(node, 'dblclick', e => this.processDoubleClick(e), true);
-    Gantt.utils.addEventListener(node, 'contextmenu', e => this.processMouseDown(e), true);
+    Gantt.utils.addEventListener(node, 'click', (e) => this.processClick(e), true);
+    Gantt.utils.addEventListener(node, 'dblclick', (e) => this.processDoubleClick(e), true);
+    Gantt.utils.addEventListener(node, 'contextmenu', (e) => this.processMouseDown(e), true);
     const selectionHandler = gantt.selection;
     selectionHandler.on(Gantt.events.ACTIVITY_SELECTION_CLEARED, (e, sels) => this.clearActivitySelection(sels));
     selectionHandler.on(Gantt.events.ACTIVITY_SELECTED, (e, sels) => this.selectActvities(sels));
@@ -53,7 +54,7 @@ export default class TimeTable extends Gantt.components.TimeTable {
 
     this.bufferPageSize = config.bufferPageSize;
 
-    const RendererClass = Gantt.components.Renderer.impl || Gantt.components.Renderer;
+    const RendererClass = getComponent('Renderer', Gantt.components.Renderer);
     this.activityRenderer = new RendererClass(config.renderer, ActivityRendererPrototype, this.gantt);
 
     this.rowRenderer =
@@ -63,7 +64,7 @@ export default class TimeTable extends Gantt.components.TimeTable {
     this.moveInterator = this.interactor && this.interactor.move;
     this.mouseHandler = this.interactor && this.interactor.click;
 
-    const onScroll = e => {
+    const onScroll = (e) => {
       if (this.synchronizeTableTop(e.target.scrollTop)) {
         e.preventDefault && e.preventDefault();
       }
@@ -73,7 +74,7 @@ export default class TimeTable extends Gantt.components.TimeTable {
     this.initTooltip();
     this.events = {};
 
-    const LayoutClass = Gantt.components.ActivityLayout.impl || Gantt.components.ActivityLayout;
+    const LayoutClass = getComponent('ActivityLayout', Gantt.components.ActivityLayout);
     this.layout = new LayoutClass(config && config.layout, null /* proto */, { gantt: this.gantt });
   }
 
@@ -93,7 +94,7 @@ export default class TimeTable extends Gantt.components.TimeTable {
 
     // Element used for getting the width of the visible time table area.
     const timeTableWidthTester = document.createElement('div');
-    this.getVisibleWidth = function() {
+    this.getVisibleWidth = function getVisibleWidth() {
       return timeTableWidthTester.offsetWidth;
     };
     // CSS layout
@@ -105,7 +106,7 @@ export default class TimeTable extends Gantt.components.TimeTable {
     // excluding the horizontal scrollbar height
     const timeTableHeightTester = document.createElement('div');
     // noinspection JSUnusedGlobalSymbols
-    this.getVisibleHeight = function() {
+    this.getVisibleHeight = function getVisibleHeight() {
       return timeTableHeightTester.offsetHeight;
     };
     timeTableHeightTester.style.width = 0;
@@ -125,7 +126,7 @@ export default class TimeTable extends Gantt.components.TimeTable {
     Gantt.utils.addEventListener(
       this.body,
       'mouseenter',
-      e => {
+      (e) => {
         const row = this.getTimeTableRowNode(e.target);
         if (row) {
           this.gantt.highlightRow(row.id.substring(ROW_ID_PREFIX.length), true, true);
@@ -136,7 +137,7 @@ export default class TimeTable extends Gantt.components.TimeTable {
     Gantt.utils.addEventListener(
       this.body,
       'mouseleave',
-      e => {
+      (e) => {
         const row = this.getTimeTableRowNode(e.target);
         if (row) {
           this.gantt.highlightRow(row.id.substring(ROW_ID_PREFIX.length), false, true);
@@ -151,7 +152,7 @@ export default class TimeTable extends Gantt.components.TimeTable {
   }
 
   createUpdates(parent) {
-    return new (Gantt.components.GanttUpdates.impl || Gantt.components.GanttUpdates)(parent, {
+    return new (getComponent('GanttUpdates', Gantt.components.GanttUpdates))(parent, {
       applyReload: () => {
         this.draw();
       },
@@ -296,7 +297,7 @@ export default class TimeTable extends Gantt.components.TimeTable {
     const timeLine = this.gantt.timeLine;
     const ctx = {
       getX(millis) {
-        timeLine.getXFromMillis(millis);
+        return timeLine.getXFromMillis(millis);
       },
       horiz: this.gantt.timeLine.getScrollableHorizon(),
       gantt: this.gantt,
@@ -314,7 +315,8 @@ export default class TimeTable extends Gantt.components.TimeTable {
       const ctsRows = this.ctsGraph ? [] : null,
         firstRowIndex = row.index;
 
-      const maxBufferHeight = top + this.bufferPageSize * this.scroller.clientHeight;
+      const viewportHeight = this.scroller.clientHeight || table.getHeight();
+      const maxBufferHeight = top + this.bufferPageSize * viewportHeight;
       let yFinal = Math.min(maxBufferHeight, table.getHeight());
       const variableHeightLayout = this.layout.allowVariableRowHeight() || this.activityRenderer.rowHeight;
       ctx.odd = row.index % 2 === 0; // This is the way datatables work...
@@ -353,8 +355,8 @@ export default class TimeTable extends Gantt.components.TimeTable {
 
       if (this.ctsGraph) {
         let updateScrolls = false;
-        this.ctsGraph
-          .draw(ctsRows, row => {
+        this._drawPromise = this.ctsGraph
+          .draw(ctsRows, (row) => {
             // Draw callback to draw additional rows
             activityRow = row.activityRow;
             if (forceRedraw || !activityRow || !activityRow.rowNode) {
@@ -379,6 +381,7 @@ export default class TimeTable extends Gantt.components.TimeTable {
       }
     }
     this._ready = true;
+    return this._drawPromise || Promise.resolve();
   }
 
   drawRows() {
@@ -723,7 +726,6 @@ export default class TimeTable extends Gantt.components.TimeTable {
         if (actNode) {
           this.activity = timeTable.getActivity(actNode);
           if (this.activity === null) {
-            console.log('null activity!');
             return false;
           }
           this.initActivityRow = timeTable.getTimeTableRowNode(actNode);
@@ -916,12 +918,12 @@ export default class TimeTable extends Gantt.components.TimeTable {
         this.gantt.selection.processClick(e, row);
       }
     } else {
-      const actNode = Gantt.utils.closest(e.target, `.${TIME_TABLE_ACTIVITY_CLASSNAME}`);
+      const actNode = e.target.closest?.(`.${TIME_TABLE_ACTIVITY_CLASSNAME}`);
       const act = actNode && this.getActivity(actNode);
       if (act) {
         let row = act.row;
         if (!row) {
-          const rowNode = Gantt.utils.closest(e.target, `.${TIME_TABLE_ROW}`);
+          const rowNode = e.target.closest?.(`.${TIME_TABLE_ROW}`);
           row = this.getRow(rowNode.id.substring(ROW_ID_PREFIX.length));
         }
         if (row) {
@@ -971,6 +973,7 @@ export default class TimeTable extends Gantt.components.TimeTable {
       e && e.stopPropagation && e.stopPropagation();
       return false;
     }
+    return undefined;
   }
 
   // noinspection JSMethodCanBeStatic
@@ -1029,7 +1032,7 @@ export default class TimeTable extends Gantt.components.TimeTable {
   generateGlobalDecorations(ctx) {
     const decoContainer = this.gantt.timeLine.getDecorationContainer();
     if (!decoContainer) {
-      console.warn('No decoration container found in time line');
+      Gantt.log.warn('No decoration container found in time line');
       return;
     }
     if (this.backgroundCtnr) {
@@ -1130,7 +1133,7 @@ export default class TimeTable extends Gantt.components.TimeTable {
     if (constraints && constraints.length) {
       if (!this.ctsGraph) {
         const ctsNode = this.createConstraintGrapherNode();
-        this.ctsGraph = new (Gantt.components.ConstraintsGraph.impl || Gantt.components.ConstraintsGraph)(
+        this.ctsGraph = new (getComponent('ConstraintsGraph', Gantt.components.ConstraintsGraph))(
           this.gantt,
           ctsNode,
           this.gantt.config && this.gantt.config.constraints

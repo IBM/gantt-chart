@@ -64,7 +64,7 @@ export class Block {
   computeMax(useMaxLoad) {
     let max = 0;
     const usedRes = [];
-    this.resNodes.forEach(node => {
+    this.resNodes.forEach((node) => {
       if (useMaxLoad) {
         if (usedRes.indexOf(node.resource) < 0) {
           usedRes.push(node.resource);

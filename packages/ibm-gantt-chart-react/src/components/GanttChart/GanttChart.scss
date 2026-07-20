@@ -4,3 +4,16 @@
   width: 100%;
   height: 100%;
 }
+
+/* stylelint-disable selector-class-pattern */
+// Intentional BEM-style class for React component error state
+.ibm-gantt-chart-react__error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  color: #da1e28;
+  font-family: 'IBM Plex Sans', sans-serif;
+}
+/* stylelint-enable selector-class-pattern */

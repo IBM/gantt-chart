@@ -18,7 +18,7 @@ export default function createXMLDataConfig(xmlPath, activityChart) {
   function processResources(xmlDoc) {
     const resources = [];
     function readResources(xmlNode) {
-      xmlChildElts(xmlNode, 'resource').forEach(node => {
+      xmlChildElts(xmlNode, 'resource').forEach((node) => {
         resources.push({
           id: xmlAttr(node, 'id'),
           name: xmlAttr(node, 'name'),
@@ -60,10 +60,10 @@ export default function createXMLDataConfig(xmlPath, activityChart) {
         s: secs,
         ss: secs,
       };
-      format.replace(/(yyyy|yy|y|M|MM|MMMM|dd|d|H|HH|m|mm|s|ss)/g, part => {
+      format.replace(/(yyyy|yy|y|M|MM|MMMM|dd|d|H|HH|m|mm|s|ss)/g, (part) => {
         fmt[convertor[part]] = i++;
       });
-      return function(s) {
+      return function parseDate(s) {
         if (!s) return null;
         const parts = s.match(/(\d+)/g);
         return new Date(
@@ -80,7 +80,7 @@ export default function createXMLDataConfig(xmlPath, activityChart) {
 
     const activities = [];
     function readActivities(xmlNode) {
-      xmlChildElts(xmlNode, 'activity').forEach(node => {
+      xmlChildElts(xmlNode, 'activity').forEach((node) => {
         activities.push({
           id: xmlAttr(node, 'id'),
           name: xmlAttr(node, 'name'),
@@ -98,7 +98,7 @@ export default function createXMLDataConfig(xmlPath, activityChart) {
   function processReservations(xmlDoc) {
     const resas = [];
     function readReservations(xmlNode) {
-      xmlChildElts(xmlNode, 'reservation').forEach(node => {
+      xmlChildElts(xmlNode, 'reservation').forEach((node) => {
         resas.push({
           activity: xmlAttr(node, 'activity'),
           resource: xmlAttr(node, 'resource'),
@@ -120,7 +120,7 @@ export default function createXMLDataConfig(xmlPath, activityChart) {
     };
     const roots = xmlDoc.getElementsByTagName('constraints');
     if (roots && roots.length) {
-      xmlChildElts(roots[0], 'constraint').forEach(node => {
+      xmlChildElts(roots[0], 'constraint').forEach((node) => {
         consts.push({
           from: xmlAttr(node, 'from'),
           to: xmlAttr(node, 'to'),
@@ -143,14 +143,14 @@ export default function createXMLDataConfig(xmlPath, activityChart) {
         // overrideMimeType() can be used to force the response to be parsed as XML
         xhr.overrideMimeType('text/xml');
 
-        xhr.onload = function() {
+        xhr.onload = function handleLoad() {
           if (xhr.readyState === xhr.DONE) {
             if (xhr.status === 200) {
               resolve(xhr.response);
             }
           }
         };
-        xhr.onload = function() {
+        xhr.onload = function handleLoadDone() {
           if (this.status >= 200 && this.status < 300) {
             resolve(xhr.responseXML);
           } else {
@@ -160,7 +160,7 @@ export default function createXMLDataConfig(xmlPath, activityChart) {
             });
           }
         };
-        xhr.onerror = function() {
+        xhr.onerror = function handleError() {
           reject({
             status: this.status,
             statusText: xhr.statusText,

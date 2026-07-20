@@ -33,7 +33,7 @@ export default class LayoutSynchronizer extends Gantt.components.LayoutSynchroni
 
   connect(gantt) {
     this.gantt = gantt;
-    this.resizeHandler = e => {
+    this.resizeHandler = (e) => {
       this.checkBounds();
     };
     gantt.on([Gantt.events.RESIZED, Gantt.events.SPLIT_RESIZED], this.resizeHandler);
@@ -48,7 +48,7 @@ export default class LayoutSynchronizer extends Gantt.components.LayoutSynchroni
     };
     gantt.on(Gantt.events.TIME_LINE_SIZE_CHANGED, this.timeLineSizeListener);
 
-    this.timeLineInitializedListener = e => {
+    this.timeLineInitializedListener = (e) => {
       this.timeLineInitialized();
     };
     gantt.on(Gantt.events.TIME_LINE_INIT, this.timeLineInitializedListener);

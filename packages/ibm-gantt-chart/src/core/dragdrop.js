@@ -1,5 +1,8 @@
 import Gantt from './core';
 
+/** @typedef {import('./types').DragDropConfig} DragDropConfig */
+/** @typedef {import('./types').DragHandler} DragHandler */
+
 const defaultConfig = {
   keySpeed: 10,
   showMoveOnInvalid: true,
@@ -8,6 +11,10 @@ const defaultConfig = {
 };
 
 export default class DragDropHandler {
+  /**
+   * @param {HTMLElement} container
+   * @param {DragDropConfig} [config]
+   */
   constructor(container, config) {
     Gantt.utils.mergeObjects(this, defaultConfig, config);
 
@@ -21,11 +28,15 @@ export default class DragDropHandler {
     this.dYKeys = undefined;
     this.draggedObject = undefined;
     this.clickedObject = undefined;
+    /** @type {DragHandler[]} */
     this.handlers = [];
     this.methodsToHitch = [];
     this.hitchedMethods = [];
   }
 
+  /**
+   * @param {DragHandler} handler
+   */
   addHandler(handler) {
     this.handlers.push(handler);
   }
@@ -41,7 +52,7 @@ export default class DragDropHandler {
   }
 
   attach(element) {
-    element.onmousedown = e => this.startDragMouse(e);
+    element.onmousedown = (e) => this.startDragMouse(e);
   }
 
   startDragMouse(e) {
@@ -51,13 +62,16 @@ export default class DragDropHandler {
       if (this.draggedObject) {
         this.cancel(evt);
       }
-    } else if (!evt.button) {
+      return undefined;
+    }
+    if (!evt.button) {
       this.initialMouseX = evt.clientX;
       this.initialMouseY = evt.clientY;
       evt.target.blur();
       this.connectDragStarter(evt);
       return false;
     }
+    return undefined;
   }
 
   connectDragStarter(evt) {
@@ -158,14 +172,22 @@ export default class DragDropHandler {
     return true;
   }
 
+  /**
+   * Call a specific method on all registered handlers
+   * @param {string} meth - Method name to call on handlers
+   * @param {Event|HTMLElement|object} evt - Event or data to pass to handlers
+   * @returns {boolean|void}
+   */
   callHandlers(meth, evt) {
     let result;
     let i;
     let handler;
     for (i = 0; i < this.handlers.length; i++) {
       handler = this.handlers[i];
-      if (handler[meth]) {
-        result = handler[meth](evt);
+      // Access handler method only if it exists
+      const handlerMethod = handler[meth];
+      if (typeof handlerMethod === 'function') {
+        result = handlerMethod.call(handler, evt);
         if (result !== undefined && !result) {
           return false;
         }
@@ -201,8 +223,9 @@ export default class DragDropHandler {
     this.invalid = false;
     for (i = 0; i < this.handlers.length; i++) {
       handler = this.handlers[i];
-      if (handler.move) {
-        result = handler.move(pos);
+      const moveMethod = handler.move;
+      if (typeof moveMethod === 'function') {
+        result = moveMethod.call(handler, pos);
         if (result !== undefined && !result) {
           this.invalid = true;
         }
@@ -212,10 +235,10 @@ export default class DragDropHandler {
       return false;
     }
     this.moved(dx, dy);
-    if (pos.x !== undefined) {
+    if (pos.x !== undefined && this.draggedObject) {
       this.draggedObject.style.left = `${pos.x}px`;
     }
-    if (pos.y !== undefined) {
+    if (pos.y !== undefined && this.draggedObject) {
       this.draggedObject.style.top = `${pos.y}px`;
     }
     return true;
@@ -258,7 +281,7 @@ export default class DragDropHandler {
     let hitched = index >= 0 ? this.hitchedMethods[index] : null;
     if (index < 0) {
       this.methodsToHitch.push(method);
-      this.hitchedMethods.push((hitched = e => method.call(this, e)));
+      this.hitchedMethods.push((hitched = (e) => method.call(this, e)));
     } else {
       hitched = this.hitchedMethods[index];
     }

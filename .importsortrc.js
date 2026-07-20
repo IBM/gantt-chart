@@ -1,2 +1,6 @@
-/* eslint-disable import/no-extraneous-dependencies */
-module.exports = require('gda-scripts/config/.importsortrc.js');
+module.exports = {
+  '.js, .jsx, .ts, .tsx': {
+    parser: 'babylon',
+    style: 'gda',
+  },
+};

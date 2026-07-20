@@ -1,15 +1,17 @@
-describe('Table implementation', function() {
-  describe('Use minimal table implementation', function() {
-    before(function() {
+describe('Table implementation', () => {
+  describe('Use minimal table implementation', () => {
+    beforeAll(() => {
       installDummyTable(Gantt);
     });
-    after(function() {
+    afterAll(() => {
       uninstallDummyTable(Gantt);
     });
-    it('Simple', function() {
+    it('Simple', function testSimple() {
       const memModel = createResourceWidthActivitiesData();
-      return this.createGantt({ data: memModel }).then(function(gantt) {
-        expect($(gantt.table.getTableBody()).find('tr').length).to.equal(memModel.resources.data.length);
+      return createGantt({ data: memModel }).then((gantt) => {
+        const tableBody = gantt.table.getTableBody();
+        const rows = tableBody.querySelectorAll('tr');
+        expect(rows.length).to.equal(memModel.resources.data.length);
       });
     });
   });

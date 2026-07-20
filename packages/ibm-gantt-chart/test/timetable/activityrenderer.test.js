@@ -1,7 +1,7 @@
-describe('Rendering of activities', function() {
-  it('Define row height', function() {
+describe('Rendering of activities', () => {
+  it('Define row height', function testDefineRowHeight() {
     const memModel = createResourceWidthActivitiesData({ generateResources: { resourceCounts: [30, 3, 2] } });
-    return this.createGantt({
+    return createGantt({
       data: memModel,
       timeTable: {
         renderer: [
@@ -12,7 +12,7 @@ describe('Rendering of activities', function() {
           },
         ],
       },
-    }).then(function(gantt) {
+    }).then((gantt) => {
       const ctnr = getTimeTableRowContainer(gantt);
       const timeRows = ctnr.getElementsByClassName(TIME_TABLE_ROW_CLASS);
       expect(timeRows).to.have.length.of.at.least(1);
@@ -25,30 +25,30 @@ describe('Rendering of activities', function() {
         timeRow = timeRows[i];
         id = timeRow.id.substring(l);
         if (id.length < 6) {
-          expect(timeRow.offsetHeight).to.equal((rowHeight = 50));
+          expect(Number.parseInt(timeRow.style.height, 10)).to.equal((rowHeight = 50));
         } else {
-          expect((rowHeight = timeRow.offsetHeight)).to.not.equal(50);
+          expect((rowHeight = Number.parseInt(timeRow.style.height, 10))).to.not.equal(50);
         }
         actNodes = timeRow.getElementsByClassName(ACTIVITY_CLASS);
         if (actNodes.length) {
-          expect(actNodes[0].offsetHeight).to.equal(rowHeight - 4); // - topMargin - bottomMargin
+          expect(Number.parseInt(actNodes[0].style.height, 10)).to.equal(rowHeight - 4); // - topMargin - bottomMargin
         }
       }
     });
   });
 
-  it('Use row layout', function() {
+  it('Use row layout', function testUseRowLayout() {
     const idNames = {
-      '10': 'Jane',
-      '28': 'Joe',
-      '29': 'Jack',
+      10: 'Jane',
+      28: 'Joe',
+      29: 'Jack',
     };
     const rowHeights = {
       Jane: 50,
       Joe: 32,
       Jack: 100,
     };
-    return this.createGantt(
+    return createGantt(
       createHouseBuildingConfig({
         activitySubRows: 3,
         layoutStrategy: 'tile',
@@ -56,7 +56,7 @@ describe('Rendering of activities', function() {
           return rowHeights[idNames[row.id]] || 0;
         },
       })
-    ).then(function(gantt) {
+    ).then((gantt) => {
       let row = getTimeTableRow(gantt, '10'); // Jane
       expect(row.offsetHeight).to.not.equal(50);
       row = getTimeTableRow(gantt, '28'); // Joe

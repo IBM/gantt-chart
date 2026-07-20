@@ -1,7 +1,7 @@
-describe('Navigation', function() {
-  it('Navigate to resources', function() {
+describe('Navigation', () => {
+  it('Navigate to resources', function testNavigateToResources() {
     const memModel = createResourceWidthActivitiesData({ generateResources: { resourceCounts: [30, 3, 2] } });
-    return this.createGantt({ data: memModel }).then(function(gantt) {
+    return createGantt({ data: memModel }).then((gantt) => {
       const test = new GanttTest(gantt);
 
       let row = gantt.getFirstVisibleRow();
@@ -32,9 +32,9 @@ describe('Navigation', function() {
     });
   });
 
-  it('Collapse two levels', function() {
+  it('Collapse two levels', function testCollapseTwoLevels() {
     const memModel = createResourceWidthActivitiesData({ generateResources: { resourceCounts: [1, 3, 2] } });
-    return this.createGantt({ data: memModel }).then(function(gantt) {
+    return createGantt({ data: memModel }).then((gantt) => {
       const test = new GanttTest(gantt);
 
       const row = gantt.getFirstVisibleRow();

@@ -1,7 +1,7 @@
 function installDummyTable(Gantt) {
   const ROW_ID_PREFIX = 'row_';
 
-  if (Gantt.components.TreeTable.impl.toString().indexOf('DummyTreeTable') > -1) {
+  if (Gantt.components.TreeTable.impl?.toString().indexOf('DummyTreeTable') > -1) {
     return;
   }
   function DummyTreeTable(gantt, node, options) {
@@ -50,17 +50,17 @@ function installDummyTable(Gantt) {
   DummyTreeTable.prototype = Object.create(Gantt.components.TreeTable.prototype);
   DummyTreeTable.prototype.constructor = DummyTreeTable;
 
-  DummyTreeTable.prototype.getHeight = function() {
+  DummyTreeTable.prototype.getHeight = function getHeight() {
     return this.body.offsetHeight;
   };
-  DummyTreeTable.prototype.setHeaderHeight = function(height) {
-    this.ths.forEach(function(th) {
+  DummyTreeTable.prototype.setHeaderHeight = function setHeaderHeight(height) {
+    this.ths.forEach((th) => {
       th.style.height = `${height}px`;
     });
     this.scrollableTable.style.top = `${height}px`;
   };
 
-  DummyTreeTable.prototype.setRows = function(rows) {
+  DummyTreeTable.prototype.setRows = function setRows(rows) {
     const parent = this.body.parentNode;
     this.rowsByIds = rows.byIds;
     parent.removeChild(this.body);
@@ -99,15 +99,15 @@ function installDummyTable(Gantt) {
     parent.appendChild(this.body);
   };
 
-  DummyTreeTable.prototype.getScrollableTable = function() {
+  DummyTreeTable.prototype.getScrollableTable = function getScrollableTable() {
     return this.scrollableTable;
   };
 
-  DummyTreeTable.prototype.getTableBody = function() {
+  DummyTreeTable.prototype.getTableBody = function getTableBody() {
     return this.body;
   };
 
-  DummyTreeTable.prototype.getRowAt = function(y) {
+  DummyTreeTable.prototype.getRowAt = function getRowAt(y) {
     if (!this.body.hasChildNodes()) {
       return null;
     }
@@ -130,12 +130,13 @@ function installDummyTable(Gantt) {
         return this.getRowFromTR(tr, n);
       }
     }
+    return undefined;
   };
 
-  DummyTreeTable.prototype.getRowFromTR = function(tr, n) {
+  DummyTreeTable.prototype.getRowFromTR = function getRowFromTR(tr, n) {
     if (tr && tr.id) {
       const id = tr.id.substring(ROW_ID_PREFIX.length);
-      // eslint-disable-next-line react/no-this-in-sfc
+
       const row = this.rowsByIds[id];
       if (row && n !== undefined) {
         row.index = n;
@@ -145,28 +146,31 @@ function installDummyTable(Gantt) {
     return null;
   };
 
-  DummyTreeTable.prototype.nextRow = function(row) {
+  DummyTreeTable.prototype.nextRow = function nextRow(row) {
     if (!row) {
       return null;
     }
     return this.getRowFromTR(row.tr.nextSibling, row.index + 1);
   };
 
-  DummyTreeTable.prototype.getRow = function(id) {
+  DummyTreeTable.prototype.getRow = function getRow(id) {
     return this.rowsByIds[id];
   };
 
-  DummyTreeTable.prototype.getRowTop = function(row) {
+  DummyTreeTable.prototype.getRowTop = function getRowTop(row) {
     const tr = row.tr || row;
     return tr.offsetTop; // We ensure the tbody has a position relative so that it is the offsetparent of child rows.
   };
 
-  DummyTreeTable.prototype.getRowHeight = function(row, height) {
+  DummyTreeTable.prototype.getRowHeight = function getRowHeight(row, height) {
     // return $(row.tr).offsetHeight;
     return Gantt.utils.getHeight(row.tr);
   };
 
-  Gantt.components.TreeTable.origImpl = Gantt.components.TreeTable.impl;
+  // Save original impl if not already saved
+  if (!Gantt.components.TreeTable.origImpl) {
+    Gantt.components.TreeTable.origImpl = Gantt.components.TreeTable.impl || Gantt.components.TreeTable;
+  }
   Gantt.components.TreeTable.impl = DummyTreeTable;
 }
 
@@ -176,3 +180,6 @@ function uninstallDummyTable(Gantt) {
     Gantt.components.TreeTable.origImpl = null;
   }
 }
+
+// Export for ES modules
+export { installDummyTable, uninstallDummyTable };
