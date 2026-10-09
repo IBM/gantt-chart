@@ -51,6 +51,19 @@
       "git add"
     ]
   },
+  "resolutions": {
+    "url-parse":        "^1.5.10",
+    "underscore":       "^1.13.7",
+    "minimist":         "^1.2.8",
+    "loader-utils":     "^2.0.4",
+    "socket.io-parser": "^4.2.4",
+    "simple-git":       "^3.19.1",
+    "elliptic":         "^6.6.1",
+    "pbkdf2":           "^3.1.3",
+    "form-data":        "^4.0.1",
+    "shell-quote":      "^1.8.4",
+    "websocket-driver": "^0.7.5"
+  },
   "devDependencies": {
     "all-contributors-cli": "^6.26.1",
     "gda-scripts": "^0.3.6",
